@@ -1,9 +1,28 @@
-import java.util.*;
-
+import java.util.Arrays;
 
 public class EmpresaDeBasura {
-    Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
+    String nombre;
+    String ciudad;
+    String gerente;
+    Usuario usuarios[];
+    Sede sedes[];
 
+    public EmpresaDeBasura(String nombre, String ciudad, String gerente, Usuario[] usuarios, Sede[] sedes) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.gerente = gerente;
+        this.usuarios = usuarios;
+        this.sedes = sedes;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpresaDeBasura{" +
+                "nombre='" + nombre + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", gerente='" + gerente + '\'' +
+                ", usuarios=" + Arrays.toString(usuarios) +
+                ", sedes=" + Arrays.toString(sedes) +
+                '}';
     }
 }
