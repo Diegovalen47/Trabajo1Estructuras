@@ -1,23 +1,41 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonPrimitive;
-import java.util.Map.Entry;
+import com.google.gson.*;
 
 public class Main {
 
 
     public static Scanner input = new Scanner(System.in);
-    public static Deque<Usuario> usuarios = new LinkedList<>();
+    public static LinkedList<Usuario> usuarios = new LinkedList<>();
+    public static Gson gson = new Gson();
+
+
+    public static void CargarUsuarios() {
+        JsonParser parser = new JsonParser();
+
+        try(FileReader reader = new FileReader("usuarios.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray userList = (JsonArray) obj;
+
+            for (Object object : userList) {
+                String jsonString = gson.toJson(object);
+                Usuario usuario = gson.fromJson(jsonString, Usuario.class);
+                usuarios.add(usuario);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
     public static void main(String[] args) {
-
+        CargarUsuarios();
         /*  El siguiente ciclo while tiene la funcionalidad de mostrar el menú principal
         en donde el usuario tendrá las opciones de iniciar sesión y registrarse   */
-
         String option = "";
         while(true) {
             System.out.println("***********************************************");
@@ -34,6 +52,7 @@ public class Main {
             } else if (option.equals("2")) {
                 Registrarse();
             } else if (option.equals("0")) {
+                GuardarUsuarios();
                 break;
             }
         }
@@ -50,14 +69,15 @@ public class Main {
         System.out.println("******************************************************");
         System.out.print("Ingrese su correo electronico o documento de identidad : ");
         String option = input.next();
-        System.out.print("Ingrese su contraseña : ");
-        String clave = input.next();
+        String clave;
 
         if (option.contains("@")) {   // Se busca por correo electrónico
             boolean encontrado = false;
             for (Usuario usuario : usuarios) {
                 if (usuario.correo.equals(option)) {
                     encontrado = true;           //Verificador de usuario encontrado
+                    System.out.print("Ingrese su contraseña : ");
+                    clave = input.next();
                     while(!usuario.clave.equals(clave)) {
                         System.out.println("Contraseña incorrecta, intente nuevamente.");
                         System.out.print("Ingrese su contraseña : ");
@@ -85,6 +105,8 @@ public class Main {
             for (Usuario usuario : usuarios) {
                 if (usuario.cedula == documento_identidad) {
                     encontrado = true;               //Verificador de usuario encontrado
+                    System.out.print("Ingrese su contraseña : ");
+                    clave = input.next();
                     while(!usuario.clave.equals(clave)) {
                         System.out.println("Contraseña incorrecta, intente nuevamente.");
                         System.out.print("Ingrese su contraseña : ");
@@ -162,10 +184,25 @@ public class Main {
         System.out.print("Contraseña : ");
         String clave = input.next();
 
-        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave);
+        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave, null);
         usuarios.add(usuario);
+
         System.out.println("¡Usted se ha registrado exitosamente!");
         IniciarSesion();
+    }
+
+
+    public static void GuardarUsuarios() {
+        String jsonString = gson.toJson(usuarios);
+
+        try (FileWriter file = new FileWriter("usuarios.json")) {
+
+            file.write(jsonString);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
