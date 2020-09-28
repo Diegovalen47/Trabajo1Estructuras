@@ -8,8 +8,10 @@ import java.util.Map.Entry;
 
 public class Main {
 
+
     public static Scanner input = new Scanner(System.in);
     public static Deque<Usuario> usuarios = new LinkedList<>();
+
 
     public static void main(String[] args) {
 
@@ -21,6 +23,7 @@ public class Main {
             System.out.println("***********************************************");
             System.out.println("Bienvenido al sistema de gestión de información");
             System.out.println("de empresas recolectoras de basura.");
+            System.out.println("***********************************************");
             System.out.println("Elija una opción :");
             System.out.println("1. Iniciar sesión.");
             System.out.println("2. Registrarse.");
@@ -43,7 +46,7 @@ public class Main {
             System.out.println("No hay usuarios registrados al momento");
             return;
         }
-
+        System.out.println("Iniciar sesion");
         System.out.println("******************************************************");
         System.out.print("Ingrese su correo electronico o documento de identidad : ");
         String option = input.next();
@@ -61,7 +64,7 @@ public class Main {
                         clave = input.next();
                     }
                     System.out.println("Inicio de sesión exitoso");
-                    //MenuPrincipal();
+                    MenuPrincipal(usuario);
                 }
             }
             if (!encontrado) {           // Si no se encuentra el usuario
@@ -87,8 +90,8 @@ public class Main {
                         System.out.print("Ingrese su contraseña : ");
                         clave = input.next();
                     }
-                    System.out.println("inicio de sesión exitoso");
-                    //MenuPrincipal();
+                    System.out.println("Inicio de sesión exitoso");
+                    MenuPrincipal(usuario);
                 }
             }
             if (!encontrado) {              // Si no se encuentra el usuario
@@ -109,6 +112,7 @@ public class Main {
 
     public static void Registrarse() {
 
+        System.out.println("Registrarse");
         System.out.println("**********************************");
         System.out.println("Ingrese sus datos personales");
         System.out.print("Nombre : ");
@@ -139,7 +143,7 @@ public class Main {
         int documento_identidad = input.nextInt();
 
         boolean documento_existente = true;
-        while (documento_existente) {         // Verificacion que el correo no está registrado
+        while (documento_existente) {         // Verificacion que el documento de identidad no está registrado
             documento_existente = false;
             for (Usuario usuario : usuarios) {
 
@@ -164,4 +168,37 @@ public class Main {
         IniciarSesion();
     }
 
+
+    public static void MenuPrincipal(Usuario usuario) {
+        System.out.println("*********************************");
+        System.out.println("¡Hola "+ usuario.nombre +"!");
+        String option = "";
+        while(true) {
+            System.out.println("Bienvenido al menú principal");
+            System.out.println("Elija una opción");
+            System.out.println("1. Administración");
+            System.out.println("2. Búsqueda");
+            System.out.println("3. Dignóstico de inconsistencias");
+            System.out.println("1. Guardar");
+            System.out.println("0. Salir y cancelar");
+            option = input.next();
+            if (option.equals("1")) {
+                //Admistracion();
+            } else if (option.equals("2")) {
+                //Busqueda();
+            } else if (option.equals("3")) {
+                //DiagnosticoInconsistencias();
+            } else if (option.equals("4")) {
+                //Guardar();
+            } else if (option.equals("0")) {
+                System.out.println("Se perderán los cambios sin guardar, ¿Desea salir?");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    break;
+                }
+            }
+        }
+    }
 }
