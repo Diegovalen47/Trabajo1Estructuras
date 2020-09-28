@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Area {
-    String tipooo;
+    String tipo;
     boolean contratista;
     String horario;
     String persona_a_cargo;
