@@ -4,8 +4,8 @@ public class EmpresaDeBasura {
     String nombre;
     String ciudad;
     String gerente;
-    Usuario usuarios[];
-    Sede sedes[];
+    LinkedList<Usuario> usuarios;
+    LinkedList<Sede> Sedes;
 
     public EmpresaDeBasura(String nombre, String ciudad, String gerente, Usuario[] usuarios, Sede[] sedes) {
         this.nombre = nombre;

@@ -2,6 +2,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.ForEachOp;
+
 import com.google.gson.*;
 
 public class Main {
@@ -9,6 +11,7 @@ public class Main {
 
     public static Scanner input = new Scanner(System.in);
     public static LinkedList<Usuario> usuarios = new LinkedList<>();
+    public static LinkedList<EmpresaDeBasura> Empresas= new LinkedList<>();
     public static Gson gson = new Gson();
 
 
@@ -213,16 +216,16 @@ public class Main {
         while(true) {
             System.out.println("Bienvenido al menú principal");
             System.out.println("Elija una opción");
-            System.out.println("1. Administración");
-            System.out.println("2. Búsqueda");
+            System.out.println("1. Crear empresa de basura");
+            System.out.println("2. Consultar empresa de basura");
             System.out.println("3. Dignóstico de inconsistencias");
             System.out.println("1. Guardar");
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                //Admistracion();
+                //CrearEmpresa();
             } else if (option.equals("2")) {
-                //Busqueda();
+                //ConsultarEmpresa();
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
@@ -238,4 +241,59 @@ public class Main {
             }
         }
     }
+
+    public static void CrearEmpresa(){
+        boolean registrado= false;
+        while(!registrado){         // Aquí se valida si el nombre de la empresa a ingresar ya existe
+            registrado=true;
+            System.out.print("Ingrese el nombre de la nueva empresa de basura: ");
+            input.nextLine();
+            String nombre= input.nextLine();
+            for(EmpresaDeBasura empresa: Empresas){
+                if(empresa.nombre.equals(nombre)){
+                    registrado=false;
+                    System.out.println("El nombre seleccionado ya está registrado");
+                    break;
+                }
+            }
+        }
+
+
+        boolean cuidad_regiatrada= false;
+        while(!cuidad_regiatrada){         // Aquí se valida si la cuidad ya posee empresa de basura
+            cuidad_regiatrada=true;
+            System.out.print("Ingrese la cuidad donde se establecerá la empresa: ");
+            input.nextLine();
+            String cuidad= input.nextLine();
+            for(EmpresaDeBasura empresa: Empresas){
+                if(empresa.ciudad.equals(ciudad)){
+                    cuidad_regiatradao=false;
+                    System.out.println("La cuidad seleccionada ya posee empresa de basura");
+                    break;
+                }
+            }
+        }
+
+
+        boolean gerente_regiatrado= false;
+        while(!gerente_regiatrado){         // Aquí se valida si el gerente ya está en otra empresa de basura
+            gerente_regiatrado=true;
+            System.out.print("Ingrese el nombre del gerente de la nueva empresa de basura: ");
+            input.nextLine();
+            String gerente= input.nextLine();
+            for(EmpresaDeBasura empresa: Empresas){
+                if(empresa.gerente.equals(gerente)){
+                    gerente_regiatrado=false;
+                    System.out.println("La cuidad seleccionada ya posee empresa de basura");
+                    break;
+                }
+            }
+        }
+
+        Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));
+
+
+    }   
+
+
 }
