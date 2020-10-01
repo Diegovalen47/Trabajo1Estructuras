@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Recolector {
     String marca;
@@ -6,9 +7,9 @@ public class Recolector {
     int id;
     boolean disponible=true;
     int rutaid;
-    Taller talleres[];
+    LinkedList<Taller> talleres= new LinkedList<>();
     Ruta ruta;
-    Personal personas[];
+    LinkedList<Personal> personas= new LinkedList<>();
 
     public Recolector(String marca, boolean doble_troque, int id, boolean disponible, int rutaid, Taller[] talleres, Ruta ruta, Personal[] personas) {
         this.marca = marca;
@@ -21,11 +22,6 @@ public class Recolector {
         this.personas = personas;
     }
 
-    public barado(){
-        disponible=false;
-        
-    }
-
     @Override
     public String toString() {
         return "Recolector{" +
@@ -34,9 +30,9 @@ public class Recolector {
                 ", id=" + id +
                 ", disponible=" + disponible +
                 ", rutaid=" + rutaid +
-                ", talleres=" + Arrays.toString(talleres) +
+                ", talleres=" + Arrays.toString(talleres.toArray()) +
                 ", ruta=" + ruta +
-                ", personas=" + Arrays.toString(personas) +
+                ", personas=" + Arrays.toString(personas.toArray()) +
                 '}';
     }
 }

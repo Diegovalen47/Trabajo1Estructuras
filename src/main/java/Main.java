@@ -11,7 +11,7 @@ public class Main {
 
     public static Scanner input = new Scanner(System.in);
     public static LinkedList<Usuario> usuarios = new LinkedList<>();
-    public static LinkedList<EmpresaDeBasura> Empresas= new LinkedList<>();
+    public static EmpresaDeBasura Empresa= new EmpresaDeBasura();
     public static Gson gson = new Gson();
 
 
@@ -245,7 +245,7 @@ public class Main {
     public static void MenuPrincipalEmpresa() {
         
         System.out.println("*********************************");
-        System.out.println("Bienvenido a la empresa:  "+ usuario.nombre);
+        System.out.println("Bienvenido a la empresa:  "+ Empresa.nombre);
         String option = "";
         while(true) {
             System.out.println("Bienvenido al menú principal");
