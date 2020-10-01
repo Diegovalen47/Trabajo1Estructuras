@@ -222,15 +222,15 @@ public class Main {
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-<<<<<<< HEAD
+
                 AdministracionInformacion();
             } else if (option.equals("2")) {
                 BusquedaInformacion();
-=======
+
                 CrearEmpresa();
             } else if (option.equals("2")) {
                 ConsultarEmpresa();
->>>>>>> 5c8f46fab8002c6602dd3b84c91edaf0e7794e08
+
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
@@ -367,12 +367,11 @@ public class Main {
             }
         }
 
-<<<<<<< HEAD
+
         /*Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));*/
-=======
-        Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));
+
         System.out.println("Se ha ingresado exitosamente la empresa de basura");
->>>>>>> 5c8f46fab8002c6602dd3b84c91edaf0e7794e08
+
 
         System.out.println("¿Desea crear sedes para la empresa de basura?");
         System.out.println("Y");
@@ -381,7 +380,7 @@ public class Main {
 
         if(option.equals("Y")){
             
-            CrearSedes();  // Esta funcion no ha sido creada (tener esto presente)
+            //CrearSedes();  // Esta funcion no ha sido creada (tener esto presente)
 
         }else{
             return;
