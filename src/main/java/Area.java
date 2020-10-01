@@ -9,10 +9,9 @@ public class Area {
     Sede sede;
     Ruta rutas[];
     Taller talleres[];
-    Parqueadero parqueaderos[];
     Personal personas[];
 
-    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo, Sede sede, Ruta[] rutas, Taller[] talleres, Parqueadero[] parqueaderos, Personal[] personas) {
+    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo, Sede sede, Ruta[] rutas, Taller[] talleres, Personal[] personas) {
         this.tipo = tipo;
         this.contratista = contratista;
         this.horario = horario;
@@ -21,7 +20,6 @@ public class Area {
         this.sede = sede;
         this.rutas = rutas;
         this.talleres = talleres;
-        this.parqueaderos = parqueaderos;
         this.personas = personas;
     }
 
@@ -36,7 +34,6 @@ public class Area {
                 ", sede=" + sede +
                 ", rutas=" + Arrays.toString(rutas) +
                 ", talleres=" + Arrays.toString(talleres) +
-                ", parqueaderos=" + Arrays.toString(parqueaderos) +
                 ", personas=" + Arrays.toString(personas) +
                 '}';
     }

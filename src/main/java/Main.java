@@ -2,9 +2,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.ForEachOp;
-
 import com.google.gson.*;
+
 
 public class Main {
 
@@ -216,16 +215,16 @@ public class Main {
         while(true) {
             System.out.println("Bienvenido al menú principal");
             System.out.println("Elija una opción");
-            System.out.println("1. Crear empresa de basura");
-            System.out.println("2. Consultar empresa de basura");
+            System.out.println("1. Administración de información");
+            System.out.println("2. Búsqueda de información");
             System.out.println("3. Dignóstico de inconsistencias");
             System.out.println("1. Guardar");
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                //CrearEmpresa();
+                AdministracionInformacion();
             } else if (option.equals("2")) {
-                //ConsultarEmpresa();
+                BusquedaInformacion();
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
@@ -242,13 +241,86 @@ public class Main {
         }
     }
 
+
+    public static void AdministracionInformacion() {
+        String option = "";
+        while(true) {
+            System.out.println("*****************************************************************");
+            System.out.println("Seleccione el elemento por el cual desea administrar la información");
+            System.out.println("1. Empresas de basura");
+            System.out.println("2. Sedes");
+            System.out.println("3. Áreas");
+            System.out.println("4. Rutas");
+            System.out.println("5. Talleres");
+            System.out.println("6. Personal");
+            System.out.println("7. Recolectores");
+            System.out.println("0. Cancelar");
+            option = input.next();
+            if (option.equals("1")) {
+                //MenuEmpresasDeBasura();
+            } else if (option.equals("2")) {
+                //MenúSedes();
+            } else if (option.equals("3")) {
+                //MenuAreas();
+            } else if (option.equals("4")) {
+                //MenuRutas();
+            } else if (option.equals("5")) {
+                //MenuTalleres();
+            } else if (option.equals("6")) {
+                //MenuPersonal();
+            } else if (option.equals("7")) {
+                //MenuRecolectores
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+    public static void BusquedaInformacion() {
+        String option = "";
+        while(true) {
+            System.out.println("*****************************************************************");
+            System.out.println("Seleccione el elemento por el cual desea buscar la información");
+            System.out.println("1. Empresas de basura");
+            System.out.println("2. Sedes");
+            System.out.println("3. Áreas");
+            System.out.println("4. Rutas");
+            System.out.println("5. Talleres");
+            System.out.println("6. Personal");
+            System.out.println("7. Recolectores");
+            System.out.println("0. Cancelar");
+            option = input.next();
+            if (option.equals("1")) {
+                //MenuEmpresasDeBasura();
+            } else if (option.equals("2")) {
+                //MenúSedes();
+            } else if (option.equals("3")) {
+                //MenuAreas();
+            } else if (option.equals("4")) {
+                //MenuRutas();
+            } else if (option.equals("5")) {
+                //MenuTalleres();
+            } else if (option.equals("6")) {
+                //MenuPersonal();
+            } else if (option.equals("7")) {
+                //MenuRecolectores
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+
     public static void CrearEmpresa(){
         boolean registrado= false;
+        String nombre;
         while(!registrado){         // Aquí se valida si el nombre de la empresa a ingresar ya existe
             registrado=true;
             System.out.print("Ingrese el nombre de la nueva empresa de basura: ");
             input.nextLine();
-            String nombre= input.nextLine();
+            nombre= input.nextLine();
             for(EmpresaDeBasura empresa: Empresas){
                 if(empresa.nombre.equals(nombre)){
                     registrado=false;
@@ -258,29 +330,28 @@ public class Main {
             }
         }
 
-
+        String ciudad;
         boolean cuidad_regiatrada= false;
         while(!cuidad_regiatrada){         // Aquí se valida si la cuidad ya posee empresa de basura
             cuidad_regiatrada=true;
             System.out.print("Ingrese la cuidad donde se establecerá la empresa: ");
-            input.nextLine();
-            String cuidad= input.nextLine();
+            ciudad = input.nextLine();
             for(EmpresaDeBasura empresa: Empresas){
                 if(empresa.ciudad.equals(ciudad)){
-                    cuidad_regiatradao=false;
+                    cuidad_regiatrada  =false;
                     System.out.println("La cuidad seleccionada ya posee empresa de basura");
                     break;
                 }
             }
         }
 
-
+        String gerente;
         boolean gerente_regiatrado= false;
         while(!gerente_regiatrado){         // Aquí se valida si el gerente ya está en otra empresa de basura
             gerente_regiatrado=true;
             System.out.print("Ingrese el nombre del gerente de la nueva empresa de basura: ");
             input.nextLine();
-            String gerente= input.nextLine();
+            gerente= input.nextLine();
             for(EmpresaDeBasura empresa: Empresas){
                 if(empresa.gerente.equals(gerente)){
                     gerente_regiatrado=false;
@@ -290,7 +361,7 @@ public class Main {
             }
         }
 
-        Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));
+        /*Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));*/
 
 
     }   
