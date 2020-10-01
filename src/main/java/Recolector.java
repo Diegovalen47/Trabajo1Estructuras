@@ -4,7 +4,7 @@ public class Recolector {
     String marca;
     boolean doble_troque;
     int id;
-    boolean disponible;
+    boolean disponible=true;
     int rutaid;
     Taller talleres[];
     Parqueadero parqueaderos[];
@@ -21,6 +21,11 @@ public class Recolector {
         this.parqueaderos = parqueaderos;
         this.ruta = ruta;
         this.personas = personas;
+    }
+
+    public barado(){
+        disponible=false;
+        
     }
 
     @Override

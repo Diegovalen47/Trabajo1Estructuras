@@ -7,7 +7,7 @@ public class EmpresaDeBasura {
     LinkedList<Usuario> usuarios;
     LinkedList<Sede> Sedes;
 
-    public EmpresaDeBasura(String nombre, String ciudad, String gerente, Usuario[] usuarios, Sede[] sedes) {
+    public EmpresaDeBasura(String nombre, String ciudad, String gerente, LinkedList<Usuario> usuarios, LinkedList<Sede> sedes) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.gerente = gerente;
