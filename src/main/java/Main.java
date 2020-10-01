@@ -222,9 +222,15 @@ public class Main {
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
+<<<<<<< HEAD
                 AdministracionInformacion();
             } else if (option.equals("2")) {
                 BusquedaInformacion();
+=======
+                CrearEmpresa();
+            } else if (option.equals("2")) {
+                ConsultarEmpresa();
+>>>>>>> 5c8f46fab8002c6602dd3b84c91edaf0e7794e08
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
@@ -361,10 +367,117 @@ public class Main {
             }
         }
 
+<<<<<<< HEAD
         /*Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));*/
+=======
+        Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));
+        System.out.println("Se ha ingresado exitosamente la empresa de basura");
+>>>>>>> 5c8f46fab8002c6602dd3b84c91edaf0e7794e08
+
+        System.out.println("¿Desea crear sedes para la empresa de basura?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option= input.next();
+
+        if(option.equals("Y")){
+            
+            CrearSedes();  // Esta funcion no ha sido creada (tener esto presente)
+
+        }else{
+            return;
+        }
 
 
-    }   
+    }
+    
+    public static void ConsultarEmpresa() {
+        if(Empresas.size()==0){
+            System.out.println("No hay empresas registradas");
+            System.out.println("¿Desea registrar una empresa de basura?");
+            System.out.println("Y");
+            System.out.println("N");
+            String option= input.next();
+
+            if(option.equals("Y")){
+                CrearEmpresa();
+            }
+            return;
+
+        }else{
+
+            System.out.println("Las empresas registradas son: ");
+
+            for (EmpresaDeBasura empresaDeBasura : Empresas) {
+                System.out.println(empresaDeBasura.nombre);
+            }
+
+            boolean nombre_correcto= false;
+
+            while(!nombre_correcto){
+
+                System.out.println();
+                System.out.print("Ingrese el nombre de la empresa a consultar: ");
+                input.nextLine();
+                option=input.nextLine();
+
+                for (EmpresaDeBasura empresaDeBasura : Empresas) {
+                    if(empresaDeBasura.nombre.equals(option)){
+                        MenuPrincipalEmpresa(empresaDeBasura); // En esta función se crean las sedes y se consulta en general a la empresa
+                        return;
+                    }
+                }
+
+                System.out.println("El nombre ingresado es incorrecto");
+                System.out.println("¿Desea intertarlo de nuevo?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option_2= input.next();
+
+                if(option_2.equals("N")){
+                    return;
+                }
+            }
+            
+            
+
+        }
+
+
+
+    }
+
+    public static void MenuPrincipalEmpresa(EmpresaDeBasura Empresa) {
+        
+        System.out.println("*********************************");
+        System.out.println("Bienvenido a la empresa:  "+ usuario.nombre);
+        String option = "";
+        while(true) {
+            System.out.println("Bienvenido al menú principal");
+            System.out.println("Elija una opción");
+            System.out.println("1. Consultar datos generales de la empresa");
+            System.out.println("2. Crear una nueva Sede");
+            System.out.println("3. Consultar Sede");
+            System.out.println("0. Salir y cancelar");
+            option = input.next();
+            if (option.equals("1")) {
+                System.out.println(Empresa);
+            } else if (option.equals("2")) {
+                //CrearSede();
+            } else if (option.equals("3")) {
+                //ConsultarSede();
+            } else if (option.equals("4")) {
+                //Guardar();
+            } else if (option.equals("0")) {
+                System.out.println("Se perderán los cambios sin guardar, ¿Desea salir?");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    break;
+                }
+            }
+        }
+    }
 
 
 }
