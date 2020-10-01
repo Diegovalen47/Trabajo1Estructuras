@@ -2,7 +2,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.ForEachOp;
 
 import com.google.gson.*;
 
@@ -11,7 +10,7 @@ public class Main {
 
     public static Scanner input = new Scanner(System.in);
     public static LinkedList<Usuario> usuarios = new LinkedList<>();
-    public static EmpresaDeBasura Empresa= new EmpresaDeBasura();
+    public static EmpresaDeBasura Empresa= new EmpresaDeBasura("Basuras S.A.S.", "Medellin","Carlos Guarin",null,null);
     public static Gson gson = new Gson();
 
 
@@ -256,7 +255,7 @@ public class Main {
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                System.out.println(Empresa);
+                System.out.println(Empresa.toString());
             } else if (option.equals("2")) {
                 //CrearSede();
             } else if (option.equals("3")) {

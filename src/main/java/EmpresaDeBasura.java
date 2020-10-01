@@ -1,18 +1,18 @@
 import java.util.*;
 
 public class EmpresaDeBasura {
-    String nombre="Basura S.A.S";
-    String ciudad= "Medellín";
-    String gerente= "Juan Carlos Olarte";
-    LinkedList<Usuario> usuarios= new LinkedList<>();
-    LinkedList<Sede> sedes= new LinkedList<>();
+    String nombre;
+    String ciudad;
+    String gerente;
+    LinkedList<Usuario> usuarios;
+    LinkedList<Sede> sedes;
 
-    //public EmpresaDeBasura(String nombre, String ciudad, String gerente, LinkedList<Usuario> usuarios, LinkedList<Sede> sedes) {
-        //this.nombre = nombre;
-        //this.ciudad = ciudad;
-        //this.gerente = gerente;
-        //this.usuarios = usuarios;
-        //this.sedes = sedes;
+    public EmpresaDeBasura(String nombre, String ciudad, String gerente, LinkedList<Usuario> usuarios, LinkedList<Sede> sedes) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.gerente = gerente;
+        this.usuarios = new LinkedList<>();
+        this.sedes = new LinkedList<>();
     }
 
     @Override
@@ -21,7 +21,7 @@ public class EmpresaDeBasura {
                 "nombre='" + nombre + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", gerente='" + gerente + '\'' +
-                ", usuarios registrados=" + usuarios.size() +
+                ", usuarios=" + usuarios +
                 ", sedes=" + sedes +
                 '}';
     }

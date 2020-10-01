@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Area {
     String tipo;
@@ -7,20 +8,20 @@ public class Area {
     String persona_a_cargo;
     int telefono_persona_a_cargo;
     Sede sede;
-    Ruta rutas[];
-    Taller talleres[];
-    Personal personas[];
+    LinkedList<Ruta> rutas;
+    LinkedList<Taller> talleres;
+    LinkedList<Personal> personas;
 
-    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo, Sede sede, Ruta[] rutas, Taller[] talleres, Personal[] personas) {
+    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo, Sede sede, LinkedList<Ruta> rutas,LinkedList<Taller> talleres, LinkedList<Personal> personas) {
         this.tipo = tipo;
         this.contratista = contratista;
         this.horario = horario;
         this.persona_a_cargo = persona_a_cargo;
         this.telefono_persona_a_cargo = telefono_persona_a_cargo;
         this.sede = sede;
-        this.rutas = rutas;
-        this.talleres = talleres;
-        this.personas = personas;
+        this.rutas = new LinkedList<>();
+        this.talleres = new LinkedList<>();
+        this.personas = new LinkedList<>();
     }
 
     @Override
@@ -32,9 +33,9 @@ public class Area {
                 ", persona_a_cargo='" + persona_a_cargo + '\'' +
                 ", telefono_persona_a_cargo=" + telefono_persona_a_cargo +
                 ", sede=" + sede +
-                ", rutas=" + Arrays.toString(rutas) +
-                ", talleres=" + Arrays.toString(talleres) +
-                ", personas=" + Arrays.toString(personas) +
+                ", rutas=" + rutas +
+                ", talleres=" + talleres +
+                ", personas=" + personas +
                 '}';
     }
 }
