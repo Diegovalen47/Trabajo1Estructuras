@@ -68,7 +68,7 @@ public class Main {
             return;
         }
         System.out.println("Iniciar sesion");
-        System.out.println("******************************************************");
+        System.out.println("****************************************************");
         System.out.print("Ingrese su correo electronico o documento de identidad : ");
         String option = input.next();
         String clave;
