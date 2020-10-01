@@ -23,7 +23,6 @@ public class Recolector {
 
     public barado(){
         disponible=false;
-        
     }
 
     @Override

@@ -2,7 +2,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.ForEachOp;
 
 import com.google.gson.*;
 
@@ -223,7 +222,7 @@ public class Main {
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                MenuPrincipalEmpresa();
+                MenuPrincipalEmpresa(usuario);
             } else if (option.equals("2")) {
                 //Buscar();
             } else if (option.equals("3")) {
@@ -242,10 +241,10 @@ public class Main {
         }
     }
 
-    public static void MenuPrincipalEmpresa() {
+    public static void MenuPrincipalEmpresa(Usuario usuario) {
         
         System.out.println("*********************************");
-        System.out.println("Bienvenido a la empresa:  "+ usuario.nombre);
+        System.out.println("Bienvenido a la empresa:  "+ usuario.empresa_de_basura.nombre);
         String option = "";
         while(true) {
             System.out.println("Bienvenido al menú principal");
@@ -256,7 +255,7 @@ public class Main {
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                System.out.println(Empresa);
+                System.out.println(usuario.empresa_de_basura.toString());
             } else if (option.equals("2")) {
                 //CrearSede();
             } else if (option.equals("3")) {
