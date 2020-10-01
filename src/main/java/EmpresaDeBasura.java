@@ -1,11 +1,11 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class EmpresaDeBasura {
     String nombre;
     String ciudad;
     String gerente;
     LinkedList<Usuario> usuarios;
-    LinkedList<Sede> Sedes;
+    LinkedList<Sede> sedes;
 
     public EmpresaDeBasura(String nombre, String ciudad, String gerente, LinkedList<Usuario> usuarios, LinkedList<Sede> sedes) {
         this.nombre = nombre;
@@ -21,8 +21,8 @@ public class EmpresaDeBasura {
                 "nombre='" + nombre + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", gerente='" + gerente + '\'' +
-                ", usuarios=" + Arrays.toString(usuarios) +
-                ", sedes=" + Arrays.toString(sedes) +
+                ", usuarios=" + usuarios +
+                ", sedes=" + sedes +
                 '}';
     }
 }
