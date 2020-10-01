@@ -216,16 +216,16 @@ public class Main {
         while(true) {
             System.out.println("Bienvenido al menú principal");
             System.out.println("Elija una opción");
-            System.out.println("1. Crear empresa de basura");
-            System.out.println("2. Consultar empresa de basura");
+            System.out.println("1. Consultar empresa de basura");
+            System.out.println("2. Buscar");
             System.out.println("3. Dignóstico de inconsistencias");
-            System.out.println("1. Guardar");
+            System.out.println("4. Guardar");
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                CrearEmpresa();
+                MenuPrincipalEmpresa();
             } else if (option.equals("2")) {
-                ConsultarEmpresa();
+                //Buscar();
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
@@ -242,130 +242,7 @@ public class Main {
         }
     }
 
-    public static void CrearEmpresa(){
-        boolean registrado= false;
-        while(!registrado){         // Aquí se valida si el nombre de la empresa a ingresar ya existe
-            registrado=true;
-            System.out.print("Ingrese el nombre de la nueva empresa de basura: ");
-            input.nextLine();
-            String nombre= input.nextLine();
-            for(EmpresaDeBasura empresa: Empresas){
-                if(empresa.nombre.equals(nombre)){
-                    registrado=false;
-                    System.out.println("El nombre seleccionado ya está registrado");
-                    break;
-                }
-            }
-        }
-
-
-        boolean cuidad_regiatrada= false;
-        while(!cuidad_regiatrada){         // Aquí se valida si la cuidad ya posee empresa de basura
-            cuidad_regiatrada=true;
-            System.out.print("Ingrese la cuidad donde se establecerá la empresa: ");
-            input.nextLine();
-            String cuidad= input.nextLine();
-            for(EmpresaDeBasura empresa: Empresas){
-                if(empresa.ciudad.equals(ciudad)){
-                    cuidad_regiatradao=false;
-                    System.out.println("La cuidad seleccionada ya posee empresa de basura");
-                    break;
-                }
-            }
-        }
-
-
-        boolean gerente_regiatrado= false;
-        while(!gerente_regiatrado){         // Aquí se valida si el gerente ya está en otra empresa de basura
-            gerente_regiatrado=true;
-            System.out.print("Ingrese el nombre del gerente de la nueva empresa de basura: ");
-            input.nextLine();
-            String gerente= input.nextLine();
-            for(EmpresaDeBasura empresa: Empresas){
-                if(empresa.gerente.equals(gerente)){
-                    gerente_regiatrado=false;
-                    System.out.println("La cuidad seleccionada ya posee empresa de basura");
-                    break;
-                }
-            }
-        }
-
-        Empresas.add(new EmpresaDeBasura(nombre,cuidad,gerente));
-        System.out.println("Se ha ingresado exitosamente la empresa de basura");
-
-        System.out.println("¿Desea crear sedes para la empresa de basura?");
-        System.out.println("Y");
-        System.out.println("N");
-        String option= input.next();
-
-        if(option.equals("Y")){
-            
-            CrearSedes();  // Esta funcion no ha sido creada (tener esto presente)
-
-        }else{
-            return;
-        }
-
-
-    }
-    
-    public static void ConsultarEmpresa() {
-        if(Empresas.size()==0){
-            System.out.println("No hay empresas registradas");
-            System.out.println("¿Desea registrar una empresa de basura?");
-            System.out.println("Y");
-            System.out.println("N");
-            String option= input.next();
-
-            if(option.equals("Y")){
-                CrearEmpresa();
-            }
-            return;
-
-        }else{
-
-            System.out.println("Las empresas registradas son: ");
-
-            for (EmpresaDeBasura empresaDeBasura : Empresas) {
-                System.out.println(empresaDeBasura.nombre);
-            }
-
-            boolean nombre_correcto= false;
-
-            while(!nombre_correcto){
-
-                System.out.println();
-                System.out.print("Ingrese el nombre de la empresa a consultar: ");
-                input.nextLine();
-                option=input.nextLine();
-
-                for (EmpresaDeBasura empresaDeBasura : Empresas) {
-                    if(empresaDeBasura.nombre.equals(option)){
-                        MenuPrincipalEmpresa(empresaDeBasura); // En esta función se crean las sedes y se consulta en general a la empresa
-                        return;
-                    }
-                }
-
-                System.out.println("El nombre ingresado es incorrecto");
-                System.out.println("¿Desea intertarlo de nuevo?");
-                System.out.println("Y");
-                System.out.println("N");
-                String option_2= input.next();
-
-                if(option_2.equals("N")){
-                    return;
-                }
-            }
-            
-            
-
-        }
-
-
-
-    }
-
-    public static void MenuPrincipalEmpresa(EmpresaDeBasura Empresa) {
+    public static void MenuPrincipalEmpresa() {
         
         System.out.println("*********************************");
         System.out.println("Bienvenido a la empresa:  "+ usuario.nombre);
@@ -375,7 +252,7 @@ public class Main {
             System.out.println("Elija una opción");
             System.out.println("1. Consultar datos generales de la empresa");
             System.out.println("2. Crear una nueva Sede");
-            System.out.println("3. Consultar Sede");
+            System.out.println("3. Consultar Sedes");
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
