@@ -295,6 +295,8 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (EmpresaDeBasura empresaDeBasura : empresasDeBasuras) {
+                    System.out.println("*********************************");
+                    System.out.println("*********************************");
                     System.out.println("Nombre: "+empresaDeBasura.nombre);
                     System.out.println("Ciudad: "+empresaDeBasura.ciudad);
                     System.out.println("Gerente: "+empresaDeBasura.gerente);
@@ -324,6 +326,8 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Sede sede : sedes) {
+                    System.out.println("*********************************");
+                    System.out.println("*********************************");
                     System.out.println("Telefono: "+sede.telefono);
                     System.out.println("Direccion: "+sede.direccion);
                     System.out.println("Persona a cargo: "+sede.persona_a_cargo);
@@ -353,6 +357,8 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Area area : areas) {
+                    System.out.println("*********************************");
+                    System.out.println("*********************************");
                     System.out.println("Tipo: "+area.tipo);
                     System.out.println("Horario: "+area.horario);
                     System.out.println("Persona a cargo: "+area.persona_a_cargo);
@@ -383,6 +389,8 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Ruta ruta : rutas) {
+                    System.out.println("*********************************");
+                    System.out.println("*********************************");
                     System.out.println("id: "+ ruta.id);
                     System.out.println("Horario: "+ruta.horario);
                     System.out.println("dia: "+ruta.dia);
@@ -413,6 +421,8 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Taller taller : talleres) {
+                    System.out.println("*********************************");
+                    System.out.println("*********************************");
                     System.out.println("Nombre: "+ taller.nombre);
                     System.out.println("Sistema asociado: "+taller.sistema_asociado);
                     System.out.println("Interno sede: "+taller.interno_sede);
@@ -443,6 +453,8 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Personal persona : personas) {
+                    System.out.println("*********************************");
+                    System.out.println("*********************************");
                     System.out.println("Nombre: "+ persona.nombre);
                     System.out.println("Perfil: "+persona.perfil);
                     System.out.println("Horario: "+persona.horario);
@@ -473,6 +485,8 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
+                System.out.println("*********************************");
+                System.out.println("*********************************");
                 for (Recolector recolector : recolectores) {
                     System.out.println("Marca: "+recolector.marca);
                     System.out.println("Id: "+recolector.id);
