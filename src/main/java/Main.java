@@ -352,7 +352,7 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Area area : areas) {
-                    System.out.println("Tipo: ");
+                    System.out.println("Tipo: "+area.tipo);
                     System.out.println("Horario: "+area.horario);
                     System.out.println("Persona a cargo: "+area.persona_a_cargo);
                     System.out.println("Telefono persona a cargo: "+area.telefono_persona_a_cargo);
