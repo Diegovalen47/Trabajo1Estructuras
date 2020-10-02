@@ -60,7 +60,6 @@ public class Main {
             } else if (option.equals("2")) {
                 Registrarse();
             } else if (option.equals("0")) {
-                GuardarUsuarios();
                 break;
             }
         }
@@ -196,6 +195,7 @@ public class Main {
         usuarios.add(usuario);
 
         System.out.println("¡Usted se ha registrado exitosamente!");
+        GuardarUsuarios();
         IniciarSesion();
     }
 
@@ -228,13 +228,13 @@ public class Main {
             System.out.println("0. Salir y cancelar");
             option = input.next();
             if (option.equals("1")) {
-                MenuAdministracion();
+                MenuAdministracion(usuario);
             } else if (option.equals("2")) {
                 MenuBusqueda();
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
-                //Guardar();
+                GuardarUsuarios();
             } else if (option.equals("0")) {
                 System.out.println("Se perderán los cambios sin guardar, ¿Desea salir?");
                 System.out.println("Y");
@@ -248,7 +248,7 @@ public class Main {
     }
 
 
-    public static void MenuAdministracion() {
+    public static void MenuAdministracion(Usuario usuario) {
         String option = "";
         while(true) {
             System.out.println("MENU ADMINISTRACION");
@@ -263,7 +263,7 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
-                AdministrarEmpresasBasura();
+                AdministrarEmpresasBasura(usuario);
             } else if (option.equals("2")) {
                 AdministrarSedes();
             } else if (option.equals("3")) {
@@ -283,7 +283,7 @@ public class Main {
     }
 
 
-    public static void AdministrarEmpresasBasura() {
+    public static void AdministrarEmpresasBasura(Usuario usuario) {
         String option = "";
         while(true) {
             System.out.println("Elija una opción");
@@ -294,15 +294,15 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
-                for (EmpresaDeBasura empresaDeBasura : empresasDeBasuras) {
+                for (EmpresaDeBasura empresaDeBasura : usuario.empresasDeBasura) {
                     System.out.println("*********************************");
+                    System.out.println("Nombre: "+empresaDeBasura.getNombre());
+                    System.out.println("Ciudad: "+empresaDeBasura.getCiudad());
+                    System.out.println("Gerente: "+empresaDeBasura.getGerente());
                     System.out.println("*********************************");
-                    System.out.println("Nombre: "+empresaDeBasura.nombre);
-                    System.out.println("Ciudad: "+empresaDeBasura.ciudad);
-                    System.out.println("Gerente: "+empresaDeBasura.gerente);
                 }
             } else if (option.equals("2")) {
-                //CrearEmpresasBasura();
+                CrearEmpresasBasura(usuario);
             } else if (option.equals("3")) {
                 //EditarEmpresasBasura();
             } else if (option.equals("4")) {
@@ -310,6 +310,23 @@ public class Main {
             } else if (option.equals("0")) {
                 break;
             }
+        }
+    }
+
+    public static void CrearEmpresasBasura(Usuario usuario) {
+        System.out.println("CREANDO EMPRESA DE BASURA");
+        System.out.println("Ingrese el nombre que desea dale a la empresa");
+        String nombre = input.next();
+        if (usuario.buscarEmpresaDeBasura(nombre) == null) {
+            System.out.println("Ingrese la ciudad donde se encuentra la empresa");
+            String ciudad = input.next();
+            System.out.println("Ingrese el gerente de la empresa");
+            String gerente = input.next();
+            EmpresaDeBasura nuevaEmpresa = new EmpresaDeBasura(nombre,ciudad,gerente);
+            usuario.setEmpresaDeBasura(nuevaEmpresa);
+        } else {
+            System.out.println("Ya existe una empresa registrada con ese nombre");
+            return;
         }
     }
 
@@ -327,10 +344,10 @@ public class Main {
             if (option.equals("1")) {
                 for (Sede sede : sedes) {
                     System.out.println("*********************************");
-                    System.out.println("*********************************");
                     System.out.println("Telefono: "+sede.telefono);
                     System.out.println("Direccion: "+sede.direccion);
                     System.out.println("Persona a cargo: "+sede.persona_a_cargo);
+                    System.out.println("*********************************");
                 }
             } else if (option.equals("2")) {
                 //CrearSedes();
@@ -358,11 +375,11 @@ public class Main {
             if (option.equals("1")) {
                 for (Area area : areas) {
                     System.out.println("*********************************");
-                    System.out.println("*********************************");
                     System.out.println("Tipo: "+area.tipo);
                     System.out.println("Horario: "+area.horario);
                     System.out.println("Persona a cargo: "+area.persona_a_cargo);
                     System.out.println("Telefono persona a cargo: "+area.telefono_persona_a_cargo);
+                    System.out.println("*********************************");
                 }
             } else if (option.equals("2")) {
                 //CrearAreas();
@@ -390,11 +407,11 @@ public class Main {
             if (option.equals("1")) {
                 for (Ruta ruta : rutas) {
                     System.out.println("*********************************");
-                    System.out.println("*********************************");
                     System.out.println("id: "+ ruta.id);
                     System.out.println("Horario: "+ruta.horario);
                     System.out.println("dia: "+ruta.dia);
                     System.out.println("Id recolercor: "+ruta.recolector_id);
+                    System.out.println("*********************************");
                 }
             } else if (option.equals("2")) {
                 //CrearRutas();
@@ -422,11 +439,11 @@ public class Main {
             if (option.equals("1")) {
                 for (Taller taller : talleres) {
                     System.out.println("*********************************");
-                    System.out.println("*********************************");
                     System.out.println("Nombre: "+ taller.nombre);
                     System.out.println("Sistema asociado: "+taller.sistema_asociado);
                     System.out.println("Interno sede: "+taller.interno_sede);
                     System.out.println("Dinero fallas menores: "+taller.dinero_fallas_menores);
+                    System.out.println("*********************************");
                 }
             } else if (option.equals("2")) {
                 //CrearTalleres();
@@ -454,12 +471,12 @@ public class Main {
             if (option.equals("1")) {
                 for (Personal persona : personas) {
                     System.out.println("*********************************");
-                    System.out.println("*********************************");
                     System.out.println("Nombre: "+ persona.nombre);
                     System.out.println("Perfil: "+persona.perfil);
                     System.out.println("Horario: "+persona.horario);
                     System.out.println("Cedula: "+persona.cedula);
                     System.out.println("Sueldo: "+persona.sueldo);
+                    System.out.println("*********************************");
                 }
             } else if (option.equals("2")) {
                 //CrearPersonal();
@@ -485,12 +502,12 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
-                System.out.println("*********************************");
-                System.out.println("*********************************");
                 for (Recolector recolector : recolectores) {
+                    System.out.println("*********************************");
                     System.out.println("Marca: "+recolector.marca);
                     System.out.println("Id: "+recolector.id);
                     System.out.println("Ruta Id: "+recolector.rutaid);
+                    System.out.println("*********************************");
                 }
             } else if (option.equals("2")) {
                 //CrearRecolector();

@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Usuario {
@@ -61,4 +62,18 @@ public class Usuario {
     public String getClave() {
         return clave;
     }
+
+    public EmpresaDeBasura buscarEmpresaDeBasura (String nombre) {
+        EmpresaDeBasura empresaDeBasura = null;
+        Iterator<EmpresaDeBasura> iterator = empresasDeBasura.iterator();
+        while(iterator.hasNext()) {
+            empresaDeBasura = iterator.next();
+            if (empresaDeBasura.getNombre().equals(nombre)) {
+                return empresaDeBasura;
+            }
+        }
+        empresaDeBasura = null;
+        return empresaDeBasura;
+    }
+
 }
