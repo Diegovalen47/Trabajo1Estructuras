@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 import java.util.LinkedList;
 
 public class Area {
@@ -8,34 +8,78 @@ public class Area {
     String persona_a_cargo;
     int telefono_persona_a_cargo;
     Sede sede;
-    LinkedList<Ruta> rutas;
-    LinkedList<Taller> talleres;
-    LinkedList<Personal> personas;
+    LinkedList<Ruta> rutas = new LinkedList<>();
+    LinkedList<Taller> talleres = new LinkedList<>();
+    LinkedList<Personal> personas = new LinkedList<>();
 
-    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo, Sede sede, LinkedList<Ruta> rutas,LinkedList<Taller> talleres, LinkedList<Personal> personas) {
+    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo) {
         this.tipo = tipo;
         this.contratista = contratista;
         this.horario = horario;
         this.persona_a_cargo = persona_a_cargo;
         this.telefono_persona_a_cargo = telefono_persona_a_cargo;
-        this.sede = sede;
-        this.rutas = new LinkedList<>();
-        this.talleres = new LinkedList<>();
-        this.personas = new LinkedList<>();
     }
 
-    @Override
-    public String toString() {
-        return "Area{" +
-                "tipo='" + tipo + '\'' +
-                ", contratista=" + contratista +
-                ", horario='" + horario + '\'' +
-                ", persona_a_cargo='" + persona_a_cargo + '\'' +
-                ", telefono_persona_a_cargo=" + telefono_persona_a_cargo +
-                ", sede=" + sede +
-                ", rutas=" + rutas +
-                ", talleres=" + talleres +
-                ", personas=" + personas +
-                '}';
+    public void setRutas(Ruta ruta) {
+        rutas.add(ruta);
+        ruta.setArea(this);
+    }
+
+    public void setTalleres(Taller taller) {
+        talleres.add(taller);
+        taller.setArea(this);
+    }
+
+    public void setPersonas (Personal persona) {
+        personas.add(persona);
+        persona.setArea(this);
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setContratista(boolean contratista) {
+        this.contratista = contratista;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public void setPersona_a_cargo(String persona_a_cargo) {
+        this.persona_a_cargo = persona_a_cargo;
+    }
+
+    public void setTelefono_persona_a_cargo(int telefono_persona_a_cargo) {
+        this.telefono_persona_a_cargo = telefono_persona_a_cargo;
+    }
+
+    public void setSede(Sede sede) {
+        this.sede = sede;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public boolean isContratista() {
+        return contratista;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public String getPersona_a_cargo() {
+        return persona_a_cargo;
+    }
+
+    public int getTelefono_persona_a_cargo() {
+        return telefono_persona_a_cargo;
+    }
+
+    public Sede getSede() {
+        return sede;
     }
 }

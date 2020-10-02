@@ -192,7 +192,7 @@ public class Main {
         System.out.print("Contraseña : ");
         String clave = input.next();
 
-        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave, null);
+        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave);
         usuarios.add(usuario);
 
         System.out.println("¡Usted se ha registrado exitosamente!");
@@ -282,34 +282,6 @@ public class Main {
         }
     }
 
-    public static void AdministrarSedes() {
-        String option = "";
-        while(true) {
-            System.out.println("Elija una opción");
-            System.out.println("1. Ver Sedes");
-            System.out.println("2. Crear Sedes");
-            System.out.println("3. Editar Sedes");
-            System.out.println("4. Eliminar Sedes");
-            System.out.println("0. Salir");
-            option = input.next();
-            if (option.equals("1")) {
-                for (Sede sede : sedes) {
-                    System.out.println("Telefono: "+sede.telefono);
-                    System.out.println("Direccion: "+sede.direccion);
-                    System.out.println("Persona a cargo: "+sede.persona_a_cargo);
-                }
-            } else if (option.equals("2")) {
-                //CrearSedes();
-            } else if (option.equals("3")) {
-                //EditarSedes();
-            } else if (option.equals("4")) {
-                //EliminarSedes();
-            } else if (option.equals("0")) {
-                break;
-            }
-        }
-    }
-
 
     public static void AdministrarEmpresasBasura() {
         String option = "";
@@ -333,6 +305,35 @@ public class Main {
                 //EditarEmpresasBasura();
             } else if (option.equals("4")) {
                 //EliminarEmpresasBasura();
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+    public static void AdministrarSedes() {
+        String option = "";
+        while(true) {
+            System.out.println("Elija una opción");
+            System.out.println("1. Ver Sedes");
+            System.out.println("2. Crear Sedes");
+            System.out.println("3. Editar Sedes");
+            System.out.println("4. Eliminar Sedes");
+            System.out.println("0. Salir");
+            option = input.next();
+            if (option.equals("1")) {
+                for (Sede sede : sedes) {
+                    System.out.println("Telefono: "+sede.telefono);
+                    System.out.println("Direccion: "+sede.direccion);
+                    System.out.println("Persona a cargo: "+sede.persona_a_cargo);
+                }
+            } else if (option.equals("2")) {
+                //CrearSedes();
+            } else if (option.equals("3")) {
+                //EditarSedes();
+            } else if (option.equals("4")) {
+                //EliminarSedes();
             } else if (option.equals("0")) {
                 break;
             }
