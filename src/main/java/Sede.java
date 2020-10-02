@@ -1,18 +1,18 @@
-import java.util.Arrays;
-import java.util.*;
+
+import java.util.LinkedList;
 
 public class Sede {
     int telefono;
     String direccion;
     String persona_a_cargo;
-    LinkedList<Area> areas;
+    LinkedList<Area> areas ;
     EmpresaDeBasura empresa_de_basura;
 
-    public Sede(int telefono, String direccion, String persona_a_cargo, Area area, EmpresaDeBasura empresa_de_basura) {
+    public Sede(int telefono, String direccion, String persona_a_cargo, LinkedList<Area> areas, EmpresaDeBasura empresa_de_basura) {
         this.telefono = telefono;
         this.direccion = direccion;
         this.persona_a_cargo = persona_a_cargo;
-        this.areas.add(area);
+        this.areas = new LinkedList<>();
         this.empresa_de_basura = empresa_de_basura;
     }
 
