@@ -11,8 +11,8 @@ public class EmpresaDeBasura {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.gerente = gerente;
-        this.usuarios = new LinkedList<>();
-        this.sedes = new LinkedList<>();
+        this.usuarios = usuarios;
+        this.sedes = sedes;
     }
 
     @Override
@@ -21,8 +21,8 @@ public class EmpresaDeBasura {
                 "nombre='" + nombre + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", gerente='" + gerente + '\'' +
-                ", usuarios=" + usuarios +
-                ", sedes=" + sedes +
+                ", Cantidad usuarios=" + usuarios.size() +
+                ", Cantidad sedes=" + sedes.size() +
                 '}';
     }
 }
