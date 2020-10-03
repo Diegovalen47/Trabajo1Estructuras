@@ -340,6 +340,40 @@ public class Main {
     }
 
 
+    public static void AdministrarEmpresasBasura(Usuario usuario) {
+        String option = "";
+        while(true) {
+            System.out.println("Elija una opción");
+            System.out.println("1. Ver Empresas de basura");
+            System.out.println("2. Crear empresa de basura");
+            System.out.println("3. Editar empresa de basura");
+            System.out.println("4. Eliminar empresa de basura");
+            System.out.println("0. Salir");
+            option = input.next();
+            if (option.equals("1")) {
+                for (EmpresaDeBasura empresaDeBasura : usuario.empresasDeBasura) {
+                    System.out.println("*********************************");
+                    System.out.println("Nombre: "+empresaDeBasura.getNombre());
+                    System.out.println("Ciudad: "+empresaDeBasura.getCiudad());
+                    System.out.println("Gerente: "+empresaDeBasura.getGerente());
+                    System.out.println("*********************************");
+                }
+            } else if (option.equals("2")) {
+                CrearEmpresasBasura(usuario);
+            } else if (option.equals("3")) {
+                EditarEmpresasBasura(usuario);
+            } else if (option.equals("4")) {
+                EliminarEmpresasBasura(usuario);
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+    
+
+
     public static void AdministrarAreas() {
         String option = "";
         while(true) {
