@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 import com.google.gson.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 public class Main {
 
@@ -45,6 +46,20 @@ public class Main {
                 String jsonString = gson.toJson(object);
                 EmpresaDeBasura empresa = gson.fromJson(jsonString, EmpresaDeBasura.class);
                 empresasDeBasuras.add(empresa);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try(FileReader reader = new FileReader("sedes.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray sedesList = (JsonArray) obj;
+
+            for (Object object : sedesList) {
+                String jsonString = gson.toJson(object);
+                Sede sede = gson.fromJson(jsonString, Sede.class);
+                sedes.add(sede);
             }
 
         } catch (IOException e) {
@@ -230,11 +245,23 @@ public class Main {
 
 
     public static void GuardarObjetos() {
-        String jsonString = gson.toJson(empresasDeBasuras);
+        String jsonStringEmpresasDeBasura = gson.toJson(empresasDeBasuras);
 
         try (FileWriter file = new FileWriter("empresasDeBasuras.json")) {
 
-            file.write(jsonString);
+            file.write(jsonStringEmpresasDeBasura);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        String jsonStringSedes = gson.toJson(sedes);
+
+        try (FileWriter file = new FileWriter("sedes.json")) {
+
+            file.write(jsonStringSedes);
             file.flush();
 
         } catch (IOException e) {
@@ -464,11 +491,221 @@ public class Main {
                     System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
-                //CrearSedes();
+                CrearSedes();
             } else if (option.equals("3")) {
-                //EditarSedes();
+                EditarSedes();
             } else if (option.equals("4")) {
-                //EliminarSedes();
+                EliminarSedes();
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+    public static void CrearSedes() {
+        if (empresasDeBasuras.isEmpty()) {
+            System.out.println("No hay empresas de basura registradas, por lo tanto no puede crear sedes");
+            return;
+        }
+        System.out.println("CREANDO SEDE");
+        System.out.println("Ingrese el telefono de la sede");
+        int telefono = input.nextInt();
+
+        for (Sede sede : sedes) {
+            if (sede.getTelefono() == telefono) {
+                System.out.println("Esa sede ya existe");
+                return;
+            }
+        }
+        System.out.println("Ingrese la direccion de la sede");
+        String direccion = input.next();
+        for (Sede sede : sedes) {
+            if (sede.getDireccion().equalsIgnoreCase(direccion)) {
+                System.out.println("Esa sede ya existe");
+                return;
+            }
+        }
+        System.out.println("Ingrese el nombre de la persona a cargo de la sede");
+        String personaAcargo = input.next();
+        sedes.add(new Sede(telefono,direccion,personaAcargo));
+        System.out.println("Sede creada satisfactoriamente");
+
+    }
+
+
+    public static void EditarSedes() {
+        String option = "";
+        while(true) {
+            System.out.println("Elija una opción");
+            System.out.println("1. Seleciionar por dirección");
+            System.out.println("2. Seleccionar por telefono");
+            System.out.println("0. Salir");
+            option = input.next();
+            if (option.equals("1")) {
+                System.out.println("Se seleccionará por direccion de la sede");
+                System.out.println("Ingrese la direccion de la sede");
+                String direccion = input.next();
+                int nuevo_telefono = 0;
+                String nueva_direccion = "";
+                String nueva_persona_a_cargo = "";
+                boolean SedeEncontrada = false;
+                for (Sede sede : sedes) {
+                    if (sede.getDireccion().equalsIgnoreCase(direccion)) {
+                        SedeEncontrada = true;
+                        System.out.println("Direccion: "+ sede.getDireccion());
+                        System.out.println("Si desea cambiar la direccion, ingrese su nuevo valor");
+                        System.out.println("en otro caso, digite: N");
+                        nueva_direccion = input.next();
+                        System.out.println("Persona a cargo: "+ sede.getPersona_a_cargo());
+                        System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
+                        System.out.println("en otro caso, digite: N");
+                        nueva_persona_a_cargo = input.next();
+                        System.out.println("Teléfono: "+ sede.getTelefono());
+                        System.out.println("Si desea cambiar el teléfono, ingrese su nuevo valor");
+                        System.out.println("en otro caso, digite: 0");
+                        nuevo_telefono = input.nextInt();
+                        System.out.println("¿Desea guardar los cambios?");
+                        System.out.println("Y");
+                        System.out.println("N");
+                        option = input.next();
+                        if (option.equalsIgnoreCase("Y")) {
+                            if (nueva_direccion.equalsIgnoreCase("N")) {
+
+                            } else {
+                                sede.setDireccion(nueva_direccion);
+                            }
+                            if (nueva_persona_a_cargo.equalsIgnoreCase("N")) {
+
+                            } else {
+                                sede.setPersona_a_cargo(nueva_persona_a_cargo);
+                            }
+                            if (nuevo_telefono == 0) {
+
+                            } else {
+                                sede.setTelefono(nuevo_telefono);
+                            }
+                        } else {
+
+                        }
+                    }
+                }
+                if (!SedeEncontrada) {
+                    System.out.println("No se encntró la sede");
+                }
+            } else if (option.equals("2")) {
+                System.out.println("Se seleccionará por telefono de la sede");
+                System.out.println("Ingrese el télefono");
+                int telefono = input.nextInt();
+                int nuevo_telefono = 0;
+                String nueva_direccion = "";
+                String nueva_persona_a_cargo = "";
+                boolean SedeEncontrada = false;
+                for (Sede sede : sedes) {
+                    if (sede.getTelefono() == telefono) {
+                        SedeEncontrada = true;
+                        System.out.println("Direccion: "+ sede.getDireccion());
+                        System.out.println("Si desea cambiar la direccion, ingrese su nuevo valor");
+                        System.out.println("en otro caso, digite: N");
+                        nueva_direccion = input.next();
+                        System.out.println("Persona a cargo: "+ sede.getPersona_a_cargo());
+                        System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
+                        System.out.println("en otro caso, digite: N");
+                        nueva_persona_a_cargo = input.next();
+                        System.out.println("Teléfono: "+ sede.getTelefono());
+                        System.out.println("Si desea cambiar el teléfono, ingrese su nuevo valor");
+                        System.out.println("en otro caso, digite: 0");
+                        nuevo_telefono = input.nextInt();
+                        System.out.println("¿Desea guardar los cambios?");
+                        System.out.println("Y");
+                        System.out.println("N");
+                        option = input.next();
+                        if (option.equalsIgnoreCase("Y")) {
+                            if (nueva_direccion.equalsIgnoreCase("N")) {
+
+                            } else {
+                                sede.setDireccion(nueva_direccion);
+                            }
+                            if (nueva_persona_a_cargo.equalsIgnoreCase("N")) {
+
+                            } else {
+                                sede.setPersona_a_cargo(nueva_persona_a_cargo);
+                            }
+                            if (nuevo_telefono == 0) {
+
+                            } else {
+                                sede.setTelefono(nuevo_telefono);
+                            }
+                        } else {
+                            //No guarda los cambios
+                        }
+                    }
+                }
+                if (!SedeEncontrada) {
+                    System.out.println("No se encntró la sede");
+                }
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+    public static void EliminarSedes() {
+        String option = "";
+        while(true) {
+            System.out.println("Elija una opción");
+            System.out.println("1. Seleciionar por dirección");
+            System.out.println("2. Seleccionar por telefono");
+            System.out.println("0. Salir");
+            option = input.next();
+            if (option.equals("1")) {
+                System.out.println("Se seleccionará por dirección de la sede");
+                System.out.println("Ingrese la dirección de la sede a eliminar");
+                String direccion = input.next();
+                System.out.println("¿Seguro que desea eliminar esta sede");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                boolean sedeEncontrada = false;
+                if (option.equalsIgnoreCase("Y")) {
+                    Iterator<Sede> iterator = sedes.iterator();
+                    while(iterator.hasNext()) {
+                        Sede sede = iterator.next();
+                        if (sede.getDireccion().equals(direccion)) {
+                            sedeEncontrada = true;
+                            iterator.remove();
+                        }
+                    }
+
+                    if (!sedeEncontrada) {
+                        System.out.println("No se encontró la sede");
+                    }
+                }
+
+            } else if (option.equals("2")) {
+                System.out.println("Se seleccionará por telefono de la sede");
+                System.out.println("Ingrese el telefono de la sede a eliminar");
+                int telefono = input.nextInt();
+                System.out.println("¿Seguro que desea eliminar esta sede");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                boolean sedeEncontrada = false;
+                if (option.equalsIgnoreCase("Y")) {
+                    Iterator<Sede> iterator = sedes.iterator();
+                    while(iterator.hasNext()) {
+                        Sede sede = iterator.next();
+                        if (sede.getTelefono() == telefono) {
+                            sedeEncontrada = true;
+                            iterator.remove();
+                        }
+                    }
+
+                    if (!sedeEncontrada) {
+                        System.out.println("No se encontró la sede");
+                    }
+                }
             } else if (option.equals("0")) {
                 break;
             }
