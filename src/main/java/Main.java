@@ -196,6 +196,7 @@ public class Main {
         usuarios.add(usuario);
 
         System.out.println("¡Usted se ha registrado exitosamente!");
+        GuardarUsuarios();
         IniciarSesion();
     }
 

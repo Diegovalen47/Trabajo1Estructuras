@@ -4,7 +4,6 @@ public class EmpresaDeBasura {
     String nombre;
     String ciudad;
     String gerente;
-    Usuario usuario;
     LinkedList<Sede> sedes = new LinkedList<>();
 
     public EmpresaDeBasura(String nombre, String ciudad, String gerente) {
@@ -29,9 +28,6 @@ public class EmpresaDeBasura {
         this.gerente = gerente;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public String getNombre() {
         return nombre;
@@ -45,7 +41,4 @@ public class EmpresaDeBasura {
         return gerente;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
 }

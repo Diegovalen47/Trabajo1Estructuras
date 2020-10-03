@@ -7,7 +7,6 @@ public class Usuario {
     String apellido;
     String correo;
     String clave;
-    LinkedList<EmpresaDeBasura> empresasDeBasura = new LinkedList<>();
 
     public Usuario(int cedula, String nombre, String apellido, String correo, String clave) {
         this.cedula = cedula;
@@ -17,10 +16,6 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public void setEmpresaDeBasura (EmpresaDeBasura empresaDeBasura) {
-        empresasDeBasura.add(empresaDeBasura);
-
-    }
 
     public void setCedula(int cedula) {
         this.cedula = cedula;
@@ -62,30 +57,5 @@ public class Usuario {
         return clave;
     }
 
-    public EmpresaDeBasura buscarEmpresaDeBasura (String nombre) {
-        EmpresaDeBasura empresaDeBasura = null;
-        Iterator<EmpresaDeBasura> iterator = empresasDeBasura.iterator();
-        while(iterator.hasNext()) {
-            empresaDeBasura = iterator.next();
-            if (empresaDeBasura.getNombre().equalsIgnoreCase(nombre)) {
-                return empresaDeBasura;
-            }
-        }
-        empresaDeBasura = null;
-        return empresaDeBasura;
-    }
-
-    public void eliminarEmpresaDeBasura (String nombre) {
-        EmpresaDeBasura empresaDeBasura = null;
-        Iterator<EmpresaDeBasura> iterator = empresasDeBasura.iterator();
-        while(iterator.hasNext()) {
-            empresaDeBasura = iterator.next();
-            if (empresaDeBasura.getNombre().equalsIgnoreCase(nombre)) {
-                iterator.remove();
-                return;
-            }
-        }
-
-    }
 
 }
