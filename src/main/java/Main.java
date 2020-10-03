@@ -65,6 +65,21 @@ public class Main {
             e.printStackTrace();
         }
 
+
+        try(FileReader reader = new FileReader("areas.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray areasList = (JsonArray) obj;
+
+            for (Object object : areasList) {
+                String jsonString = gson.toJson(object);
+                Area area = gson.fromJson(jsonString, Area.class);
+                areas.add(area);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -266,6 +281,18 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        String jsonStringAreas = gson.toJson(areas);
+
+        try (FileWriter file = new FileWriter("areas.json")) {
+
+            file.write(jsonStringAreas);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -349,6 +376,10 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
+                if (empresasDeBasuras.isEmpty()) {
+                    System.out.println("No hay empresas de basura registradas");
+                    return;
+                }
                 for (EmpresaDeBasura empresaDeBasura : empresasDeBasuras) {
                     System.out.println("************************************");
                     System.out.println("Nombre: "+empresaDeBasura.nombre);
@@ -391,6 +422,10 @@ public class Main {
 
 
     public static void EditarEmpresasBasura() {
+        if (empresasDeBasuras.isEmpty()) {
+            System.out.println("No hay empresas de basura registradas");
+            return;
+        }
         System.out.println("Se seleccionará por nombre de empresa");
         System.out.println("Ingrese el nombre de la empresa");
         String nombre = input.next();
@@ -445,10 +480,14 @@ public class Main {
 
 
     public static void EliminarEmpresasBasura() {
+        if (empresasDeBasuras.isEmpty()) {
+            System.out.println("No hay empresas de basura registradas");
+            return;
+        }
         System.out.println("Se seleccionará por nombre de empresa");
         System.out.println("Ingrese el nombre de la empresa a eliminar");
         String nombre = input.next();
-        System.out.println("¿Seguro que desea eliminar esta empresa");
+        System.out.println("¿Seguro que desea eliminar esta empresa?");
         System.out.println("Y");
         System.out.println("N");
         String option = input.next();
@@ -482,6 +521,10 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
+                if (sedes.isEmpty()) {
+                    System.out.println("No hay sedes registradas");
+                    return;
+                }
                 for (Sede sede : sedes) {
                     System.out.println("************************************");
                     System.out.println("Telefono: "+sede.telefono);
@@ -549,6 +592,10 @@ public class Main {
 
 
     public static void EditarSedes() {
+        if (sedes.isEmpty()) {
+            System.out.println("No hay sedes registradas");
+            return;
+        }
         String option = "";
         while(true) {
             System.out.println("Elija una opción");
@@ -666,6 +713,10 @@ public class Main {
 
 
     public static void EliminarSedes() {
+        if (sedes.isEmpty()) {
+            System.out.println("No hay sedes registradas");
+            return;
+        }
         String option = "";
         while(true) {
             System.out.println("Elija una opción");
@@ -677,7 +728,7 @@ public class Main {
                 System.out.println("Se seleccionará por dirección de la sede");
                 System.out.println("Ingrese la dirección de la sede a eliminar");
                 String direccion = input.next();
-                System.out.println("¿Seguro que desea eliminar esta sede");
+                System.out.println("¿Seguro que desea eliminar esta sede?");
                 System.out.println("Y");
                 System.out.println("N");
                 option = input.next();
@@ -701,7 +752,7 @@ public class Main {
                 System.out.println("Se seleccionará por telefono de la sede");
                 System.out.println("Ingrese el telefono de la sede a eliminar");
                 int telefono = input.nextInt();
-                System.out.println("¿Seguro que desea eliminar esta sede");
+                System.out.println("¿Seguro que desea eliminar esta sede?");
                 System.out.println("Y");
                 System.out.println("N");
                 option = input.next();
@@ -738,6 +789,10 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
+                if (areas.isEmpty()) {
+                    System.out.println("No hay areas registradas");
+                    return;
+                }
                 for (Area area : areas) {
                     System.out.println("************************************");
                     System.out.println("Tipo: "+area.tipo);
@@ -747,13 +802,175 @@ public class Main {
                     System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
-                //CrearAreas();
+                CrearAreas();
             } else if (option.equals("3")) {
-                //EditarAreas();
+                EditarAreas();
             } else if (option.equals("4")) {
-                //EliminarAreas();
+                EliminarAreas();
             } else if (option.equals("0")) {
                 break;
+            }
+        }
+    }
+
+
+    public static void CrearAreas() {
+        if (sedes.isEmpty()) {
+            System.out.println("No hay sedes registradas, por lo tanto no puede crear el area");
+            return;
+        }
+        System.out.println("CREANDO ÁREA");
+        System.out.println("Ingrese el tipo de area");
+        String tipo = input.next();
+        System.out.println("¿El Área tiene contratista");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean contratista;
+        if (option.equalsIgnoreCase("Y")) {
+            contratista = true;
+
+        } else {
+            contratista = false;
+        }
+        System.out.println("Ingrese el horario de la empresa");
+        String horario = input.next();
+        System.out.println("Ingrese el nombre de la persona a cargo");
+        String persona_a_cargo = input.next();
+        System.out.println("Ingrese el teléfono de a persona a cargo");
+        int telefono_persona_a_cargo = input.nextInt();
+        for (Area area : areas) {
+            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo) {
+                System.out.println("El area ya existe, intente de nuevo");
+                return;
+            }
+        }
+
+        System.out.println("Ingrese el teléfono de la sede a la cual desea asociar el area");
+        int telefonoSede = input.nextInt();
+        Area area = new Area(tipo,contratista,horario,persona_a_cargo,telefono_persona_a_cargo);
+        boolean SedeEncontrada = false;
+        for (Sede sede : sedes) {
+            if (sede.getTelefono() == telefonoSede) {
+                SedeEncontrada = true;
+                sede.setAreas(area);
+                break;
+            }
+        }
+        if (!SedeEncontrada) {
+            System.out.println("No exite tal sede para asociar el area");
+            return;
+        }
+        areas.add(area);
+        System.out.println("Área creada satisfactoriamente");
+    }
+
+
+    public static void EditarAreas() {
+        if (areas.isEmpty()) {
+            System.out.println("No hay areas registradas");
+            return;
+        }
+        System.out.println("Se seleccionará por teléfono de persona a cargo de la sede");
+        System.out.println("Ingrese el teléfono");
+        int telefono_persona_a_cargo = input.nextInt();
+        String nuevo_tipo = "";
+        String nuevo_contratista = "";
+        String nuevo_horario = "";
+        String nueva_persona_a_cargo = "";
+        String option = "";
+        int nuevo_telefono_persona_a_cargo = 0;
+        boolean AreaEncontrada = false;
+        for (Area area : areas) {
+            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo) {
+                AreaEncontrada = true;
+                System.out.println("Tipo: "+ area.getTipo());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_tipo = input.next();
+                System.out.println("Contratista: "+ area.isContratista());
+                System.out.println("¡Desea cambiar el estado de contratista?");
+                System.out.println("Y");
+                System.out.println("N");
+                nuevo_contratista = input.next();
+                System.out.println("Horario: "+ area.getHorario());
+                System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_horario = input.next();
+                System.out.println("Persona a cargo: "+ area.getPersona_a_cargo());
+                System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nueva_persona_a_cargo = input.next();
+                System.out.println("Telefono persona a cargo: "+ area.getPersona_a_cargo());
+                System.out.println("Si desea cambiar el telefono de la persona a cargo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: 0");
+                nuevo_telefono_persona_a_cargo = input.nextInt();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_tipo.equalsIgnoreCase("N")) {
+
+                    } else {
+                        area.setTipo(nuevo_tipo);
+                    }
+                    if (nuevo_contratista.equalsIgnoreCase("N")) {
+
+                    } else {
+                        area.setContratista(!area.contratista);
+                    }
+                    if (nuevo_horario.equalsIgnoreCase("N")) {
+
+                    } else {
+                        area.setHorario(nuevo_horario);
+                    }
+                    if (nueva_persona_a_cargo.equalsIgnoreCase("N")) {
+
+                    } else {
+                        area.setPersona_a_cargo(nueva_persona_a_cargo);
+                    }
+                    if (nuevo_telefono_persona_a_cargo == 0) {
+
+                    } else {
+                        area.setTelefono_persona_a_cargo(nuevo_telefono_persona_a_cargo);
+                    }
+                } else {
+
+                }
+            }
+        }
+        if (!AreaEncontrada) {
+            System.out.println("No se encntró esa área");
+        }
+    }
+
+
+    public static void EliminarAreas() {
+        if (areas.isEmpty()) {
+            System.out.println("No hay areas registradas");
+            return;
+        }
+        System.out.println("Se seleccionará por telefono de la persona a cargo");
+        System.out.println("Ingrese el telefono de la persona a cargo del area a eliminar");
+        int telefono_persona_a_cargo = input.nextInt();
+        System.out.println("¿Seguro que desea eliminar esta área?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean AreaEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Area> iterator = areas.iterator();
+            while(iterator.hasNext()) {
+                Area area = iterator.next();
+                if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo) {
+                    AreaEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!AreaEncontrada) {
+                System.out.println("No se encontró esa área");
             }
         }
     }

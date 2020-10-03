@@ -59,8 +59,14 @@ public class Area {
         return tipo;
     }
 
-    public boolean isContratista() {
-        return contratista;
+    public String isContratista() {
+        if (contratista) {
+            String mensaje = "Sí";
+            return mensaje;
+        } else {
+            String mensaje = "No";
+            return mensaje;
+        }
     }
 
     public String getHorario() {
