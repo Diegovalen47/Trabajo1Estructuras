@@ -37,6 +37,20 @@ public class Main {
             e.printStackTrace();
         }
 
+        try(FileReader reader = new FileReader("empresasDeBasuras.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray empresasList = (JsonArray) obj;
+
+            for (Object object : empresasList) {
+                String jsonString = gson.toJson(object);
+                EmpresaDeBasura empresa = gson.fromJson(jsonString, EmpresaDeBasura.class);
+                empresasDeBasuras.add(empresa);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -215,6 +229,20 @@ public class Main {
     }
 
 
+    public static void GuardarObjetos() {
+        String jsonString = gson.toJson(empresasDeBasuras);
+
+        try (FileWriter file = new FileWriter("empresasDeBasuras.json")) {
+
+            file.write(jsonString);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void MenuPrincipal(Usuario usuario) {
         System.out.println("*********************************");
         System.out.println("¡Hola "+ usuario.nombre +"!");
@@ -235,7 +263,7 @@ public class Main {
             } else if (option.equals("3")) {
                 //DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
-                //Guardar();
+                GuardarObjetos();
             } else if (option.equals("0")) {
                 System.out.println("Se perderán los cambios sin guardar, ¿Desea salir?");
                 System.out.println("Y");
@@ -283,34 +311,6 @@ public class Main {
         }
     }
 
-    public static void AdministrarSedes() {
-        String option = "";
-        while(true) {
-            System.out.println("Elija una opción");
-            System.out.println("1. Ver Sedes");
-            System.out.println("2. Crear Sedes");
-            System.out.println("3. Editar Sedes");
-            System.out.println("4. Eliminar Sedes");
-            System.out.println("0. Salir");
-            option = input.next();
-            if (option.equals("1")) {
-                for (Sede sede : sedes) {
-                    System.out.println("Telefono: "+sede.telefono);
-                    System.out.println("Direccion: "+sede.direccion);
-                    System.out.println("Persona a cargo: "+sede.persona_a_cargo);
-                }
-            } else if (option.equals("2")) {
-                //CrearSedes();
-            } else if (option.equals("3")) {
-                //EditarSedes();
-            } else if (option.equals("4")) {
-                //EliminarSedes();
-            } else if (option.equals("0")) {
-                break;
-            }
-        }
-    }
-
 
     public static void AdministrarEmpresasBasura() {
         String option = "";
@@ -324,9 +324,11 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (EmpresaDeBasura empresaDeBasura : empresasDeBasuras) {
+                    System.out.println("************************************");
                     System.out.println("Nombre: "+empresaDeBasura.nombre);
                     System.out.println("Ciudad: "+empresaDeBasura.ciudad);
                     System.out.println("Gerente: "+empresaDeBasura.gerente);
+                    System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
                 CrearEmpresasBasura();
@@ -443,7 +445,35 @@ public class Main {
     }
 
 
-    
+    public static void AdministrarSedes() {
+        String option = "";
+        while(true) {
+            System.out.println("Elija una opción");
+            System.out.println("1. Ver Sedes");
+            System.out.println("2. Crear Sedes");
+            System.out.println("3. Editar Sedes");
+            System.out.println("4. Eliminar Sedes");
+            System.out.println("0. Salir");
+            option = input.next();
+            if (option.equals("1")) {
+                for (Sede sede : sedes) {
+                    System.out.println("************************************");
+                    System.out.println("Telefono: "+sede.telefono);
+                    System.out.println("Direccion: "+sede.direccion);
+                    System.out.println("Persona a cargo: "+sede.persona_a_cargo);
+                    System.out.println("************************************");
+                }
+            } else if (option.equals("2")) {
+                //CrearSedes();
+            } else if (option.equals("3")) {
+                //EditarSedes();
+            } else if (option.equals("4")) {
+                //EliminarSedes();
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
 
 
     public static void AdministrarAreas() {
@@ -458,10 +488,12 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Area area : areas) {
+                    System.out.println("************************************");
                     System.out.println("Tipo: "+area.tipo);
                     System.out.println("Horario: "+area.horario);
                     System.out.println("Persona a cargo: "+area.persona_a_cargo);
                     System.out.println("Telefono persona a cargo: "+area.telefono_persona_a_cargo);
+                    System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
                 //CrearAreas();
@@ -488,10 +520,12 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Ruta ruta : rutas) {
+                    System.out.println("************************************");
                     System.out.println("id: "+ ruta.id);
                     System.out.println("Horario: "+ruta.horario);
                     System.out.println("dia: "+ruta.dia);
                     System.out.println("Id recolercor: "+ruta.recolector_id);
+                    System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
                 //CrearRutas();
@@ -518,10 +552,12 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Taller taller : talleres) {
+                    System.out.println("************************************");
                     System.out.println("Nombre: "+ taller.nombre);
                     System.out.println("Sistema asociado: "+taller.sistema_asociado);
                     System.out.println("Interno sede: "+taller.interno_sede);
                     System.out.println("Dinero fallas menores: "+taller.dinero_fallas_menores);
+                    System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
                 //CrearTalleres();
@@ -548,11 +584,13 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Personal persona : personas) {
+                    System.out.println("************************************");
                     System.out.println("Nombre: "+ persona.nombre);
                     System.out.println("Perfil: "+persona.perfil);
                     System.out.println("Horario: "+persona.horario);
                     System.out.println("Cedula: "+persona.cedula);
                     System.out.println("Sueldo: "+persona.sueldo);
+                    System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
                 //CrearPersonal();
@@ -579,9 +617,11 @@ public class Main {
             option = input.next();
             if (option.equals("1")) {
                 for (Recolector recolector : recolectores) {
+                    System.out.println("************************************");
                     System.out.println("Marca: "+recolector.marca);
                     System.out.println("Id: "+recolector.id);
                     System.out.println("Ruta Id: "+recolector.rutaid);
+                    System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
                 //CrearRecolector();
@@ -611,7 +651,7 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
-                //BuscarEmpresasBasura();
+                BuscarEmpresasBasura();
             } else if (option.equals("2")) {
                 //BuscarSedes();
             } else if (option.equals("3")) {
