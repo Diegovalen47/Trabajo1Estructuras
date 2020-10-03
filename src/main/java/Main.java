@@ -192,7 +192,7 @@ public class Main {
         System.out.print("Contraseña : ");
         String clave = input.next();
 
-        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave, null);
+        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave);
         usuarios.add(usuario);
 
         System.out.println("¡Usted se ha registrado exitosamente!");
