@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.*;
 
 import com.google.gson.*;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 public class Main {
 
@@ -528,7 +527,22 @@ public class Main {
         }
         System.out.println("Ingrese el nombre de la persona a cargo de la sede");
         String personaAcargo = input.next();
-        sedes.add(new Sede(telefono,direccion,personaAcargo));
+        System.out.println("Ingrese el nombre de empresa de basura a la cual va a asociar la sede");
+        String nombreEmpresa = input.next();
+        Sede sede = new Sede(telefono,direccion,personaAcargo);
+        boolean EmpresaEncontrada = false;
+        for (EmpresaDeBasura empresa : empresasDeBasuras) {
+            if (empresa.getNombre().equals(nombreEmpresa)) {
+                EmpresaEncontrada = true;
+                empresa.setSedes(sede);
+                break;
+            }
+        }
+        if (!EmpresaEncontrada) {
+            System.out.println("No exite empresa de basura tal para asociar sede");
+            return;
+        }
+        sedes.add(sede);
         System.out.println("Sede creada satisfactoriamente");
 
     }
