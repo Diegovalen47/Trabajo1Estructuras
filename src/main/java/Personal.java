@@ -20,7 +20,6 @@ public class Personal {
 
     public void setRecolectores(Recolector recolector) {
         recolectores.add(recolector);
-        recolector.setPersonas(this);
     }
 
     public void setPerfil(String perfil) {

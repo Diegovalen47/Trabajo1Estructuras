@@ -15,7 +15,6 @@ public class EmpresaDeBasura {
 
     public void setSedes(Sede sede) {
         sedes.add(sede);
-        sede.setEmpresaDeBasura(this);
     }
 
     public void setNombre(String nombre) {

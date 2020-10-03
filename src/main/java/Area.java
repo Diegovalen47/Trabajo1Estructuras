@@ -22,17 +22,14 @@ public class Area {
 
     public void setRutas(Ruta ruta) {
         rutas.add(ruta);
-        ruta.setArea(this);
     }
 
     public void setTalleres(Taller taller) {
         talleres.add(taller);
-        taller.setArea(this);
     }
 
     public void setPersonas (Personal persona) {
         personas.add(persona);
-        persona.setArea(this);
     }
 
     public void setTipo(String tipo) {

@@ -16,8 +16,6 @@ public class Sede {
 
     public void setAreas(Area area) {
         areas.add(area);
-        area.setSede(this);
-
     }
 
     public void setEmpresaDeBasura(EmpresaDeBasura empresaDeBasura) {

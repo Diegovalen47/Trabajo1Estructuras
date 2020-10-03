@@ -19,7 +19,6 @@ public class Usuario {
 
     public void setEmpresaDeBasura (EmpresaDeBasura empresaDeBasura) {
         empresasDeBasura.add(empresaDeBasura);
-        empresaDeBasura.setUsuario(this);
 
     }
 
@@ -68,12 +67,25 @@ public class Usuario {
         Iterator<EmpresaDeBasura> iterator = empresasDeBasura.iterator();
         while(iterator.hasNext()) {
             empresaDeBasura = iterator.next();
-            if (empresaDeBasura.getNombre().equals(nombre)) {
+            if (empresaDeBasura.getNombre().equalsIgnoreCase(nombre)) {
                 return empresaDeBasura;
             }
         }
         empresaDeBasura = null;
         return empresaDeBasura;
+    }
+
+    public void eliminarEmpresaDeBasura (String nombre) {
+        EmpresaDeBasura empresaDeBasura = null;
+        Iterator<EmpresaDeBasura> iterator = empresasDeBasura.iterator();
+        while(iterator.hasNext()) {
+            empresaDeBasura = iterator.next();
+            if (empresaDeBasura.getNombre().equalsIgnoreCase(nombre)) {
+                iterator.remove();
+                return;
+            }
+        }
+
     }
 
 }

@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         CargarUsuarios();
         /*  El siguiente ciclo while tiene la funcionalidad de mostrar el menú principal
         en donde el usuario tendrá las opciones de iniciar sesión y registrarse   */
@@ -66,7 +67,7 @@ public class Main {
     }
 
 
-    public static void IniciarSesion() {
+    public static void IniciarSesion() throws IOException {
 
         if (usuarios.isEmpty()) {
             System.out.println("No hay usuarios registrados al momento");
@@ -139,7 +140,7 @@ public class Main {
     }
 
 
-    public static void Registrarse() {
+    public static void Registrarse() throws IOException {
 
         System.out.println("Registrarse");
         System.out.println("**********************************");
@@ -200,7 +201,7 @@ public class Main {
     }
 
 
-    public static void GuardarUsuarios() {
+    public static void GuardarUsuarios() throws IOException {
         String jsonString = gson.toJson(usuarios);
 
         try (FileWriter file = new FileWriter("usuarios.json")) {
@@ -211,10 +212,15 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /*gson.toJson(usuarios, new FileWriter("usuarios.json"));*/
+
+
+
     }
 
 
-    public static void MenuPrincipal(Usuario usuario) {
+    public static void MenuPrincipal(Usuario usuario) throws IOException {
         System.out.println("*********************************");
         System.out.println("¡Hola "+ usuario.nombre +"!");
         String option = "";
@@ -304,14 +310,15 @@ public class Main {
             } else if (option.equals("2")) {
                 CrearEmpresasBasura(usuario);
             } else if (option.equals("3")) {
-                //EditarEmpresasBasura();
+                EditarEmpresasBasura(usuario);
             } else if (option.equals("4")) {
-                //EliminarEmpresasBasura();
+                EliminarEmpresasBasura(usuario);
             } else if (option.equals("0")) {
                 break;
             }
         }
     }
+
 
     public static void CrearEmpresasBasura(Usuario usuario) {
         System.out.println("CREANDO EMPRESA DE BASURA");
@@ -327,6 +334,69 @@ public class Main {
         } else {
             System.out.println("Ya existe una empresa registrada con ese nombre");
             return;
+        }
+    }
+
+
+    public static void EditarEmpresasBasura(Usuario usuario) {
+        System.out.println("Ingese el nombre de la empresa que desea editar");
+        String nombre = input.next();
+        if (usuario.buscarEmpresaDeBasura(nombre) == null) {
+            System.out.println("No existe tal empresa, intente de nuevo");
+        } else {
+            for (EmpresaDeBasura empresaBas : usuario.empresasDeBasura) {
+                if (empresaBas.getNombre().equalsIgnoreCase(nombre)) {
+                    System.out.println(empresaBas.getNombre());
+                    System.out.println("¿Desea cambiar el nombre de la empresa?");
+                    System.out.println("1. Y");
+                    System.out.println("1. N");
+                    String option = input.next();
+                    if (option.equalsIgnoreCase("Y")) {
+                        System.out.println("Ingrese el nuevo nombre");
+                        String nuevo_nombre = input.next();
+                        empresaBas.setNombre(nuevo_nombre);
+                    }
+                    System.out.println(empresaBas.getCiudad());
+                    System.out.println("¿Desea cambiar la ciudad de de la empresa?");
+                    System.out.println("1. Y");
+                    System.out.println("1. N");
+                    option = input.next();
+                    if (option.equalsIgnoreCase("Y")) {
+                        System.out.println("Ingrese la nueva ciudad");
+                        String nueva_ciudad = input.next();
+                        empresaBas.setCiudad(nueva_ciudad);
+                    }
+                    System.out.println(empresaBas.getGerente());
+                    System.out.println("¿Desea cambiar el gerente de de la empresa?");
+                    System.out.println("1. Y");
+                    System.out.println("1. N");
+                    option = input.next();
+                    if (option.equalsIgnoreCase("Y")) {
+                        System.out.println("Ingrese el nuevo gerente");
+                        String nuevo_gerente = input.next();
+                        empresaBas.setGerente(nuevo_gerente);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+
+    public static void EliminarEmpresasBasura(Usuario usuario) {
+        System.out.println("Ingese el nombre de la empresa que desea eliminar");
+        String nombre = input.next();
+        if (usuario.buscarEmpresaDeBasura(nombre) == null) {
+            System.out.println("No existe tal empresa, intente de nuevo");
+        } else {
+            String option = "";
+            System.out.println("¿Desea eliminar la empresa");
+            System.out.println("1. Y");
+            System.out.println("1. N");
+            option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                usuario.eliminarEmpresaDeBasura(nombre);
+            }
         }
     }
 

@@ -20,12 +20,12 @@ public class Taller {
 
     public void setRecolectores (Recolector recolector) {
         recolectores.add(recolector);
-        recolector.setTalleres(this);
+
     }
 
     public void setPersonas (Personal persona) {
         personas.add(persona);
-        persona.setTaller(this);
+
     }
 
     public void setNombre(String nombre) {
