@@ -61,11 +61,9 @@ public class Area {
 
     public String isContratista() {
         if (contratista) {
-            String mensaje = "Sí";
-            return mensaje;
+            return "Sí";
         } else {
-            String mensaje = "No";
-            return mensaje;
+            return "No";
         }
     }
 

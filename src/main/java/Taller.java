@@ -66,11 +66,9 @@ public class Taller {
 
     public String isReparar_en_ruta() {
         if (reparar_en_ruta) {
-            String mensaje = "Sí";
-            return mensaje;
+            return "Sí";
         } else {
-            String mensaje = "No";
-            return mensaje;
+            return "No";
         }
     }
 
