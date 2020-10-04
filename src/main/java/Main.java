@@ -111,6 +111,35 @@ public class Main {
             e.printStackTrace();
         }
 
+
+        try(FileReader reader = new FileReader("personas.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray personasList = (JsonArray) obj;
+
+            for (Object object : personasList) {
+                String jsonString = gson.toJson(object);
+                Personal persona = gson.fromJson(jsonString, Personal.class);
+                personas.add(persona);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try(FileReader reader = new FileReader("recolectores.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray recolectoresList = (JsonArray) obj;
+
+            for (Object object : recolectoresList) {
+                String jsonString = gson.toJson(object);
+                Recolector recolector = gson.fromJson(jsonString, Recolector.class);
+                recolectores.add(recolector);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -340,9 +369,35 @@ public class Main {
 
         String jsonStringRutas = gson.toJson(rutas);
 
-        try (FileWriter file = new FileWriter("talleres.json")) {
+        try (FileWriter file = new FileWriter("rutas.json")) {
 
             file.write(jsonStringRutas);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        String jsonStringPersonal= gson.toJson(personas);
+
+        try (FileWriter file = new FileWriter("personas.json")) {
+
+            file.write(jsonStringPersonal);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        String jsonStringRecolectores= gson.toJson(recolectores);
+
+        try (FileWriter file = new FileWriter("recolectores.json")) {
+
+            file.write(jsonStringRecolectores);
             file.flush();
 
         } catch (IOException e) {
@@ -433,14 +488,14 @@ public class Main {
             if (option.equals("1")) {
                 if (empresasDeBasuras.isEmpty()) {
                     System.out.println("No hay empresas de basura registradas");
-                    return;
-                }
-                for (EmpresaDeBasura empresaDeBasura : empresasDeBasuras) {
-                    System.out.println("************************************");
-                    System.out.println("Nombre: "+empresaDeBasura.nombre);
-                    System.out.println("Ciudad: "+empresaDeBasura.ciudad);
-                    System.out.println("Gerente: "+empresaDeBasura.gerente);
-                    System.out.println("************************************");
+                } else {
+                    for (EmpresaDeBasura empresaDeBasura : empresasDeBasuras) {
+                        System.out.println("************************************");
+                        System.out.println("Nombre: " + empresaDeBasura.nombre);
+                        System.out.println("Ciudad: " + empresaDeBasura.ciudad);
+                        System.out.println("Gerente: " + empresaDeBasura.gerente);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
                 CrearEmpresasBasura();
@@ -561,7 +616,6 @@ public class Main {
                 System.out.println("No se encontró la empresa");
             }
         }
-
     }
 
 
@@ -578,14 +632,14 @@ public class Main {
             if (option.equals("1")) {
                 if (sedes.isEmpty()) {
                     System.out.println("No hay sedes registradas");
-                    return;
-                }
-                for (Sede sede : sedes) {
-                    System.out.println("************************************");
-                    System.out.println("Telefono: "+sede.telefono);
-                    System.out.println("Direccion: "+sede.direccion);
-                    System.out.println("Persona a cargo: "+sede.persona_a_cargo);
-                    System.out.println("************************************");
+                } else {
+                    for (Sede sede : sedes) {
+                        System.out.println("************************************");
+                        System.out.println("Telefono: " + sede.telefono);
+                        System.out.println("Direccion: " + sede.direccion);
+                        System.out.println("Persona a cargo: " + sede.persona_a_cargo);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
                 CrearSedes();
@@ -846,15 +900,15 @@ public class Main {
             if (option.equals("1")) {
                 if (areas.isEmpty()) {
                     System.out.println("No hay areas registradas");
-                    return;
-                }
-                for (Area area : areas) {
-                    System.out.println("************************************");
-                    System.out.println("Tipo: "+area.tipo);
-                    System.out.println("Horario: "+area.horario);
-                    System.out.println("Persona a cargo: "+area.persona_a_cargo);
-                    System.out.println("Telefono persona a cargo: "+area.telefono_persona_a_cargo);
-                    System.out.println("************************************");
+                } else {
+                    for (Area area : areas) {
+                        System.out.println("************************************");
+                        System.out.println("Tipo: " + area.tipo);
+                        System.out.println("Horario: " + area.horario);
+                        System.out.println("Persona a cargo: " + area.persona_a_cargo);
+                        System.out.println("Telefono persona a cargo: " + area.telefono_persona_a_cargo);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
                 CrearAreas();
@@ -1044,15 +1098,15 @@ public class Main {
             if (option.equals("1")) {
                 if (talleres.isEmpty()) {
                     System.out.println("No hay talleres registrados");
-                    return;
-                }
-                for (Taller taller : talleres) {
-                    System.out.println("************************************");
-                    System.out.println("Nombre: "+ taller.nombre);
-                    System.out.println("Sistema asociado: "+taller.sistema_asociado);
-                    System.out.println("Interno sede: "+taller.interno_sede);
-                    System.out.println("Dinero fallas menores: "+taller.dinero_fallas_menores);
-                    System.out.println("************************************");
+                } else {
+                    for (Taller taller : talleres) {
+                        System.out.println("************************************");
+                        System.out.println("Nombre: " + taller.nombre);
+                        System.out.println("Sistema asociado: " + taller.sistema_asociado);
+                        System.out.println("Interno sede: " + taller.interno_sede);
+                        System.out.println("Dinero fallas menores: " + taller.dinero_fallas_menores);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
                 CrearTalleres();
@@ -1114,6 +1168,34 @@ public class Main {
             System.out.println("No exite tal area para asociar el taller");
             return;
         }
+
+        while(true) {
+            System.out.println("¿Este taller repara algún recolector");
+            System.out.println("Y");
+            System.out.println("N");
+            option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                System.out.println("Ingrese el id del recolector que repara");
+                int id_recolector = input.nextInt();
+                boolean RecolectorEncontrado = false;
+                for (Recolector recolector : recolectores) {
+                    if (recolector.getId() == id_recolector) {
+                        RecolectorEncontrado = true;
+                        recolector.setTalleres(taller);
+                        break;
+                    }
+                }
+                if (!RecolectorEncontrado) {
+                    System.out.println("No existe ese recolector, intente de nuevo");
+                } else {
+                    break;
+                }
+            } else if (option.equalsIgnoreCase("N")) {
+                break;
+            }
+        }
+
+
         talleres.add(taller);
         System.out.println("Taller creado satisfactoriamente");
     }
@@ -1242,15 +1324,15 @@ public class Main {
             if (option.equals("1")) {
                 if (rutas.isEmpty()) {
                     System.out.println("No hay rutas registradas");
-                    return;
-                }
-                for (Ruta ruta : rutas) {
-                    System.out.println("************************************");
-                    System.out.println("id: "+ ruta.id);
-                    System.out.println("Horario: "+ruta.horario);
-                    System.out.println("dia: "+ruta.dia);
-                    System.out.println("Id recolercor: "+ruta.recolector_id);
-                    System.out.println("************************************");
+                } else {
+                    for (Ruta ruta : rutas) {
+                        System.out.println("************************************");
+                        System.out.println("id: " + ruta.id);
+                        System.out.println("Horario: " + ruta.horario);
+                        System.out.println("dia: " + ruta.dia);
+                        System.out.println("Id recolercor: " + ruta.recolector_id);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
                 CrearRutas();
@@ -1268,6 +1350,9 @@ public class Main {
     public static void CrearRutas() {
         if (areas.isEmpty()){
             System.out.println("No hay areas registradas para asignar ruta");
+        }
+        if (recolectores.isEmpty()) {
+            System.out.println("No hay recolectores registrados para asignar ruta");
         }
         System.out.println("CREANDO RUTA");
         System.out.println("Ingrese el id de la ruta");
@@ -1439,23 +1524,232 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
-                for (Personal persona : personas) {
-                    System.out.println("************************************");
-                    System.out.println("Nombre: "+ persona.nombre);
-                    System.out.println("Perfil: "+persona.perfil);
-                    System.out.println("Horario: "+persona.horario);
-                    System.out.println("Cedula: "+persona.cedula);
-                    System.out.println("Sueldo: "+persona.sueldo);
-                    System.out.println("************************************");
+                if (personas.isEmpty()) {
+                    System.out.println("No hay personal registrado");
+                } else {
+                    for (Personal persona : personas) {
+                        System.out.println("************************************");
+                        System.out.println("Nombre: " + persona.nombre);
+                        System.out.println("Perfil: " + persona.perfil);
+                        System.out.println("Horario: " + persona.horario);
+                        System.out.println("Cedula: " + persona.cedula);
+                        System.out.println("Sueldo: " + persona.sueldo);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
-                //CrearPersonal();
+                CrearPersonal();
             } else if (option.equals("3")) {
-                //EditarPersonal();
+                EditarPersonal();
             } else if (option.equals("4")) {
-                //EliminarPersonal();
+                EliminarPersonal();
             } else if (option.equals("0")) {
                 break;
+            }
+        }
+    }
+
+
+    public static void CrearPersonal() {
+        if (areas.isEmpty()) {
+            System.out.println("No hay areas registradas, por lo tanto no puede asignar personal");
+            return;
+        }
+        System.out.println("CREANDO PERSONA");
+        System.out.println("Ingrese la cedula de persona");
+        int cedula = input.nextInt();
+        for (Personal persona : personas) {
+            if (persona.getCedula() == cedula) {
+                System.out.println("Esta persona ya existe, intente nuevamente");
+                return;
+            }
+        }
+        System.out.println("Ingrese el nombre de la persona");
+        String nombre =input.next();
+        System.out.println("Ingrese el perfil de la persona");
+        String perfil = input.next();
+        System.out.println("Ingrese el horario");
+        String horario = input.next();
+        System.out.println("Ingrese el sueldo de la persona");
+        int sueldo = input.nextInt();
+
+        Personal persona = new Personal(perfil,horario,cedula,nombre,sueldo);
+        System.out.println("Ingrese el teléfono de la persona a cargo del area a asociar esta persona");
+        int telefono_persona_a_cargo_area = input.nextInt();
+
+        boolean AreaEncontrada = false;
+        for (Area area : areas) {
+            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo_area) {
+                AreaEncontrada = true;
+                area.setPersonas(persona);
+                break;
+            }
+        }
+        if (!AreaEncontrada) {
+            System.out.println("No exite tal area para asociar la persona");
+            return;
+        }
+        while(true) {
+            System.out.println("¿Esta persona trabaja en algún taller?");
+            System.out.println("Y");
+            System.out.println("N");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                System.out.println("Ingrese el nombre del taller en el que trabaja");
+                String nombre_taller = input.next();
+                boolean TallerEncontrado = false;
+                for (Taller taller : talleres) {
+                    if (taller.getNombre().equalsIgnoreCase(nombre_taller)) {
+                        TallerEncontrado = true;
+                        taller.setPersonas(persona);
+                        break;
+                    }
+                }
+                if (!TallerEncontrado) {
+                    System.out.println("No existe ese taller, intente de nuevo");
+                } else {
+                    break;
+                }
+            } else if (option.equalsIgnoreCase("N")) {
+                break;
+            }
+        }
+
+
+        while(true) {
+            System.out.println("¿Esta persona trabaja en algún recolector?");
+            System.out.println("Y");
+            System.out.println("N");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                System.out.println("Ingrese el id del recolector donde trabaja");
+                int id_recolector = input.nextInt();
+                boolean RecolectorEncontrado = false;
+                for (Recolector recolector : recolectores) {
+                    if (recolector.getId() == id_recolector) {
+                        RecolectorEncontrado = true;
+                        recolector.setPersonas(persona);
+                        break;
+                    }
+                }
+                if (!RecolectorEncontrado) {
+                    System.out.println("No existe ese recolector, intente de nuevo");
+                } else {
+                    break;
+                }
+            } else if (option.equalsIgnoreCase("N")) {
+                break;
+            }
+        }
+
+        personas.add(persona);
+        System.out.println("Persona creada satisfactoriamente");
+    }
+
+
+    public static void EditarPersonal() {
+        if (personas.isEmpty()) {
+            System.out.println("No hay personas registradas");
+            return;
+        }
+        System.out.println("Se seleccionará por cédula");
+        System.out.println("Ingrese la cédula de la persona");
+        int cedula = input.nextInt();
+        int nueva_cedula = 0;
+        String nuevo_perfil = "";
+        String nuevo_horario = "";
+        String nuevo_nombre = "";
+        int nuevo_sueldo = 0;
+        boolean personaEncontrada = false;
+        for (Personal persona : personas) {
+            if (persona.getCedula() == cedula) {
+                personaEncontrada = true;
+                System.out.println("Nombre: "+ persona.getNombre());
+                System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_nombre = input.next();
+                System.out.println("Cédula: "+ persona.getCedula());
+                System.out.println("Si desea cambiar la cédula, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: 0");
+                nueva_cedula = input.nextInt();
+                System.out.println("Perfil: "+ persona.getPerfil());
+                System.out.println("Si desea cambiar el perfil, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_perfil = input.next();
+                System.out.println("Horaio: "+ persona.getHorario());
+                System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_horario = input.next();
+                System.out.println("Sueldo: "+ persona.getSueldo());
+                System.out.println("Si desea cambiar el sueldo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: 0");
+                nuevo_sueldo = input.nextInt();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_nombre.equalsIgnoreCase("N")) {
+
+                    } else {
+                        persona.setNombre(nuevo_nombre);
+                    }
+                    if (nueva_cedula == 0) {
+
+                    } else {
+                        persona.setCedula(nueva_cedula);
+                    }
+                    if (nuevo_perfil.equalsIgnoreCase("N")) {
+
+                    } else {
+                        persona.setPerfil(nuevo_perfil);
+                    }
+                    if (nuevo_horario.equalsIgnoreCase("N")) {
+
+                    } else {
+                        persona.setHorario(nuevo_horario);
+                    }
+                    if (nuevo_sueldo == 0) {
+
+                    } else {
+                        persona.setSueldo(nuevo_sueldo);
+                    }
+                } else {
+
+                }
+            }
+        }
+        if (!personaEncontrada) {
+            System.out.println("No se encontró la persona");
+        }
+    }
+
+
+    public static void EliminarPersonal() {
+        if (personas.isEmpty()) {
+            System.out.println("No hay personas registradas");
+            return;
+        }
+        System.out.println("Se seleccionará por cédula");
+        System.out.println("Ingrese la cédula de la persona");
+        int cedula = input.nextInt();
+        System.out.println("¿Seguro que desea eliminar esta persona?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean personaEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Personal> iterator = personas.iterator();
+            while(iterator.hasNext()) {
+                Personal personas = iterator.next();
+                if (personas.getCedula() == cedula) {
+                    personaEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!personaEncontrada) {
+                System.out.println("No se encontró la persona");
             }
         }
     }
@@ -1472,12 +1766,16 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
-                for (Recolector recolector : recolectores) {
-                    System.out.println("************************************");
-                    System.out.println("Marca: "+recolector.marca);
-                    System.out.println("Id: "+recolector.id);
-                    System.out.println("Ruta Id: "+recolector.rutaid);
-                    System.out.println("************************************");
+                if (recolectores.isEmpty()) {
+                    System.out.println("No hay recolectores registrados");
+                } else {
+                    for (Recolector recolector : recolectores) {
+                        System.out.println("************************************");
+                        System.out.println("Marca: " + recolector.marca);
+                        System.out.println("Id: " + recolector.id);
+                        System.out.println("Ruta Id: " + recolector.rutaid);
+                        System.out.println("************************************");
+                    }
                 }
             } else if (option.equals("2")) {
                 //CrearRecolector();
@@ -1490,6 +1788,9 @@ public class Main {
             }
         }
     }
+
+
+    
 
 
     public static void MenuBusqueda() {
