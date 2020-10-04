@@ -1350,9 +1350,11 @@ public class Main {
     public static void CrearRutas() {
         if (areas.isEmpty()){
             System.out.println("No hay areas registradas para asignar ruta");
+            return;
         }
         if (recolectores.isEmpty()) {
             System.out.println("No hay recolectores registrados para asignar ruta");
+            return;
         }
         System.out.println("CREANDO RUTA");
         System.out.println("Ingrese el id de la ruta");
@@ -1741,8 +1743,8 @@ public class Main {
         if (option.equalsIgnoreCase("Y")) {
             Iterator<Personal> iterator = personas.iterator();
             while(iterator.hasNext()) {
-                Personal personas = iterator.next();
-                if (personas.getCedula() == cedula) {
+                Personal persona = iterator.next();
+                if (persona.getCedula() == cedula) {
                     personaEncontrada = true;
                     iterator.remove();
                 }
@@ -1778,11 +1780,11 @@ public class Main {
                     }
                 }
             } else if (option.equals("2")) {
-                //CrearRecolector();
+                CrearRecolector();
             } else if (option.equals("3")) {
-                //EditarRecolector();
+                EditarRecolector();
             } else if (option.equals("4")) {
-                //EliminarRecolector();
+                EliminarRecolector();
             } else if (option.equals("0")) {
                 break;
             }
@@ -1790,7 +1792,207 @@ public class Main {
     }
 
 
-    
+    public static void CrearRecolector() {
+        if (areas.isEmpty()) {
+            System.out.println("No hay areas registradas, por lo tanto no puede asignar recolectores");
+            return;
+        }
+        if (personas.isEmpty()) {
+            System.out.println("No hay personal registrado, por lo tanto no puede asignar recolectores");
+            return;
+        }
+        System.out.println("CREANDO RECOLECTOR");
+        System.out.println("Ingrese el Id del recolector");
+        int id_recolector = input.nextInt();
+        for (Recolector recolector : recolectores) {
+            if (recolector.getId() == id_recolector) {
+                System.out.println("Este recolector ya existe, intente nuevamente");
+                return;
+            }
+        }
+        System.out.println("Ingrese la marca del recolector");
+        String marca =input.next();
+        System.out.println("El recolector e doble troque?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean doble_troque;
+        if (option.equalsIgnoreCase("Y")) {
+            doble_troque = true;
+        } else {
+            doble_troque = false;
+        }
+        System.out.println("El recolector está disponible?");
+        System.out.println("Y");
+        System.out.println("N");
+        option = input.next();
+        boolean disponible;
+        if (option.equalsIgnoreCase("Y")) {
+            disponible = true;
+        } else {
+            disponible = false;
+        }
+        System.out.println("Ingrese el id de la ruta asociada");
+        int id_ruta = input.nextInt();
+        Recolector recolector = new Recolector(marca,doble_troque,id_recolector,disponible,id_ruta);
+
+        boolean RutaEncontrada = false;
+        for (Ruta ruta :rutas) {
+            if (ruta.getId() == id_ruta) {
+                RutaEncontrada = true;
+                ruta.setRecolector(recolector);
+                break;
+            }
+        }
+        if (!RutaEncontrada) {
+            System.out.println("No exite tal ruta para asociar al recolector");
+        }
+        System.out.println("Ingrese el nombre del taller a asociar este recolector");
+        String nombre_taller = input.next();
+        boolean TallerEncontrada = false;
+        for (Taller taller : talleres) {
+            if (taller.getNombre().equalsIgnoreCase(nombre_taller)) {
+                TallerEncontrada = true;
+                taller.setRecolectores(recolector);
+                break;
+            }
+        }
+        if (!TallerEncontrada) {
+            System.out.println("No exite tal taller para asociar al recolector");
+            return;
+        }
+
+        while(true) {
+            System.out.println("¿El trabajador tiene personal asociado?");
+            System.out.println("Y");
+            System.out.println("N");
+            option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                System.out.println("Ingrese la cédula de la persona");
+                int cedula_persona = input.nextInt();
+                boolean PersonalEncontrado = false;
+                for (Personal persona : personas) {
+                    if (persona.getCedula() == cedula_persona) {
+                        PersonalEncontrado = true;
+                        persona.setRecolectores(recolector);
+                        break;
+                    }
+                }
+                if (!PersonalEncontrado) {
+                    System.out.println("No existe esa persona, intente de nuevo");
+                } else {
+                    break;
+                }
+            } else if (option.equalsIgnoreCase("N")) {
+                break;
+            }
+        }
+
+        recolectores.add(recolector);
+        System.out.println("Recolector creado satisfactoriamente");
+    }
+
+
+    public static void EditarRecolector() {
+        if (recolectores.isEmpty()) {
+            System.out.println("No hay recolectores registrados");
+            return;
+        }
+        System.out.println("Se seleccionará por id de recolector");
+        System.out.println("Ingrese el id del recolector");
+        int id_recolector = input.nextInt();
+        int nuevo_id_recolector = 0;
+        String nuevo_doble_troque = "";
+        String nueva_marca = "";
+        String nuevo_disponible = "";
+        String option = "";
+        boolean RecolectorEncontrado = false;
+        for (Recolector recolector : recolectores) {
+            if (recolector.getId() == id_recolector) {
+                RecolectorEncontrado = true;
+                System.out.println("Id: "+ recolector.getId());
+                System.out.println("Si desea cambiar el id, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: -1");
+                nuevo_id_recolector = input.nextInt();
+                System.out.println("Marca: "+ recolector.getMarca());
+                System.out.println("Si desea cambiar la marca, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nueva_marca = input.next();
+                System.out.println("Recolector doble troque: "+ recolector.isDoble_troque());
+                System.out.println("¡Desea cambiar el estado del recolector?");
+                System.out.println("Y");
+                System.out.println("N");
+                nuevo_doble_troque = input.next();
+                System.out.println("Recolector dISPONIBLE: "+ recolector.isDisponible());
+                System.out.println("¡Desea cambiar el estado del recolector?");
+                System.out.println("Y");
+                System.out.println("N");
+                nuevo_disponible = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_id_recolector < 0) {
+
+                    } else {
+                        recolector.setId(nuevo_id_recolector);
+                    }
+                    if (nueva_marca.equalsIgnoreCase("N")) {
+
+                    } else {
+                       recolector.setMarca(nueva_marca);
+                    }
+                    if (nuevo_doble_troque.equalsIgnoreCase("N")) {
+
+                    } else {
+                       recolector.setDoble_troque(!recolector.doble_troque);
+                    }
+                    if (nuevo_disponible.equalsIgnoreCase("N")) {
+
+                    } else {
+                        recolector.setDisponible(!recolector.disponible);
+                    }
+                } else {
+
+                }
+            }
+        }
+        if (!RecolectorEncontrado) {
+            System.out.println("No se encntró el recolector");
+        }
+
+    }
+
+
+    public static void EliminarRecolector() {
+        if (recolectores.isEmpty()) {
+            System.out.println("No hay recolectores registrados");
+            return;
+        }
+        System.out.println("Se seleccionará por id del recolector");
+        System.out.println("Ingrese el id");
+        int id_recolector = input.nextInt();
+        System.out.println("¿Seguro que desea eliminar este recolector?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean RecolectorEncontrado = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Recolector> iterator =     recolectores.iterator();
+            while(iterator.hasNext()) {
+                Recolector recolector = iterator.next();
+                if (recolector.getId() == id_recolector) {
+                    RecolectorEncontrado = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!RecolectorEncontrado) {
+                System.out.println("No se encontró el recolector");
+            }
+        }
+    }
 
 
     public static void MenuBusqueda() {
