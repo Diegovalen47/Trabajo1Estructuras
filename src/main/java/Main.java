@@ -80,6 +80,37 @@ public class Main {
             e.printStackTrace();
         }
 
+
+        try(FileReader reader = new FileReader("talleres.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray talleresList = (JsonArray) obj;
+
+            for (Object object : talleresList) {
+                String jsonString = gson.toJson(object);
+                Taller taller = gson.fromJson(jsonString, Taller.class);
+                talleres.add(taller);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        try(FileReader reader = new FileReader("rutas.json")) {
+            Object obj = parser.parse(reader);
+            JsonArray rutasList = (JsonArray) obj;
+
+            for (Object object : rutasList) {
+                String jsonString = gson.toJson(object);
+                Ruta ruta = gson.fromJson(jsonString, Ruta.class);
+                rutas.add(ruta);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -288,6 +319,30 @@ public class Main {
         try (FileWriter file = new FileWriter("areas.json")) {
 
             file.write(jsonStringAreas);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        String jsonStringTalleres = gson.toJson(talleres);
+
+        try (FileWriter file = new FileWriter("talleres.json")) {
+
+            file.write(jsonStringTalleres);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        String jsonStringRutas = gson.toJson(rutas);
+
+        try (FileWriter file = new FileWriter("talleres.json")) {
+
+            file.write(jsonStringRutas);
             file.flush();
 
         } catch (IOException e) {
@@ -1044,7 +1099,7 @@ public class Main {
         }
         System.out.println("Ingrese la cantidad de dinero en fallas menores");
         int dinero_fallas_menores = input.nextInt();
-        System.out.println("Ingrese el telefono de la persona a cargo de la sede a asociar este taller");
+        System.out.println("Ingrese el telefono de la persona a cargo del area a asociar este taller");
         int telefono_persona_a_cargo_area = input.nextInt();
         Taller taller = new Taller(nombre,sistema_asociado,interno_sede,reparar_en_ruta,dinero_fallas_menores);
         boolean AreaEncontrada = false;
@@ -1185,6 +1240,10 @@ public class Main {
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
+                if (rutas.isEmpty()) {
+                    System.out.println("No hay rutas registradas");
+                    return;
+                }
                 for (Ruta ruta : rutas) {
                     System.out.println("************************************");
                     System.out.println("id: "+ ruta.id);
@@ -1194,13 +1253,176 @@ public class Main {
                     System.out.println("************************************");
                 }
             } else if (option.equals("2")) {
-                //CrearRutas();
+                CrearRutas();
             } else if (option.equals("3")) {
-                //EditarRutas();
+                EditarRutas();
             } else if (option.equals("4")) {
-                //EliminarRutas();
+                EliminarRutas();
             } else if (option.equals("0")) {
                 break;
+            }
+        }
+    }
+
+
+    public static void CrearRutas() {
+        if (areas.isEmpty()){
+            System.out.println("No hay areas registradas para asignar ruta");
+        }
+        System.out.println("CREANDO RUTA");
+        System.out.println("Ingrese el id de la ruta");
+        int id_ruta = input.nextInt();
+        for (Ruta ruta :rutas) {
+            if (ruta.getId() == id_ruta) {
+                System.out.println("Ya existe una ruta con ese id");
+                return;
+            }
+        }
+        System.out.println("Ingrese el horario de la ruta");
+        String horario = input.next();
+        System.out.println("Ingrese el dia de la ruta");
+        String dia = input.next();
+        System.out.println("¿El recolector de esa ruta está varado?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean recolector_varado;
+        if (option.equalsIgnoreCase("Y")) {
+            recolector_varado = true;
+
+        } else {
+            recolector_varado = false;
+        }
+        System.out.println("Ingrese el id del recolector asociado");
+        int id_recolector = input.nextInt();
+        Ruta ruta = new Ruta(id_ruta,horario,dia,id_recolector, recolector_varado);
+        boolean RecolectorEncontrado = false;
+        for (Recolector recolector : recolectores) {
+            if (recolector.getId() == id_recolector) {
+                RecolectorEncontrado = true;
+                recolector.setRuta(ruta);
+                break;
+            }
+        }
+        if (!RecolectorEncontrado) {
+            System.out.println("No exite tal recolector para asociar la ruta");
+            return;
+        }
+        System.out.println("Ingrese el telefono de la persona a cargo del area a asociar esta ruta");
+        int telefono_persona_a_cargo_area = input.nextInt();
+        boolean AreaEncontrada = false;
+        for (Area area : areas) {
+            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo_area) {
+                AreaEncontrada = true;
+                area.setRutas(ruta);
+                break;
+            }
+        }
+        if (!AreaEncontrada) {
+            System.out.println("No exite tal area para asociar la ruta");
+            return;
+        }
+
+        rutas.add(ruta);
+        System.out.println("Ruta creada satisfactoriamente");
+    }
+
+
+    public static void EditarRutas() {
+        if (rutas.isEmpty()) {
+            System.out.println("No hay rutas registradas");
+            return;
+        }
+        System.out.println("Se seleccionará por id de ruta");
+        System.out.println("Ingrese el id de la ruta");
+        int id_ruta = input.nextInt();
+        int nuevo_id_ruta = 0;
+        String nuevo_horario = "";
+        String nuevo_dia = "";
+        String nuevo_estado_recolector = "";
+        String option = "";
+        boolean RutaEncontrada = false;
+        for (Ruta ruta : rutas) {
+            if (ruta.getId() == id_ruta) {
+                RutaEncontrada = true;
+                System.out.println("Id: "+ ruta.getId());
+                System.out.println("Si desea cambiar el id, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: -1");
+                nuevo_id_ruta = input.nextInt();
+                System.out.println("Horario: "+ ruta.getHorario());
+                System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_horario = input.next();
+                System.out.println("Dia: "+ ruta.getDia());
+                System.out.println("Si desea cambiar el dia, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_dia = input.next();
+                System.out.println("Estado recolector: "+ ruta.isEstado_recolector());
+                System.out.println("¡Desea cambiar el estado del recolector?");
+                System.out.println("Y");
+                System.out.println("N");
+                nuevo_estado_recolector = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_id_ruta < 0) {
+
+                    } else {
+                        ruta.setId(nuevo_id_ruta);
+                    }
+                    if (nuevo_horario.equalsIgnoreCase("N")) {
+
+                    } else {
+                        ruta.setHorario(nuevo_horario);
+                    }
+                    if (nuevo_dia.equalsIgnoreCase("N")) {
+
+                    } else {
+                        ruta.setDia(nuevo_dia);
+                    }
+                    if (nuevo_estado_recolector.equalsIgnoreCase("N")) {
+
+                    } else {
+                        ruta.setEstado_recolector(!ruta.estado_recolector);
+                    }
+                } else {
+
+                }
+            }
+        }
+        if (!RutaEncontrada) {
+            System.out.println("No se encntró la ruta");
+        }
+    }
+
+
+    public static void EliminarRutas() {
+        if (rutas.isEmpty()) {
+            System.out.println("No hay rutas registrados");
+            return;
+        }
+        System.out.println("Se seleccionará por id de la rutas");
+        System.out.println("Ingrese el id de la ruta");
+        int id_ruta = input.nextInt();
+        System.out.println("¿Seguro que desea eliminar esta ruta?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean RutaEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Ruta> iterator = rutas.iterator();
+            while(iterator.hasNext()) {
+                Ruta ruta = iterator.next();
+                if (ruta.getId() == id_ruta) {
+                    RutaEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!RutaEncontrada) {
+                System.out.println("No se encontró esa ruta");
             }
         }
     }

@@ -62,8 +62,12 @@ public class Recolector {
         return id;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public String isDisponible() {
+        if (disponible) {
+            return "Si";
+        } else {
+            return "No";
+        }
     }
 
     public int getRutaid() {

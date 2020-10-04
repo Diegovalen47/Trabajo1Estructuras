@@ -59,8 +59,12 @@ public class Ruta {
         return recolector_id;
     }
 
-    public boolean isEstado_recolector() {
-        return estado_recolector;
+    public String isEstado_recolector() {
+        if (estado_recolector) {
+            return "Normal";
+        } else {
+            return "Varado";
+        }
     }
 
     public Recolector getRecolector() {
