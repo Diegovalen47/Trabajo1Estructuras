@@ -976,6 +976,204 @@ public class Main {
     }
 
 
+    public static void AdministrarTalleres() {
+        String option = "";
+        while(true) {
+            System.out.println("Elija una opción");
+            System.out.println("1. Ver Talleres");
+            System.out.println("2. Crear Talleres");
+            System.out.println("3. Editar Talleres");
+            System.out.println("4. Eliminar Talleres");
+            System.out.println("0. Salir");
+            option = input.next();
+            if (option.equals("1")) {
+                if (talleres.isEmpty()) {
+                    System.out.println("No hay talleres registrados");
+                    return;
+                }
+                for (Taller taller : talleres) {
+                    System.out.println("************************************");
+                    System.out.println("Nombre: "+ taller.nombre);
+                    System.out.println("Sistema asociado: "+taller.sistema_asociado);
+                    System.out.println("Interno sede: "+taller.interno_sede);
+                    System.out.println("Dinero fallas menores: "+taller.dinero_fallas_menores);
+                    System.out.println("************************************");
+                }
+            } else if (option.equals("2")) {
+                CrearTalleres();
+            } else if (option.equals("3")) {
+                EditarTalleres();
+            } else if (option.equals("4")) {
+                EliminarTalleres();
+            } else if (option.equals("0")) {
+                break;
+            }
+        }
+    }
+
+
+    public static void CrearTalleres() {
+        if (areas.isEmpty()) {
+            System.out.println("No hay areas registradas, por lo tanto no puede crear el taller");
+            return;
+        }
+        System.out.println("CREANDO TALLER");
+        System.out.println("Ingrese el nombre del taller");
+        String nombre = input.next();
+        for (Taller taller : talleres) {
+            if (taller.getNombre().equalsIgnoreCase(nombre)) {
+                System.out.println("El taller ya existe, intente de nuevo");
+                return;
+            }
+        }
+
+        System.out.println("Ingrese el sistema asociado al taller");
+        String sistema_asociado = input.next();
+        System.out.println("Ingrese el nombre del interno de sede");
+        String interno_sede = input.next();
+        System.out.println("¿El taller repara en ruta?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean reparar_en_ruta;
+        if (option.equalsIgnoreCase("Y")) {
+            reparar_en_ruta = true;
+
+        } else {
+            reparar_en_ruta = false;
+        }
+        System.out.println("Ingrese la cantidad de dinero en fallas menores");
+        int dinero_fallas_menores = input.nextInt();
+        System.out.println("Ingrese el telefono de la persona a cargo de la sede a asociar este taller");
+        int telefono_persona_a_cargo_area = input.nextInt();
+        Taller taller = new Taller(nombre,sistema_asociado,interno_sede,reparar_en_ruta,dinero_fallas_menores);
+        boolean AreaEncontrada = false;
+        for (Area area : areas) {
+            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo_area) {
+                AreaEncontrada = true;
+                area.setTalleres(taller);
+                break;
+            }
+        }
+        if (!AreaEncontrada) {
+            System.out.println("No exite tal area para asociar el taller");
+            return;
+        }
+        talleres.add(taller);
+        System.out.println("Taller creado satisfactoriamente");
+    }
+
+
+    public static void EditarTalleres() {
+        if (talleres.isEmpty()) {
+            System.out.println("No hay talleres registrados");
+            return;
+        }
+        System.out.println("Se seleccionará por nombre del taller");
+        System.out.println("Ingrese el nombre");
+        String nombre= input.next();
+        String nuevo_nombre = "";
+        String nuevo_sistema_asociado = "";
+        String nuevo_interno_sede = "";
+        String nuevo_reparar_en_ruta = "";
+        String option = "";
+        int nuevo_dinero_fallas_menores = 0;
+        boolean TallerEncontrado = false;
+        for (Taller taller : talleres) {
+            if (taller.getNombre().equalsIgnoreCase(nombre)) {
+                TallerEncontrado = true;
+                System.out.println("Nombre: "+ taller.getNombre());
+                System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_nombre = input.next();
+                System.out.println("Sistema asociado: "+ taller.getSistema_asociado());
+                System.out.println("Si desea cambiar el sistema asociado, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_sistema_asociado = input.next();
+                System.out.println("Interno sede: "+ taller.getInterno_sede());
+                System.out.println("Si desea cambiar el interno de la sede, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_interno_sede = input.next();
+                System.out.println("Reparar en ruta: "+ taller.isReparar_en_ruta());
+                System.out.println("¡Desea cambiar el estado de reparar en ruta?");
+                System.out.println("Y");
+                System.out.println("N");
+                nuevo_reparar_en_ruta = input.next();
+                System.out.println("Dinero fallas menores: "+ taller.getDinero_fallas_menores());
+                System.out.println("Si desea cambiar esa cantidad de dinero, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: -1");
+                nuevo_dinero_fallas_menores = input.nextInt();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_nombre.equalsIgnoreCase("N")) {
+
+                    } else {
+                        taller.setNombre(nuevo_nombre);
+                    }
+                    if (nuevo_reparar_en_ruta.equalsIgnoreCase("N")) {
+
+                    } else {
+                        taller.setReparar_en_ruta(!taller.reparar_en_ruta);
+                    }
+                    if (nuevo_sistema_asociado.equalsIgnoreCase("N")) {
+
+                    } else {
+                        taller.setSistema_asociado(nuevo_sistema_asociado);
+                    }
+                    if (nuevo_interno_sede.equalsIgnoreCase("N")) {
+
+                    } else {
+                        taller.setInterno_sede(nuevo_interno_sede);
+                    }
+                    if (nuevo_dinero_fallas_menores < 0) {
+
+                    } else {
+                        taller.setDinero_fallas_menores(nuevo_dinero_fallas_menores);
+                    }
+                } else {
+
+                }
+            }
+        }
+        if (!TallerEncontrado) {
+            System.out.println("No se encntró ese taller");
+        }
+    }
+
+
+    public static void EliminarTalleres() {
+        if (talleres.isEmpty()) {
+            System.out.println("No hay talleres registrados");
+            return;
+        }
+        System.out.println("Se seleccionará por nombre del taller");
+        System.out.println("Ingrese el nombre");
+        String nombre= input.next();
+        System.out.println("¿Seguro que desea eliminar este taller?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean TallerEncontrado = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Taller> iterator = talleres.iterator();
+            while(iterator.hasNext()) {
+                Taller taller = iterator.next();
+                if (taller.getNombre().equalsIgnoreCase(nombre)) {
+                    TallerEncontrado = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!TallerEncontrado) {
+                System.out.println("No se encontró ese taller");
+            }
+        }
+    }
+
+
     public static void AdministrarRutas() {
         String option = "";
         while(true) {
@@ -1001,38 +1199,6 @@ public class Main {
                 //EditarRutas();
             } else if (option.equals("4")) {
                 //EliminarRutas();
-            } else if (option.equals("0")) {
-                break;
-            }
-        }
-    }
-
-
-    public static void AdministrarTalleres() {
-        String option = "";
-        while(true) {
-            System.out.println("Elija una opción");
-            System.out.println("1. Ver Talleres");
-            System.out.println("2. Crear Talleres");
-            System.out.println("3. Editar Talleres");
-            System.out.println("4. Eliminar Talleres");
-            System.out.println("0. Salir");
-            option = input.next();
-            if (option.equals("1")) {
-                for (Taller taller : talleres) {
-                    System.out.println("************************************");
-                    System.out.println("Nombre: "+ taller.nombre);
-                    System.out.println("Sistema asociado: "+taller.sistema_asociado);
-                    System.out.println("Interno sede: "+taller.interno_sede);
-                    System.out.println("Dinero fallas menores: "+taller.dinero_fallas_menores);
-                    System.out.println("************************************");
-                }
-            } else if (option.equals("2")) {
-                //CrearTalleres();
-            } else if (option.equals("3")) {
-                //EditarTalleres();
-            } else if (option.equals("4")) {
-                //EliminarTalleres();
             } else if (option.equals("0")) {
                 break;
             }
