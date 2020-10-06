@@ -3898,7 +3898,7 @@ public class Main {
 
 
     public static void BuscarEmpresasBasura() {
-        LinkedList<EmpresaDeBasura> empresaDeBasuras_copia= new LinkedList<>();
+        LinkedList<EmpresaDeBasura> empresaDeBasuras_copia;
         empresaDeBasuras_copia= (LinkedList<EmpresaDeBasura>) empresasDeBasuras.clone();
         LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
         int enumerador=1;
@@ -3924,7 +3924,7 @@ public class Main {
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
-                        if(empresa.ciudad.equals(seleccion)){
+                        if(empresa.nombre.equals(seleccion)){
                             empresasEncontradas.add(empresa);
                         }
                     }
