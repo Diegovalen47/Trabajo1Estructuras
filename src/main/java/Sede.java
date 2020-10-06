@@ -5,7 +5,7 @@ public class Sede {
     String direccion;
     String persona_a_cargo;
     EmpresaDeBasura empresaDeBasura;
-    LinkedList<Area> areas ;
+    LinkedList<Area> areas = new LinkedList<>() ;
 
     public Sede(String telefono, String direccion, String persona_a_cargo) {
         this.telefono = telefono;

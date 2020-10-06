@@ -64,8 +64,12 @@ public class Taller {
         return interno_sede;
     }
 
-    public boolean isReparar_en_ruta() {
-        return reparar_en_ruta;
+    public String isReparar_en_ruta() {
+        if (reparar_en_ruta) {
+            return "Sí";
+        } else {
+            return "No";
+        }
     }
 
     public int getDinero_fallas_menores() {

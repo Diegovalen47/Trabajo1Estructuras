@@ -54,16 +54,24 @@ public class Recolector {
         return marca;
     }
 
-    public boolean isDoble_troque() {
-        return doble_troque;
+    public String isDoble_troque() {
+        if (doble_troque) {
+            return "Si";
+        } else {
+            return "No";
+        }
     }
 
     public int getId() {
         return id;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public String isDisponible() {
+        if (disponible) {
+            return "Si";
+        } else {
+            return "No";
+        }
     }
 
     public int getRutaid() {
