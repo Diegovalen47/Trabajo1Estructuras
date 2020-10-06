@@ -661,10 +661,10 @@ public class Main {
         }
         System.out.println("CREANDO SEDE");
         System.out.println("Ingrese el telefono de la sede");
-        int telefono = input.nextInt();
+        String telefono = input.next();
 
         for (Sede sede : sedes) {
-            if (sede.getTelefono() == telefono) {
+            if (sede.getTelefono().equalsIgnoreCase(telefono)) {
                 System.out.println("Esa sede ya existe");
                 return;
             }
@@ -716,7 +716,7 @@ public class Main {
                 System.out.println("Se seleccionará por direccion de la sede");
                 System.out.println("Ingrese la direccion de la sede");
                 String direccion = input.next();
-                int nuevo_telefono = 0;
+                String nuevo_telefono = "";
                 String nueva_direccion = "";
                 String nueva_persona_a_cargo = "";
                 boolean SedeEncontrada = false;
@@ -733,8 +733,8 @@ public class Main {
                         nueva_persona_a_cargo = input.next();
                         System.out.println("Teléfono: "+ sede.getTelefono());
                         System.out.println("Si desea cambiar el teléfono, ingrese su nuevo valor");
-                        System.out.println("en otro caso, digite: 0");
-                        nuevo_telefono = input.nextInt();
+                        System.out.println("en otro caso, digite: N");
+                        nuevo_telefono = input.next();
                         System.out.println("¿Desea guardar los cambios?");
                         System.out.println("Y");
                         System.out.println("N");
@@ -750,7 +750,7 @@ public class Main {
                             } else {
                                 sede.setPersona_a_cargo(nueva_persona_a_cargo);
                             }
-                            if (nuevo_telefono == 0) {
+                            if (nuevo_telefono.equalsIgnoreCase("N")) {
 
                             } else {
                                 sede.setTelefono(nuevo_telefono);
@@ -766,13 +766,13 @@ public class Main {
             } else if (option.equals("2")) {
                 System.out.println("Se seleccionará por telefono de la sede");
                 System.out.println("Ingrese el télefono");
-                int telefono = input.nextInt();
-                int nuevo_telefono = 0;
+                String telefono = input.next();
+                String nuevo_telefono = "";
                 String nueva_direccion = "";
                 String nueva_persona_a_cargo = "";
                 boolean SedeEncontrada = false;
                 for (Sede sede : sedes) {
-                    if (sede.getTelefono() == telefono) {
+                    if (sede.getTelefono().equalsIgnoreCase(telefono)) {
                         SedeEncontrada = true;
                         System.out.println("Direccion: "+ sede.getDireccion());
                         System.out.println("Si desea cambiar la direccion, ingrese su nuevo valor");
@@ -784,8 +784,8 @@ public class Main {
                         nueva_persona_a_cargo = input.next();
                         System.out.println("Teléfono: "+ sede.getTelefono());
                         System.out.println("Si desea cambiar el teléfono, ingrese su nuevo valor");
-                        System.out.println("en otro caso, digite: 0");
-                        nuevo_telefono = input.nextInt();
+                        System.out.println("en otro caso, digite: N");
+                        nuevo_telefono = input.next();
                         System.out.println("¿Desea guardar los cambios?");
                         System.out.println("Y");
                         System.out.println("N");
@@ -801,7 +801,7 @@ public class Main {
                             } else {
                                 sede.setPersona_a_cargo(nueva_persona_a_cargo);
                             }
-                            if (nuevo_telefono == 0) {
+                            if (nuevo_telefono.equalsIgnoreCase("N")) {
 
                             } else {
                                 sede.setTelefono(nuevo_telefono);
@@ -860,7 +860,7 @@ public class Main {
             } else if (option.equals("2")) {
                 System.out.println("Se seleccionará por telefono de la sede");
                 System.out.println("Ingrese el telefono de la sede a eliminar");
-                int telefono = input.nextInt();
+                String telefono = input.next();
                 System.out.println("¿Seguro que desea eliminar esta sede?");
                 System.out.println("Y");
                 System.out.println("N");
@@ -870,7 +870,7 @@ public class Main {
                     Iterator<Sede> iterator = sedes.iterator();
                     while(iterator.hasNext()) {
                         Sede sede = iterator.next();
-                        if (sede.getTelefono() == telefono) {
+                        if (sede.getTelefono().equalsIgnoreCase(telefono)) {
                             sedeEncontrada = true;
                             iterator.remove();
                         }
@@ -947,20 +947,20 @@ public class Main {
         System.out.println("Ingrese el nombre de la persona a cargo");
         String persona_a_cargo = input.next();
         System.out.println("Ingrese el teléfono de a persona a cargo");
-        int telefono_persona_a_cargo = input.nextInt();
+        String telefono_persona_a_cargo = input.next();
         for (Area area : areas) {
-            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo) {
+            if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo)) {
                 System.out.println("El area ya existe, intente de nuevo");
                 return;
             }
         }
 
         System.out.println("Ingrese el teléfono de la sede a la cual desea asociar el area");
-        int telefonoSede = input.nextInt();
+        String telefonoSede = input.next();
         Area area = new Area(tipo,contratista,horario,persona_a_cargo,telefono_persona_a_cargo);
         boolean SedeEncontrada = false;
         for (Sede sede : sedes) {
-            if (sede.getTelefono() == telefonoSede) {
+            if (sede.getTelefono().equalsIgnoreCase(telefonoSede)) {
                 SedeEncontrada = true;
                 sede.setAreas(area);
                 break;
@@ -982,16 +982,16 @@ public class Main {
         }
         System.out.println("Se seleccionará por teléfono de persona a cargo de la sede");
         System.out.println("Ingrese el teléfono");
-        int telefono_persona_a_cargo = input.nextInt();
+        String telefono_persona_a_cargo = input.next();
         String nuevo_tipo = "";
         String nuevo_contratista = "";
         String nuevo_horario = "";
         String nueva_persona_a_cargo = "";
         String option = "";
-        int nuevo_telefono_persona_a_cargo = 0;
+        String nuevo_telefono_persona_a_cargo = "";
         boolean AreaEncontrada = false;
         for (Area area : areas) {
-            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo) {
+            if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo)) {
                 AreaEncontrada = true;
                 System.out.println("Tipo: "+ area.getTipo());
                 System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
@@ -1012,8 +1012,8 @@ public class Main {
                 nueva_persona_a_cargo = input.next();
                 System.out.println("Telefono persona a cargo: "+ area.getPersona_a_cargo());
                 System.out.println("Si desea cambiar el telefono de la persona a cargo, ingrese su nuevo valor");
-                System.out.println("en otro caso, digite: 0");
-                nuevo_telefono_persona_a_cargo = input.nextInt();
+                System.out.println("en otro caso, digite: N");
+                nuevo_telefono_persona_a_cargo = input.next();
                 System.out.println("¿Desea guardar los cambios?");
                 System.out.println("Y");
                 System.out.println("N");
@@ -1039,7 +1039,7 @@ public class Main {
                     } else {
                         area.setPersona_a_cargo(nueva_persona_a_cargo);
                     }
-                    if (nuevo_telefono_persona_a_cargo == 0) {
+                    if (nuevo_telefono_persona_a_cargo.equalsIgnoreCase("N")) {
 
                     } else {
                         area.setTelefono_persona_a_cargo(nuevo_telefono_persona_a_cargo);
@@ -1062,7 +1062,7 @@ public class Main {
         }
         System.out.println("Se seleccionará por telefono de la persona a cargo");
         System.out.println("Ingrese el telefono de la persona a cargo del area a eliminar");
-        int telefono_persona_a_cargo = input.nextInt();
+        String telefono_persona_a_cargo = input.next();
         System.out.println("¿Seguro que desea eliminar esta área?");
         System.out.println("Y");
         System.out.println("N");
@@ -1072,7 +1072,7 @@ public class Main {
             Iterator<Area> iterator = areas.iterator();
             while(iterator.hasNext()) {
                 Area area = iterator.next();
-                if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo) {
+                if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo)) {
                     AreaEncontrada = true;
                     iterator.remove();
                 }
@@ -1154,11 +1154,11 @@ public class Main {
         System.out.println("Ingrese la cantidad de dinero en fallas menores");
         int dinero_fallas_menores = input.nextInt();
         System.out.println("Ingrese el telefono de la persona a cargo del area a asociar este taller");
-        int telefono_persona_a_cargo_area = input.nextInt();
+        String telefono_persona_a_cargo_area = input.next();
         Taller taller = new Taller(nombre,sistema_asociado,interno_sede,reparar_en_ruta,dinero_fallas_menores);
         boolean AreaEncontrada = false;
         for (Area area : areas) {
-            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo_area) {
+            if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo_area)) {
                 AreaEncontrada = true;
                 area.setTalleres(taller);
                 break;
@@ -1396,10 +1396,10 @@ public class Main {
             return;
         }
         System.out.println("Ingrese el telefono de la persona a cargo del area a asociar esta ruta");
-        int telefono_persona_a_cargo_area = input.nextInt();
+        String telefono_persona_a_cargo_area = input.next();
         boolean AreaEncontrada = false;
         for (Area area : areas) {
-            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo_area) {
+            if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo_area)) {
                 AreaEncontrada = true;
                 area.setRutas(ruta);
                 break;
@@ -1577,11 +1577,11 @@ public class Main {
 
         Personal persona = new Personal(perfil,horario,cedula,nombre,sueldo);
         System.out.println("Ingrese el teléfono de la persona a cargo del area a asociar esta persona");
-        int telefono_persona_a_cargo_area = input.nextInt();
+        String telefono_persona_a_cargo_area = input.next();
 
         boolean AreaEncontrada = false;
         for (Area area : areas) {
-            if (area.getTelefono_persona_a_cargo() == telefono_persona_a_cargo_area) {
+            if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo_area)) {
                 AreaEncontrada = true;
                 area.setPersonas(persona);
                 break;
