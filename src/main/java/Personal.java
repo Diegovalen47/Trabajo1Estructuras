@@ -77,4 +77,15 @@ public class Personal {
     public Area getArea() {
         return area;
     }
+
+    @Override
+    public String toString() {
+        return "Personal{" +
+                "perfil='" + perfil + '\'' +
+                ", horario='" + horario + '\'' +
+                ", cedula=" + cedula +
+                ", nombre='" + nombre + '\'' +
+                ", sueldo=" + sueldo +
+                '}';
+    }
 }

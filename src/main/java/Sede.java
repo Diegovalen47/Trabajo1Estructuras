@@ -48,4 +48,13 @@ public class Sede {
     public EmpresaDeBasura getEmpresaDeBasura() {
         return empresaDeBasura;
     }
+
+    @Override
+    public String toString() {
+        return "Sede{" +
+                "telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", persona_a_cargo='" + persona_a_cargo + '\'' +
+                '}';
+    }
 }

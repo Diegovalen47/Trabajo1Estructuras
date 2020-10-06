@@ -74,4 +74,15 @@ public class Ruta {
     public Area getArea() {
         return area;
     }
+
+    @Override
+    public String toString() {
+        return "Ruta{" +
+                "id=" + id +
+                ", horario='" + horario + '\'' +
+                ", dia='" + dia + '\'' +
+                ", recolector_id=" + recolector_id +
+                ", estado_recolector=" + estado_recolector +
+                '}';
+    }
 }
