@@ -653,7 +653,7 @@ public class Main {
             if (option.equals("1")) {
                 BuscarEmpresasBasura();
             } else if (option.equals("2")) {
-                //BuscarSedes();
+                BuscarSedes();
             } else if (option.equals("3")) {
                 //BuscarAreas();
             } else if (option.equals("4")) {
@@ -670,9 +670,759 @@ public class Main {
         }
     }
 
+    public static void BuscarSedes() {
+        LinkedList<Sede> sedes_copia= new LinkedList<>();
+        sedes_copia= (LinkedList<Sede>) sedes.clone();
+        LinkedList<Sede> sedesEncontradas= new LinkedList<>();
+        int enumerador=1;
+        boolean mostar_todos=false;
+
+        if(sedes.size()!=0){
+            System.out.println("Seleccione el atributo por el cual desea buscar la sede:");
+            System.out.println("1. Telefono");
+            System.out.println("2. Direccion");
+            System.out.println("3. Persona a cargo");
+            System.out.println("4. Mostrar todas las sedes");
+            String seleccion= input.next();
+
+            if(seleccion.equals("1")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el telefono de la sede: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Sede sede : sedes) {
+
+                        if(sede.telefono.equals(seleccion)){
+                            sedesEncontradas.add(sede);
+                        }
+                    }
+
+                    if(sedesEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Telefono");
+                        System.out.println("2. Direccion");
+                        System.out.println("3. Persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar las direcciones de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionD());
+                            }             
+
+                            enumerador=1;
+
+                            for (Sede sede : sedesEncontradas) { 
+                                System.out.println(enumerador+". "+ sede);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el telefono de la sede: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Sede sede : sedes) {
+
+                        if(sede.telefono.toLowerCase().equals(seleccion)){
+                            sedesEncontradas.add(sede);
+                        }
+                    }
+
+                    if(sedesEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Telefono");
+                        System.out.println("2. Direccion");
+                        System.out.println("3. Persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar las direcciones de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionD());
+                            }             
+
+                            enumerador=1;
+
+                            for (Sede sede : sedesEncontradas) { 
+                                System.out.println(enumerador+". "+ sede);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("2")){
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la direccion: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Sede sede : sedes) {
+
+                        if(sede.direccion.equals(seleccion)){
+                            sedesEncontradas.add(sede);
+                        }
+                    }
+
+                    if(sedesEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Telefono");
+                        System.out.println("2. Direccion");
+                        System.out.println("3. Persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar las direcciones de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionD());
+                            }            
+
+                            enumerador=1;
+
+                            for (Sede sede : sedesEncontradas) { 
+                                System.out.println(enumerador+". "+ sede);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese la direccion: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Sede sede : sedes) {
+
+                        if(sede.direccion.toLowerCase().equals(seleccion)){
+                            sedesEncontradas.add(sede);
+                        }
+                    }
+
+                    if(sedesEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Telefono");
+                        System.out.println("2. Direccion");
+                        System.out.println("3. Persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar las direcciones de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next(); 
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionD());
+                            }            
+
+                            enumerador=1;
+
+                            for (Sede sede : sedesEncontradas) { 
+                                System.out.println(enumerador+". "+ sede);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("3")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el nombre de la persona a cargo: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Sede sede : sedes) {
+
+                        if(sede.persona_a_cargo.equals(seleccion)){
+                            sedesEncontradas.add(sede);
+                        }
+                    }
+
+                    if(sedesEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Telefono");
+                        System.out.println("2. Direccion");
+                        System.out.println("3. Persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar las direcciones de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();            
+                            if(seleccion.equals("1")){
+
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionD());
+                            }
+                            enumerador=1;
+
+                            for (Sede sede : sedesEncontradas) { 
+                                System.out.println(enumerador+". "+ sede);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();              
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el nombre de la persona a cargo: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Sede sede : sedes) {
+
+                        if(sede.persona_a_cargo.toLowerCase().equals(seleccion)){
+                            sedesEncontradas.add(sede);
+                        }
+                    }
+
+                    if(sedesEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Telefono");
+                        System.out.println("2. Direccion");
+                        System.out.println("3. Persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar las direcciones de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();     
+                            if(seleccion.equals("1")){
+
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_direccionD());
+                            }       
+
+                            enumerador=1;
+
+                            for (Sede sede : sedesEncontradas) { 
+                                System.out.println(enumerador+". "+ sede);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(sedesEncontradas, new ComparadorSede_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Sede sede : sedesEncontradas) {
+                                System.out.println(enumerador +". "+ sede);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+            }else if(seleccion.equals("4")){
+                mostar_todos=true;
+                System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                System.out.println("1. Telefono");
+                System.out.println("2. Direccion");
+                System.out.println("3. Persona a cargo");
+                seleccion= input.next();
+
+
+
+                if(seleccion.equals("1")){
+                    System.out.println("Desea organizar los telefonos de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(sedes_copia, new ComparadorSede_telefonoA());
+                    } else if (seleccion.equals("2")) {
+                        Collections.sort(sedes_copia, new ComparadorSede_telefonoD());
+                    }
+
+                    enumerador=1;
+                    for (Sede sede : sedes_copia) {
+                        System.out.println(enumerador +". "+ sede);
+                        enumerador+=1;
+                    }
+                }else if(seleccion.equals("2")){
+                    System.out.println("Desea organizar las direcciones de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();     
+                    if(seleccion.equals("1")){
+
+                        Collections.sort(sedes_copia, new ComparadorSede_direccionA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(sedes_copia, new ComparadorSede_direccionD());
+                    }       
+
+                    enumerador=1;
+
+                    for (Sede sede : sedes_copia) { 
+                        System.out.println(enumerador+". "+ sede);
+                        enumerador+=1;
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.println("Desea organizar los nombres de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(sedes_copia, new ComparadorSede_personaA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(sedes_copia,new ComparadorSede_personaD());
+                    }
+
+                    enumerador=1;
+                    for (Sede sede : sedes_copia) {
+                        System.out.println(enumerador +". "+ sede);
+                        enumerador+=1;
+                    }
+                }else{
+
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("No hay empresas de basura registradas en el sistema");
+            return;
+        }
+
+        // Aquí se establece la búsqueda sobre las sedes 
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En las sedes encontradas desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
+
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente a la sede: ");
+            int option= input.nextInt();
+            Sede sede;
+            if(!mostar_todos){
+                if(sedesEncontradas.size()>=option && option>=1){
+                    sede= sedesEncontradas.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(sedes_copia.size()>=option && option>=1){
+                    sede= sedes_copia.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+            
+            BuscarEditarSede(sede);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente a la sede: ");
+            int option= input.nextInt();
+            Sede sede;
+            if(!mostar_todos){
+                if(sedesEncontradas.size()>=option && option>=1){
+                    sede= sedesEncontradas.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(sedes_copia.size()>=option && option>=1){
+                    sede= sedes_copia.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarSede(sede);
+        }
+    }
+
+    public static void BuscarEliminarSede(Sede place) {
+        System.out.println("¿Seguro que desea eliminar esta sede?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean sedeEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Sede> iterator = sedes.iterator();
+            while(iterator.hasNext()) {
+                Sede sede = iterator.next();
+                if (sede.getTelefono().equals(place.getTelefono())) {
+                    sedeEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!sedeEncontrada) {
+                System.out.println("No se encontró la sede");
+                return;
+            }else{
+                System.out.println("La sede se ha removido satisfactoriamente");
+            }
+        }
+
+        
+
+    }
+
+    public static void BuscarEditarSede(Sede place) {
+        for (Sede sede : sedes) {
+            if(sede.telefono.equals(place.telefono)){
+
+                String nuevo_telefono = "";
+                String nuevo_direccion = "";
+                String nuevo_persona = "";
+
+                System.out.println("Telefono: "+ sede.getTelefono());
+                System.out.println("Si desea cambiar el telefono, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_telefono = input.next();
+                System.out.println("Direccion: "+ sede.getDireccion());
+                System.out.println("Si desea cambiar la direccion, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_direccion = input.next();
+                System.out.println("Persona a cargo: "+ sede.getDireccion());
+                System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_persona = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_telefono.equalsIgnoreCase("N")) {
+
+                    }else {
+                        sede.setTelefono(nuevo_telefono);
+                    }
+                    if (nuevo_direccion.equalsIgnoreCase("N")) {
+
+                    } else {
+                        sede.setDireccion(nuevo_direccion);
+                    }
+                    if (nuevo_persona.equalsIgnoreCase("N")) {
+
+                    } else {
+                    sede.setPersona_a_cargo(nuevo_persona);
+                    }
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
+    }
+
+
     public static void BuscarEmpresasBasura() {
         LinkedList<EmpresaDeBasura> empresaDeBasuras_copia= new LinkedList<>();
         empresaDeBasuras_copia= (LinkedList<EmpresaDeBasura>) empresasDeBasuras.clone();
+        LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
+        int enumerador=1;
+        boolean mostar_todos=false;
 
         if(empresasDeBasuras.size()!=0){
             System.out.println("Selecciones el atributo por el cual desea buscar la empresa de basura:");
@@ -690,7 +1440,7 @@ public class Main {
                     System.out.print("Ingrese el nombre de la empresa: ");
                     input.nextLine();
                     seleccion= input.nextLine();
-                    LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
+                    
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
@@ -718,7 +1468,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_nombreD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -735,7 +1485,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_cuidadD());
                             }             
 
-                            int enumerador=1;
+                            enumerador=1;
 
                             for (EmpresaDeBasura empresa : empresasEncontradas) { 
                                 System.out.println(enumerador+". "+ empresa);
@@ -754,7 +1504,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -762,16 +1512,18 @@ public class Main {
                         }else{
 
                             System.out.println("Opción inválida");
+                            return;
                         }
                     }else{
                         System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
                     }
 
                 }else if(seleccion.equals("2")){
                     System.out.print("Ingrese la cuidad: ");
                     input.nextLine();
                     seleccion= input.nextLine();
-                    LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
+                    
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
@@ -799,7 +1551,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_nombreD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -816,7 +1568,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_cuidadD());
                             }             
 
-                            int enumerador=1;
+                            enumerador=1;
 
                             for (EmpresaDeBasura empresa : empresasEncontradas) { 
                                 System.out.println(enumerador+". "+ empresa);
@@ -835,7 +1587,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -846,9 +1598,11 @@ public class Main {
                         }
                     }else{
                         System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
                     }
                 }else{
                     System.out.println("Opción inválida");
+                    return;
                 }
 
 
@@ -860,7 +1614,6 @@ public class Main {
                     System.out.print("Ingrese la cuidad: ");
                     input.nextLine();
                     seleccion= input.nextLine();
-                    LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
@@ -888,7 +1641,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_nombreD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -904,7 +1657,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_cuidadD());
                             }            
 
-                            int enumerador=1;
+                            enumerador=1;
 
                             for (EmpresaDeBasura empresa : empresasEncontradas) { 
                                 System.out.println(enumerador+". "+ empresa);
@@ -923,7 +1676,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -931,16 +1684,18 @@ public class Main {
                         }else{
 
                             System.out.println("Opción inválida");
+                            return;
                         }
                     }else{
                         System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
                     }
 
                 }else if(seleccion.equals("2")){
                     System.out.print("Ingrese la cuidad: ");
                     input.nextLine();
                     seleccion= input.nextLine();
-                    LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
+                    
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
@@ -968,7 +1723,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_nombreD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -985,7 +1740,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_cuidadD());
                             }            
 
-                            int enumerador=1;
+                            enumerador=1;
 
                             for (EmpresaDeBasura empresa : empresasEncontradas) { 
                                 System.out.println(enumerador+". "+ empresa);
@@ -1004,7 +1759,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -1015,9 +1770,11 @@ public class Main {
                         }
                     }else{
                         System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
                     }
                 }else{
                     System.out.println("Opción inválida");
+                    return;
                 }
 
             }else if(seleccion.equals("3")){
@@ -1028,7 +1785,7 @@ public class Main {
                     System.out.print("Ingrese el nombre del gerente: ");
                     input.nextLine();
                     seleccion= input.nextLine();
-                    LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
+                    
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
@@ -1056,7 +1813,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_nombreD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -1072,7 +1829,7 @@ public class Main {
                             }else if(seleccion.equals("2")){
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_cuidadD());
                             }
-                            int enumerador=1;
+                            enumerador=1;
 
                             for (EmpresaDeBasura empresa : empresasEncontradas) { 
                                 System.out.println(enumerador+". "+ empresa);
@@ -1083,7 +1840,7 @@ public class Main {
                             System.out.println("Desea organizar los nombres de forma : ");
                             System.out.println("1. Ascendente");
                             System.out.println("2. Descendente");
-                            seleccion= input.next();              // No se organizan porque se buscó por gerente
+                            seleccion= input.next();              
 
                             if(seleccion.equals("1")){
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteA());
@@ -1091,7 +1848,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -1099,16 +1856,18 @@ public class Main {
                         }else{
 
                             System.out.println("Opción inválida");
+                            return;
                         }
                     }else{
                         System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
                     }
 
                 }else if(seleccion.equals("2")){
                     System.out.print("Ingrese el nombre del gerente: ");
                     input.nextLine();
                     seleccion= input.nextLine();
-                    LinkedList<EmpresaDeBasura> empresasEncontradas= new LinkedList<>();
+                    
 
                     for (EmpresaDeBasura empresa : empresasDeBasuras) {
 
@@ -1136,7 +1895,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_nombreD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -1153,7 +1912,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_cuidadD());
                             }       
 
-                            int enumerador=1;
+                            enumerador=1;
 
                             for (EmpresaDeBasura empresa : empresasEncontradas) { 
                                 System.out.println(enumerador+". "+ empresa);
@@ -1172,7 +1931,7 @@ public class Main {
                                 Collections.sort(empresasEncontradas, new ComparadorEmpresa_gerenteD());
                             }
 
-                            int enumerador=1;
+                            enumerador=1;
                             for (EmpresaDeBasura empresa : empresasEncontradas) {
                                 System.out.println(enumerador +". "+ empresa);
                                 enumerador+=1;
@@ -1180,16 +1939,20 @@ public class Main {
                         }else{
 
                             System.out.println("Opción inválida");
+                            return;
                         }
                     }else{
                         System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
                     }
                 }else{
                     System.out.println("Opción inválida");
+                    return;
                 }
 
 
             }else if(seleccion.equals("4")){
+                mostar_todos=true;
                 System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
                 System.out.println("1. Nombre");
                 System.out.println("2. Ciudad");
@@ -1210,7 +1973,7 @@ public class Main {
                         Collections.sort(empresaDeBasuras_copia, new ComparadorEmpresa_nombreD());
                     }
 
-                    int enumerador=1;
+                    enumerador=1;
                     for (EmpresaDeBasura empresa : empresaDeBasuras_copia) {
                         System.out.println(enumerador +". "+ empresa);
                         enumerador+=1;
@@ -1227,7 +1990,7 @@ public class Main {
                         Collections.sort(empresaDeBasuras_copia, new ComparadorEmpresa_cuidadD());
                     }       
 
-                    int enumerador=1;
+                    enumerador=1;
 
                     for (EmpresaDeBasura empresa : empresaDeBasuras_copia) { 
                         System.out.println(enumerador+". "+ empresa);
@@ -1246,7 +2009,7 @@ public class Main {
                         Collections.sort(empresaDeBasuras_copia,new ComparadorEmpresa_gerenteD());
                     }
 
-                    int enumerador=1;
+                    enumerador=1;
                     for (EmpresaDeBasura empresa : empresaDeBasuras_copia) {
                         System.out.println(enumerador +". "+ empresa);
                         enumerador+=1;
@@ -1254,16 +2017,154 @@ public class Main {
                 }else{
 
                     System.out.println("Opción inválida");
+                    return;
                 }
             }
 
         }else{
             System.out.println("No hay empresas de basura registradas en el sistema");
+            return;
         }
 
+        // Aquí se establece la búsqueda sobre las empresas de basura
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En las empresas encontradas desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
 
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente a la empresa: ");
+            int option= input.nextInt();
+            EmpresaDeBasura empresa;
+
+            if(!mostar_todos){
+                if(empresasEncontradas.size()>=option && option>=1){
+                    empresa= empresasEncontradas.get(option-1);  // Aquí obtienes la empresa a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+                if(empresaDeBasuras_copia.size()>=option && option>=1){
+                    empresa= empresaDeBasuras_copia.get(option-1);  // Aquí obtienes la empresa a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            
+            
+            BuscarEditarEmpresasBasura(empresa);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente a la empresa: ");
+            int option= input.nextInt();
+            EmpresaDeBasura empresa;
+            if(!mostar_todos){
+                if(empresasEncontradas.size()>=option && option>=1){
+                    empresa=empresasEncontradas.get(option-1);
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+                if(empresaDeBasuras_copia.size()>=option && option>=1){
+                    empresa=empresaDeBasuras_copia.get(option-1);
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+                
+            }
+            
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarEmpresasBasura(empresa);
+        }
         
     }
+
+    public static void BuscarEditarEmpresasBasura(EmpresaDeBasura company) {
+        for (EmpresaDeBasura empresa : empresasDeBasuras) {
+            if(empresa.nombre.equals(company.nombre)){
+
+                String nuevo_nombre = "";
+                String nuevo_gerente = "";
+                String nueva_ciudad = "";
+
+                System.out.println("Nombre: "+ empresa.getNombre());
+                System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_nombre = input.next();
+                System.out.println("Ciudad: "+ empresa.getCiudad());
+                System.out.println("Si desea cambiar la ciudad, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nueva_ciudad = input.next();
+                System.out.println("Gerente: "+ empresa.getGerente());
+                System.out.println("Si desea cambiar el gerente, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_gerente = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_nombre.equalsIgnoreCase("N")) {
+
+                    } else {
+                        empresa.setNombre(nuevo_nombre);
+                    }
+                    if (nueva_ciudad.equalsIgnoreCase("N")) {
+
+                    } else {
+                        empresa.setCiudad(nueva_ciudad);
+                    }
+                    if (nuevo_gerente.equalsIgnoreCase("N")) {
+
+                    } else {
+                    empresa.setGerente(nuevo_gerente);
+                    }
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
+    }
+
+    public static void BuscarEliminarEmpresasBasura(EmpresaDeBasura company) {
+        System.out.println("¿Seguro que desea eliminar esta empresa");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean empresaEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<EmpresaDeBasura> iterator = empresasDeBasuras.iterator();
+            while(iterator.hasNext()) {
+                EmpresaDeBasura empresa = iterator.next();
+                if (empresa.getNombre().equals(company.nombre)) {
+                    empresaEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!empresaEncontrada) {
+                System.out.println("No se encontró la empresa");
+                return;
+            }else{
+                System.out.println("La empresa se ha removido satisfactoriamente");
+            }
+        }
+
+        
+
+    }
+
 
     public static String atributo_string_buscar() {
         System.out.println("Desea buscar por: ");

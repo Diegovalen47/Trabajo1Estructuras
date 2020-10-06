@@ -1,13 +1,13 @@
 import java.util.LinkedList;
 
 public class Sede {
-    int telefono;
+    String telefono;
     String direccion;
     String persona_a_cargo;
     EmpresaDeBasura empresaDeBasura;
     LinkedList<Area> areas ;
 
-    public Sede(int telefono, String direccion, String persona_a_cargo) {
+    public Sede(String telefono, String direccion, String persona_a_cargo) {
         this.telefono = telefono;
         this.direccion = direccion;
         this.persona_a_cargo = persona_a_cargo;
@@ -21,7 +21,7 @@ public class Sede {
         this.empresaDeBasura = empresaDeBasura;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -33,7 +33,7 @@ public class Sede {
         this.persona_a_cargo = persona_a_cargo;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
