@@ -403,6 +403,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("Se han guardado los datos de manera exitosa");
     }
 
 
@@ -1169,6 +1171,7 @@ public class Main {
             return;
         }
 
+/*
         while(true) {
             System.out.println("¿Este taller repara algún recolector");
             System.out.println("Y");
@@ -1194,6 +1197,7 @@ public class Main {
                 break;
             }
         }
+*/
 
 
         talleres.add(taller);
@@ -1618,7 +1622,7 @@ public class Main {
         }
 
 
-        while(true) {
+       /* while(true) {
             System.out.println("¿Esta persona trabaja en algún recolector?");
             System.out.println("Y");
             System.out.println("N");
@@ -1642,7 +1646,7 @@ public class Main {
             } else if (option.equalsIgnoreCase("N")) {
                 break;
             }
-        }
+        }*/
 
         personas.add(persona);
         System.out.println("Persona creada satisfactoriamente");
@@ -1836,7 +1840,7 @@ public class Main {
         int id_ruta = input.nextInt();
         Recolector recolector = new Recolector(marca,doble_troque,id_recolector,disponible,id_ruta);
 
-        boolean RutaEncontrada = false;
+/*        boolean RutaEncontrada = false;
         for (Ruta ruta :rutas) {
             if (ruta.getId() == id_ruta) {
                 RutaEncontrada = true;
@@ -1846,7 +1850,7 @@ public class Main {
         }
         if (!RutaEncontrada) {
             System.out.println("No exite tal ruta para asociar al recolector");
-        }
+        }*/
         System.out.println("Ingrese el nombre del taller a asociar este recolector");
         String nombre_taller = input.next();
         boolean TallerEncontrada = false;
