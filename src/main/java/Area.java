@@ -5,13 +5,13 @@ public class Area {
     boolean contratista;
     String horario;
     String persona_a_cargo;
-    int telefono_persona_a_cargo;
+    String telefono_persona_a_cargo;
     Sede sede;
     LinkedList<Ruta> rutas = new LinkedList<>();
     LinkedList<Taller> talleres = new LinkedList<>();
     LinkedList<Personal> personas = new LinkedList<>();
 
-    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, int telefono_persona_a_cargo) {
+    public Area(String tipo, boolean contratista, String horario, String persona_a_cargo, String telefono_persona_a_cargo) {
         this.tipo = tipo;
         this.contratista = contratista;
         this.horario = horario;
@@ -47,7 +47,7 @@ public class Area {
         this.persona_a_cargo = persona_a_cargo;
     }
 
-    public void setTelefono_persona_a_cargo(int telefono_persona_a_cargo) {
+    public void setTelefono_persona_a_cargo(String telefono_persona_a_cargo) {
         this.telefono_persona_a_cargo = telefono_persona_a_cargo;
     }
 
@@ -75,7 +75,7 @@ public class Area {
         return persona_a_cargo;
     }
 
-    public int getTelefono_persona_a_cargo() {
+    public String getTelefono_persona_a_cargo() {
         return telefono_persona_a_cargo;
     }
 

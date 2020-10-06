@@ -2014,7 +2014,7 @@ public class Main {
             } else if (option.equals("2")) {
                 BuscarSedes();
             } else if (option.equals("3")) {
-                //BuscarAreas();
+                BuscarAreas();
             } else if (option.equals("4")) {
                 //BuscarRutas();
             } else if (option.equals("5")) {
@@ -2028,6 +2028,1123 @@ public class Main {
             }
         }
     }
+
+    public static void BuscarAreas() {
+        LinkedList<Area> areas_copia= new LinkedList<>();
+        areas_copia= (LinkedList<Area>) areas.clone();
+        LinkedList<Area> areasEncontradas= new LinkedList<>();
+        int enumerador=1;
+        boolean mostar_todos=false;
+
+        if(sedes.size()!=0){
+            System.out.println("Seleccione el atributo por el cual desea buscar el area:");
+            System.out.println("1. Tipo de area");
+            System.out.println("2. Horario");
+            System.out.println("3. Persona a cargo");
+            System.out.println("4. Telefono persona a cargo");
+            System.out.println("5. Mostrar todas las sedes");
+            String seleccion= input.next();
+
+            if(seleccion.equals("1")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el tipo de area: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.tipo.equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar el horario de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }             
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el tipo de area: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.tipo.toLowerCase().equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar los horarios de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }             
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("2")){
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el horario: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Area area : areas) {
+
+                        if(area.horario.equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar los horarios de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }            
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el horario: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.horario.toLowerCase().equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar los horarios de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next(); 
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }            
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else{
+
+                            System.out.println("Opción inválida");
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("3")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el nombre de la persona a cargo: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.persona_a_cargo.equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono de persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar los horarios de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();            
+                            if(seleccion.equals("1")){
+
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();              
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el nombre de la persona a cargo: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.persona_a_cargo.toLowerCase().equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar los horarios de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();     
+                            if(seleccion.equals("1")){
+
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }       
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el telefono de la persona a cargo: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.telefono_persona_a_cargo.equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar el horario de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }             
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else{
+
+                            System.out.println("Opción inválida");
+                            return;
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el telefono de la persona a cargo: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Area area : areas) {
+
+                        if(area.telefono_persona_a_cargo.toLowerCase().equals(seleccion)){
+                            areasEncontradas.add(area);
+                        }
+                    }
+
+                    if(areasEncontradas.size()!=0){
+                        System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                        System.out.println("1. Tipo de area");
+                        System.out.println("2. Horario");
+                        System.out.println("3. Persona a cargo");
+                        System.out.println("4. Telefono persona a cargo");
+                        seleccion= input.next();
+
+                        if(seleccion.equals("1")){
+                            System.out.println("Desea organizar el tipo de area de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_tipoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else if(seleccion.equals("2")){
+                            System.out.println("Desea organizar los horarios de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_horarioD());
+                            }             
+
+                            enumerador=1;
+
+                            for (Area area : areasEncontradas) { 
+                                System.out.println(enumerador+". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("3")){
+                            System.out.println("Desea organizar los nombres de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_personaD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+
+                        }else if(seleccion.equals("4")){
+
+                            System.out.println("Desea organizar los telefonos de forma : ");
+                            System.out.println("1. Ascendente");
+                            System.out.println("2. Descendente");
+                            seleccion= input.next();
+
+                            if(seleccion.equals("1")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                            }else if(seleccion.equals("2")){
+                                Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                            }
+
+                            enumerador=1;
+                            for (Area area : areasEncontradas) {
+                                System.out.println(enumerador +". "+ area);
+                                enumerador+=1;
+                            }
+                        }else{
+
+                            System.out.println("Opción inválida");
+                        }
+                    }else{
+                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        return;
+                    }
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("5")){
+                mostar_todos=true;
+                System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                System.out.println("1. Tipo de area");
+                System.out.println("2. Horario");
+                System.out.println("3. Persona a cargo");
+                System.out.println("4. Telefono persona a cargo");
+                seleccion= input.next();
+
+
+
+                if(seleccion.equals("1")){
+                    System.out.println("Desea organizar los telefonos de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(areas_copia, new ComparadorArea_tipoA());
+                    } else if (seleccion.equals("2")) {
+                        Collections.sort(areas_copia, new ComparadorArea_tipoD());
+                    }
+
+                    enumerador=1;
+                    for (Area area : areas_copia) {
+                        System.out.println(enumerador +". "+ area);
+                        enumerador+=1;
+                    }
+                }else if(seleccion.equals("2")){
+                    System.out.println("Desea organizar los horarios de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();     
+                    if(seleccion.equals("1")){
+
+                        Collections.sort(areas_copia, new ComparadorArea_horarioA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(areas_copia, new ComparadorArea_horarioD());
+                    }       
+
+                    enumerador=1;
+
+                    for (Area area : areas_copia) { 
+                        System.out.println(enumerador+". "+ area);
+                        enumerador+=1;
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.println("Desea organizar los nombres de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(areas_copia, new ComparadorArea_personaA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(areas_copia,new ComparadorArea_personaD());
+                    }
+
+                    enumerador=1;
+                    for (Area area : areas_copia) {
+                        System.out.println(enumerador +". "+ area);
+                        enumerador+=1;
+                    }
+                
+                }else if(seleccion.equals("4")){
+
+                    System.out.println("Desea organizar los telefonos de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(areasEncontradas, new ComparadorArea_telefonoA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(areasEncontradas, new ComparadorArea_telefonoD());
+                    }
+
+                    enumerador=1;
+                    for (Area area : areasEncontradas) {
+                        System.out.println(enumerador +". "+ area);
+                        enumerador+=1;
+                    }
+
+                }else{
+
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("No hay empresas de basura registradas en el sistema");
+            return;
+        }
+
+        // Aquí se establece la búsqueda sobre las areas
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En las areas encontradas desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
+
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente a al area: ");
+            int option= input.nextInt();
+            Area area;
+            if(!mostar_todos){
+                if(areasEncontradas.size()>=option && option>=1){
+                    area= areasEncontradas.get(option-1);  // Aquí obtienes el area a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(areas_copia.size()>=option && option>=1){
+                    area= areas_copia.get(option-1);  // Aquí obtienes el area a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+            
+            BuscarEditarArea(area);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente al area: ");
+            int option= input.nextInt();
+            Area area;
+            if(!mostar_todos){
+                if(areasEncontradas.size()>=option && option>=1){
+                    area= areasEncontradas.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(areas_copia.size()>=option && option>=1){
+                    area= areas_copia.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarArea(area);
+        }
+    }
+
+    public static void BuscarEliminarArea(Area place) {
+        System.out.println("¿Seguro que desea eliminar esta area?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean areaEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Area> iterator = areas.iterator();
+            while(iterator.hasNext()) {
+                Area area = iterator.next();
+                if (area.getTipo().equals(place.getTipo())) {
+                    areaEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!areaEncontrada) {
+                System.out.println("No se encontró el area");
+                return;
+            }else{
+                System.out.println("EL area se ha removido satisfactoriamente");
+            }
+        }
+    }
+
+    public static void BuscarEditarArea(Area place) {
+        for (Area area : areas) {
+            if(area.tipo.equals(place.tipo)){
+
+                String nuevo_tipo = "";
+                String nuevo_horario = "";
+                String nuevo_persona = "";
+                String nuevo_telefono="";
+
+                System.out.println("Tipo de area: "+ area.getTipo());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_tipo = input.next();
+                System.out.println("Horario: "+ area.getHorario());
+                System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_horario = input.next();
+                System.out.println("Persona a cargo: "+ area.getPersona_a_cargo());
+                System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_persona = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                System.out.println("Telefono persona a cargo: "+ area.getTelefono_persona_a_cargo());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_telefono = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_telefono.equalsIgnoreCase("N")) {
+
+                    }else {
+                        area.setTipo(nuevo_tipo);
+                    }
+                    if (nuevo_horario.equalsIgnoreCase("N")) {
+
+                    } else {
+                        area.setHorario(nuevo_horario);
+                    }
+                    if (nuevo_persona.equalsIgnoreCase("N")) {
+
+                    } else {
+                    area.setPersona_a_cargo(nuevo_persona);
+                    }
+                    if (nuevo_telefono.equalsIgnoreCase("N")) {
+
+                    } else {
+                    area.setTelefono_persona_a_cargo(nuevo_telefono);
+                    }
+
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
+    }
+
 
     public static void BuscarSedes() {
         LinkedList<Sede> sedes_copia= new LinkedList<>();
