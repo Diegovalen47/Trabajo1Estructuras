@@ -454,7 +454,7 @@ public class Main {
         System.out.println("*********************************************");
         for (Sede sede : sedes) {
             if (sede.areas.isEmpty()) {
-                System.out.println("La sede con persona a cargo "+ sede.getPersona_a_cargo()+" y numeoro telefónico "+ sede.getTelefono()+ " no tiene areas registradas");
+                System.out.println("La sede con persona a cargo "+ sede.getPersona_a_cargo()+" y numero telefónico "+ sede.getTelefono()+ " no tiene areas registradas");
             }
         }
         System.out.println("*********************************************");
@@ -498,7 +498,7 @@ public class Main {
             System.out.println("4. Rutas");
             System.out.println("5. Talleres");
             System.out.println("6. Personal");
-            System.out.println("7. Recolector");
+            System.out.println("7. Recolectores");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -1885,7 +1885,7 @@ public class Main {
         }
         System.out.println("Ingrese la marca del recolector");
         String marca =input.next();
-        System.out.println("El recolector e doble troque?");
+        System.out.println("El recolector es doble troque?");
         System.out.println("Y");
         System.out.println("N");
         String option = input.next();
@@ -1996,7 +1996,7 @@ public class Main {
                 System.out.println("Y");
                 System.out.println("N");
                 nuevo_doble_troque = input.next();
-                System.out.println("Recolector dISPONIBLE: "+ recolector.isDisponible());
+                System.out.println("Recolector disponible: "+ recolector.isDisponible());
                 System.out.println("¡Desea cambiar el estado del recolector?");
                 System.out.println("Y");
                 System.out.println("N");
@@ -2079,7 +2079,7 @@ public class Main {
             System.out.println("4. Rutas");
             System.out.println("5. Talleres");
             System.out.println("6. Personal");
-            System.out.println("7. Recolector");
+            System.out.println("7. Recolectores");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
