@@ -1,3 +1,4 @@
+import java.util.Deque;
 import java.util.LinkedList;
 
 public class Taller {
@@ -9,6 +10,7 @@ public class Taller {
     Area area;
     LinkedList<Recolector> recolectores = new LinkedList<>();
     LinkedList<Personal> personas = new LinkedList<>();
+    Deque<Recolector> recolectoresVarados = new LinkedList<>();
 
     public Taller(String nombre, String sistema_asociado, String interno_sede, boolean reparar_en_ruta, int dinero_fallas_menores) {
         this.nombre = nombre;
@@ -18,9 +20,17 @@ public class Taller {
         this.dinero_fallas_menores = dinero_fallas_menores;
     }
 
+    public void setRecolectoresVarados (Recolector recolector) {
+        recolectoresVarados.add(recolector);
+    }
+
+    public void AtenderRecolector () {
+        System.out.println("Usted acaba de atender al recolector con id " +recolectoresVarados.getFirst().getId() );
+        recolectoresVarados.pop();
+    }
+
     public void setRecolectores (Recolector recolector) {
         recolectores.add(recolector);
-
     }
 
     public void setPersonas (Personal persona) {

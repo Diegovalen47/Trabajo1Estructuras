@@ -23,7 +23,7 @@ public class Main {
     public static void CargarUsuarios() {
         JsonParser parser = new JsonParser();
 
-        try(FileReader reader = new FileReader("usuarios.json")) {
+        try (FileReader reader = new FileReader("usuarios.json")) {
             Object obj = parser.parse(reader);
             JsonArray userList = (JsonArray) obj;
 
@@ -37,7 +37,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        try(FileReader reader = new FileReader("empresasDeBasuras.json")) {
+        try (FileReader reader = new FileReader("empresasDeBasuras.json")) {
             Object obj = parser.parse(reader);
             JsonArray empresasList = (JsonArray) obj;
 
@@ -51,7 +51,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        try(FileReader reader = new FileReader("sedes.json")) {
+        try (FileReader reader = new FileReader("sedes.json")) {
             Object obj = parser.parse(reader);
             JsonArray sedesList = (JsonArray) obj;
 
@@ -426,7 +426,7 @@ public class Main {
             } else if (option.equals("2")) {
                 MenuBusqueda();
             } else if (option.equals("3")) {
-                //DiagnosticoInconsistencias();
+                DiagnosticoInconsistencias();
             } else if (option.equals("4")) {
                 GuardarObjetos();
             } else if (option.equals("0")) {
@@ -436,6 +436,51 @@ public class Main {
                 option = input.next();
                 if (option.equalsIgnoreCase("Y")) {
                     break;
+                }
+            }
+        }
+    }
+
+
+    public static void DiagnosticoInconsistencias() {
+        System.out.println("********************************************");
+        System.out.println("DIAGNÓSTICO  DE INCONSISTENCIAS");
+        System.out.println("*********************************************");
+        for (EmpresaDeBasura empresa : empresasDeBasuras) {
+            if (empresa.sedes.isEmpty()) {
+                System.out.println("La empresa "+ empresa.getNombre()+ " no tiene sedes asociadas");
+            }
+        }
+        System.out.println("*********************************************");
+        for (Sede sede : sedes) {
+            if (sede.areas.isEmpty()) {
+                System.out.println("La sede con persona a cargo "+ sede.getPersona_a_cargo()+" y numeoro telefónico "+ sede.getTelefono()+ " no tiene areas registradas");
+            }
+        }
+        System.out.println("*********************************************");
+        for (Area area : areas) {
+            if (area.personas.isEmpty()) {
+                System.out.println("El area de tipo " + area.getTipo()+" no tiene personal asociado");
+            }
+        }
+        System.out.println("*********************************************");
+        for (Taller taller : talleres) {
+            if (taller.personas.isEmpty()) {
+                System.out.println("El taller "+ taller.getNombre()+" no tiene personal asociado");
+            }
+        }
+        System.out.println("*********************************************");
+        for (Taller taller : talleres) {
+            if (!taller.recolectoresVarados.isEmpty()) {
+                System.out.println("Este taller tiene recolectores varados esperando a ser reparados");
+                System.out.println("¿Desea atenderlos?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    while (!taller.recolectoresVarados.isEmpty()) {
+                        taller.AtenderRecolector();
+                    }
                 }
             }
         }
@@ -1414,6 +1459,30 @@ public class Main {
             return;
         }
 
+        // Si el recolector está varado, entonces debe ser enviado a un taller para repararlo
+        // se añade a una cola en ese taller, y en taller añadir método de atender recolector
+        // qué irá atendiendo en orden  de llegada
+        if (recolector_varado) {
+            //Buscamos en recolectores el recolector que tenga el id de esta ruta
+            for (Recolector recolector : recolectores) {
+                if (recolector.getRutaid() == id_ruta) {
+                    //Preguntar el nombre del taller al que desea llevarlo
+                    for (Taller taller : talleres) {
+                        System.out.println(taller.toString());
+                    }
+                    System.out.println("¿A que taller desea llevar el recolector varado?");
+                    String nombreTaller = input.next();
+                    for (Taller taller : talleres) {
+                        if (taller.getNombre().equalsIgnoreCase(nombreTaller)) {
+                            taller.setRecolectoresVarados(recolector);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
         rutas.add(ruta);
         System.out.println("Ruta creada satisfactoriamente");
     }
@@ -1851,7 +1920,7 @@ public class Main {
         if (!RutaEncontrada) {
             System.out.println("No exite tal ruta para asociar al recolector");
         }*/
-        System.out.println("Ingrese el nombre del taller a asociar este recolector");
+/*        System.out.println("Ingrese el nombre del taller a asociar este recolector");
         String nombre_taller = input.next();
         boolean TallerEncontrada = false;
         for (Taller taller : talleres) {
@@ -1864,10 +1933,10 @@ public class Main {
         if (!TallerEncontrada) {
             System.out.println("No exite tal taller para asociar al recolector");
             return;
-        }
+        }*/
 
         while(true) {
-            System.out.println("¿El trabajador tiene personal asociado?");
+            System.out.println("¿El recolector tiene personal asociado?");
             System.out.println("Y");
             System.out.println("N");
             option = input.next();
