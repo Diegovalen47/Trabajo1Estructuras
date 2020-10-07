@@ -2016,7 +2016,7 @@ public class Main {
             } else if (option.equals("3")) {
                 BuscarAreas();
             } else if (option.equals("4")) {
-                //BuscarRutas();
+                BuscarRutas();
             } else if (option.equals("5")) {
                 //BuscarTalleres();
             } else if (option.equals("6")) {
@@ -2029,6 +2029,587 @@ public class Main {
         }
     }
 
+    public static String atributo_integer_buscar() {
+        System.out.println("Desea buscar por: ");
+        System.out.println("1. Valor exacto");
+        System.out.println("2. Valor minimo");
+        System.out.println("3. Valor maximo");
+        System.out.println("4. Valor rango");
+        String seleccion= input.next();
+        return seleccion;
+    }
+
+    public static void BuscarRutas() {
+        LinkedList<Ruta> rutas_copia= new LinkedList<>();
+        rutas_copia= (LinkedList<Ruta>) rutas.clone();
+        LinkedList<Ruta> rutasEncontradas= new LinkedList<>();
+        int enumerador=1;
+        boolean mostrar_todos=false;
+
+        if(rutas.size()!=0){
+            System.out.println("Seleccione el atributo por el cual desea buscar la ruta:");
+            System.out.println("1. Identificacion");
+            System.out.println("2. Horario");
+            System.out.println("3. Día de limpieza");
+            System.out.println("4. Identificacion recolector asociado");
+            System.out.println("5. Mostrar todas las rutas");
+            String seleccion= input.next();
+            int seleccion_int;
+            if(seleccion.equals("1")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Ruta ruta : rutas) {
+
+                        if(ruta.id==seleccion_int){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Ruta ruta : rutasEncontradas) {
+                        
+                        if(ruta.id>=seleccion_int){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Ruta ruta : rutasEncontradas) {
+                        
+                        if(ruta.id<=seleccion_int){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior de la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior de la identificacion de la ruta: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Ruta ruta : rutasEncontradas) {
+                        
+                        if(ruta.id>=seleccion_int && ruta.id<=seleccion_int2){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+
+            }else if(seleccion.equals("2")){
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el horario: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Ruta ruta : rutas) {
+
+                        if(ruta.horario.equals(seleccion)){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el horario: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Ruta ruta : rutas) {
+
+                        if(ruta.horario.toLowerCase().equals(seleccion)){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+
+
+            }else if(seleccion.equals("3")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el dia de la ruta: ");
+                    seleccion= input.next();
+                    
+
+                    for (Ruta ruta : rutas) {
+
+                        if(ruta.dia.equals(seleccion)){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                    
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el dia de la ruta: ");
+                    seleccion= input.next();
+                    
+
+                    for (Ruta ruta : rutas) {
+
+                        if(ruta.dia.toLowerCase().equals(seleccion)){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Ruta ruta : rutas) {
+
+                        if(ruta.recolector_id==seleccion_int){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Ruta ruta : rutasEncontradas) {
+                        
+                        if(ruta.recolector_id>=seleccion_int){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Ruta ruta : rutasEncontradas) {
+                        
+                        if(ruta.recolector_id<=seleccion_int){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior de la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior de la identificacion del recolector: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Ruta ruta : rutasEncontradas) {
+                        
+                        if(ruta.recolector_id>=seleccion_int && ruta.recolector_id<=seleccion_int2){
+                            rutasEncontradas.add(ruta);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("5")){
+                mostrar_todos=true;
+                System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                System.out.println("1. Identificacion de la ruta");
+                System.out.println("2. Horario");
+                System.out.println("3. Dia");
+                System.out.println("4. Identificacion recolector");
+                seleccion= input.next();
+
+
+
+                if(seleccion.equals("1")){
+                    System.out.println("Desea organizar la identificaciones de las rutas de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(rutas_copia, new ComparadorRuta_idA());
+                    } else if (seleccion.equals("2")) {
+                        Collections.sort(rutas_copia, new ComparadorRuta_idD());
+                    }
+
+                    enumerador=1;
+                    for (Ruta ruta : rutas_copia) {
+                        System.out.println(enumerador +". "+ ruta);
+                        enumerador+=1;
+                    }
+                }else if(seleccion.equals("2")){
+                    System.out.println("Desea organizar los horarios de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();     
+                    if(seleccion.equals("1")){
+
+                        Collections.sort(rutas_copia, new ComparadorRuta_horarioA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(rutas_copia, new ComparadorRuta_horarioD());
+                    }       
+
+                    enumerador=1;
+
+                    for (Ruta ruta : rutas_copia) { 
+                        System.out.println(enumerador+". "+ ruta);
+                        enumerador+=1;
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.println("Desea organizar los dias de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(rutas_copia, new ComparadorRuta_diaA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(rutas_copia,new ComparadorRuta_diaD());
+                    }
+
+                    enumerador=1;
+                    for (Ruta ruta : rutas_copia) {
+                        System.out.println(enumerador +". "+ ruta);
+                        enumerador+=1;
+                    }
+                
+                }else if(seleccion.equals("4")){
+
+                    System.out.println("Desea organizar las identificaciones de los recolectores de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(rutasEncontradas, new ComparadorRuta_idRecolectorA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(rutasEncontradas, new ComparadorRuta_idRecolectorD());
+                    }
+
+                    enumerador=1;
+                    for (Ruta ruta : rutasEncontradas) {
+                        System.out.println(enumerador +". "+ ruta);
+                        enumerador+=1;
+                    }
+
+                }else{
+
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("No hay rutas registradas en el sistema");
+            return;
+        }
+
+
+        if(rutasEncontradas.size()!=0 && !mostrar_todos) {
+            System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+            System.out.println("1. Identificación ruta");
+            System.out.println("2. Horario");
+            System.out.println("3. Dia");
+            System.out.println("4. Identificacion recolector");
+            String seleccion= input.next();
+
+            if(seleccion.equals("1")){
+                System.out.println("Desea organizar la identificacion de la ruta : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_idA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_idD());
+                }
+
+                enumerador=1;
+                for (Ruta ruta : rutasEncontradas) {
+                    System.out.println(enumerador +". "+ ruta);
+                    enumerador+=1;
+                }
+            }else if(seleccion.equals("2")){
+                System.out.println("Desea organizar el horario de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_horarioA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_horarioD());
+                }             
+
+                enumerador=1;
+
+                for (Ruta ruta : rutasEncontradas) { 
+                    System.out.println(enumerador+". "+ ruta);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("3")){
+                System.out.println("Desea organizar los dias de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_diaA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_diaD());
+                }
+
+                enumerador=1;
+                for (Ruta ruta : rutasEncontradas) {
+                    System.out.println(enumerador +". "+ ruta);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                System.out.println("Desea organizar las identificaciones de los recolectores de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_idRecolectorA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(rutasEncontradas, new ComparadorRuta_idRecolectorD());
+                }
+
+                enumerador=1;
+                for (Ruta ruta : rutasEncontradas) {
+                    System.out.println(enumerador +". "+ ruta);
+                    enumerador+=1;
+                }
+
+            }else{
+
+                System.out.println("Opción inválida");
+                return;
+            }
+        }else{
+            System.out.println("No se encontraron rutas");
+            return;
+        }
+
+        // Aquí se establece la búsqueda sobre las areas
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En las rutas encontradas desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
+
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente a la ruta: ");
+            int option= input.nextInt();
+            Ruta ruta;
+            if(!mostrar_todos){
+                if(rutasEncontradas.size()>=option && option>=1){
+                    ruta= rutasEncontradas.get(option-1);  // Aquí obtienes la ruta a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(rutas_copia.size()>=option && option>=1){
+                    ruta= rutas_copia.get(option-1);  // Aquí obtienes la ruta a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+            
+            BuscarEditarRuta(ruta);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente al area: ");
+            int option= input.nextInt();
+            Ruta ruta;
+            if(!mostrar_todos){
+                if(rutasEncontradas.size()>=option && option>=1){
+                    ruta= rutasEncontradas.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(rutas_copia.size()>=option && option>=1){
+                    ruta= rutas_copia.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarRuta(ruta);
+        }
+    }
+
+    public static void BuscarEliminarRuta(Ruta place) {
+        System.out.println("¿Seguro que desea eliminar ruta?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean rutaEncontrada = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Ruta> iterator = rutas.iterator();
+            while(iterator.hasNext()) {
+                Ruta ruta = iterator.next();
+                if (ruta.getId()==place.getId()) {
+                    rutaEncontrada = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!rutaEncontrada) {
+                System.out.println("No se encontró la ruta");
+                return;
+            }else{
+                System.out.println("La ruta se ha removido satisfactoriamente");
+            }
+        }
+    }
+
+    public static void BuscarEditarRuta(Ruta place) {
+        for (Ruta ruta : rutas) {
+            if(ruta.id==place.id){
+
+                String nuevo_id ="";
+                String nuevo_horario = "";
+                String nuevo_dia = "";
+                String nuevo_idRecolector="";
+
+                System.out.println("Identificacion ruta: "+ ruta.getId());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_id = input.next();
+                System.out.println("Horario: "+ ruta.getHorario());
+                System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_horario = input.next();
+                System.out.println("Dia de la ruta: "+ ruta.getDia());
+                System.out.println("Si desea cambiar el dia, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_dia = input.next();
+                System.out.println("Identificacion recolector: "+ ruta.getRecolector_id());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_idRecolector = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_id.equalsIgnoreCase("N")) {
+                        
+                    }else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_id);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        ruta.setId(foo);
+                    }
+
+                    if (nuevo_horario.equalsIgnoreCase("N")) {
+
+                    } else {
+                        ruta.setHorario(nuevo_horario);
+                    }
+                    if (nuevo_dia.equalsIgnoreCase("N")) {
+
+                    } else {
+                        ruta.setDia(nuevo_dia);
+                    }
+                    if (nuevo_idRecolector.equalsIgnoreCase("N")) {
+
+                    } else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_idRecolector);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        ruta.setRecolector_id(foo);
+                    }
+
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
+    }
+
     public static void BuscarAreas() {
         LinkedList<Area> areas_copia= new LinkedList<>();
         areas_copia= (LinkedList<Area>) areas.clone();
@@ -2036,7 +2617,7 @@ public class Main {
         int enumerador=1;
         boolean mostar_todos=false;
 
-        if(sedes.size()!=0){
+        if(areas.size()!=0){
             System.out.println("Seleccione el atributo por el cual desea buscar el area:");
             System.out.println("1. Tipo de area");
             System.out.println("2. Horario");
@@ -2149,7 +2730,7 @@ public class Main {
                             return;
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
 
@@ -2251,7 +2832,7 @@ public class Main {
                             System.out.println("Opción inválida");
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
                 }else{
@@ -2362,7 +2943,7 @@ public class Main {
                             return;
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
 
@@ -2465,7 +3046,7 @@ public class Main {
                             System.out.println("Opción inválida");
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
                 }else{
@@ -2576,7 +3157,7 @@ public class Main {
                             return;
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
 
@@ -2680,7 +3261,7 @@ public class Main {
                             return;
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
                 }else{
@@ -2792,7 +3373,7 @@ public class Main {
                             return;
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
 
@@ -2894,7 +3475,7 @@ public class Main {
                             System.out.println("Opción inválida");
                         }
                     }else{
-                        System.out.println("No se encontraron empresas en la cuidad seleccionada");
+                        System.out.println("No se encontraron areas");
                         return;
                     }
                 }else{
@@ -2996,7 +3577,7 @@ public class Main {
             }
 
         }else{
-            System.out.println("No hay empresas de basura registradas en el sistema");
+            System.out.println("No hay areas registradas en el sistema");
             return;
         }
 
@@ -3105,14 +3686,14 @@ public class Main {
                 System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_persona = input.next();
-                System.out.println("¿Desea guardar los cambios?");
-                System.out.println("Y");
-                System.out.println("N");
-                String option = input.next();
                 System.out.println("Telefono persona a cargo: "+ area.getTelefono_persona_a_cargo());
                 System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_telefono = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
                 if (option.equalsIgnoreCase("Y")) {
                     if (nuevo_telefono.equalsIgnoreCase("N")) {
 
