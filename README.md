@@ -4,11 +4,11 @@ Este programa simula un sistema de información gerencial (MIS, encargado de rec
 
 
 # Autores del trabajo
-Valentin Osorio - dosoriom@unal.edu.co.
-Victor Mazo - viamazoba@unal.edu.co.
+Valentín Osorio - dosoriom@unal.edu.co;
+Victor Mazo - viamazoba@unal.edu.co;
 
 
 # Datos iniciales de acceso
-CORREO: dosoriom@unal.edu.co
-DOCUMENTO: 1007290916
-CONTRASEÑA: estructuras
+CORREO: dosoriom@unal.edu.co;
+DOCUMENTO: 1007290916;
+CONTRASEÑA: estructuras;
