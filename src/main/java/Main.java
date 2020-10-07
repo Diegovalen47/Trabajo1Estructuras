@@ -472,6 +472,7 @@ public class Main {
         System.out.println("*********************************************");
         for (Taller taller : talleres) {
             if (!taller.recolectoresVarados.isEmpty()) {
+                System.out.println(taller);
                 System.out.println("Este taller tiene recolectores varados esperando a ser reparados");
                 System.out.println("¿Desea atenderlos?");
                 System.out.println("Y");
