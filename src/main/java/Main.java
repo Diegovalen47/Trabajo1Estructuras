@@ -1150,7 +1150,7 @@ public class Main {
                         System.out.println("************************************");
                         System.out.println("Nombre: " + taller.nombre);
                         System.out.println("Sistema asociado: " + taller.sistema_asociado);
-                        System.out.println("Interno sede: " + taller.interno_sede);
+                        System.out.println("Tipo: " + taller.tipo);
                         System.out.println("Dinero fallas menores: " + taller.dinero_fallas_menores);
                         System.out.println("************************************");
                     }
@@ -1185,8 +1185,8 @@ public class Main {
 
         System.out.println("Ingrese el sistema asociado al taller");
         String sistema_asociado = input.next();
-        System.out.println("Ingrese el nombre del interno de sede");
-        String interno_sede = input.next();
+        System.out.println("Ingrese el tipo");
+        String tipo = input.next();
         System.out.println("¿El taller repara en ruta?");
         System.out.println("Y");
         System.out.println("N");
@@ -1202,7 +1202,7 @@ public class Main {
         int dinero_fallas_menores = input.nextInt();
         System.out.println("Ingrese el telefono de la persona a cargo del area a asociar este taller");
         String telefono_persona_a_cargo_area = input.next();
-        Taller taller = new Taller(nombre,sistema_asociado,interno_sede,reparar_en_ruta,dinero_fallas_menores);
+        Taller taller = new Taller(nombre,sistema_asociado,tipo,reparar_en_ruta,dinero_fallas_menores);
         boolean AreaEncontrada = false;
         for (Area area : areas) {
             if (area.getTelefono_persona_a_cargo().equalsIgnoreCase(telefono_persona_a_cargo_area)) {
@@ -1260,7 +1260,7 @@ public class Main {
         String nombre= input.next();
         String nuevo_nombre = "";
         String nuevo_sistema_asociado = "";
-        String nuevo_interno_sede = "";
+        String nuevo_tipo = "";
         String nuevo_reparar_en_ruta = "";
         String option = "";
         int nuevo_dinero_fallas_menores = 0;
@@ -1276,10 +1276,10 @@ public class Main {
                 System.out.println("Si desea cambiar el sistema asociado, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_sistema_asociado = input.next();
-                System.out.println("Interno sede: "+ taller.getInterno_sede());
-                System.out.println("Si desea cambiar el interno de la sede, ingrese su nuevo valor");
+                System.out.println("Tipo: "+ taller.getTipo());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
-                nuevo_interno_sede = input.next();
+                nuevo_tipo = input.next();
                 System.out.println("Reparar en ruta: "+ taller.isReparar_en_ruta());
                 System.out.println("¡Desea cambiar el estado de reparar en ruta?");
                 System.out.println("Y");
@@ -1309,10 +1309,10 @@ public class Main {
                     } else {
                         taller.setSistema_asociado(nuevo_sistema_asociado);
                     }
-                    if (nuevo_interno_sede.equalsIgnoreCase("N")) {
+                    if (nuevo_tipo.equalsIgnoreCase("N")) {
 
                     } else {
-                        taller.setInterno_sede(nuevo_interno_sede);
+                        taller.setTipo(nuevo_tipo);
                     }
                     if (nuevo_dinero_fallas_menores < 0) {
 
@@ -2091,7 +2091,7 @@ public class Main {
             } else if (option.equals("4")) {
                 BuscarTalleres();
             } else if (option.equals("5")) {
-                //BuscarPersonal();
+                BuscarPersonal();
             } else if (option.equals("6")) {
                 //BuscarRecolectores();
             } else if (option.equals("7")) {

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class Taller {
     String nombre;
     String sistema_asociado;
-    String interno_sede;
+    String tipo;
     boolean reparar_en_ruta;
     int dinero_fallas_menores;
     Area area;
@@ -12,10 +12,10 @@ public class Taller {
     LinkedList<Personal> personas = new LinkedList<>();
     Deque<Recolector> recolectoresVarados = new LinkedList<>();
 
-    public Taller(String nombre, String sistema_asociado, String interno_sede, boolean reparar_en_ruta, int dinero_fallas_menores) {
+    public Taller(String nombre, String sistema_asociado, String tipo, boolean reparar_en_ruta, int dinero_fallas_menores) {
         this.nombre = nombre;
         this.sistema_asociado = sistema_asociado;
-        this.interno_sede = interno_sede;
+        this.tipo = tipo;
         this.reparar_en_ruta = reparar_en_ruta;
         this.dinero_fallas_menores = dinero_fallas_menores;
     }
@@ -46,8 +46,8 @@ public class Taller {
         this.sistema_asociado = sistema_asociado;
     }
 
-    public void setInterno_sede(String interno_sede) {
-        this.interno_sede = interno_sede;
+    public void setTipo(String interno_sede) {
+        this.tipo = tipo;
     }
 
     public void setReparar_en_ruta(boolean reparar_en_ruta) {
@@ -70,8 +70,8 @@ public class Taller {
         return sistema_asociado;
     }
 
-    public String getInterno_sede() {
-        return interno_sede;
+    public String getTipo() {
+        return tipo;
     }
 
     public String isReparar_en_ruta() {
@@ -95,7 +95,7 @@ public class Taller {
         return "Taller{" +
                 "nombre='" + nombre + '\'' +
                 ", sistema_asociado='" + sistema_asociado + '\'' +
-                ", interno_sede='" + interno_sede + '\'' +
+                ", interno_sede='" + tipo + '\'' +
                 ", reparar_en_ruta=" + reparar_en_ruta +
                 ", dinero_fallas_menores=" + dinero_fallas_menores +
                 '}';
