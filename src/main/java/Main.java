@@ -2094,7 +2094,7 @@ public class Main {
             } else if (option.equals("5")) {
                 BuscarPersonal();
             } else if (option.equals("6")) {
-                //BuscarRecolectores();
+                BuscarRecolectores();
             } else if (option.equals("7")) {
                 BuscarRutas();
             } else if (option.equals("0")) {
@@ -2111,6 +2111,499 @@ public class Main {
         System.out.println("4. Valor rango");
         String seleccion= input.next();
         return seleccion;
+    }
+
+    public static void BuscarRecolectores() {
+        LinkedList<Recolector> recolectores_copia= new LinkedList<>();
+        recolectores_copia= (LinkedList<Recolector>) recolectores.clone();
+        LinkedList<Recolector> recolectoresEncontrados= new LinkedList<>();
+        int enumerador=1;
+        boolean mostrar_todos=false;
+
+        if(recolectores.size()!=0){
+            System.out.println("Seleccione el atributo por el cual desea buscar los recolectores:");
+            System.out.println("1. Marca");
+            System.out.println("2. Identificacion");
+            System.out.println("3. Identificacion de ruta");
+            System.out.println("4. Mostrar todos los talleres");
+            String seleccion= input.next();
+            int seleccion_int;
+            if(seleccion.equals("1")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la marca del recolector: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Recolector recolector : recolectores) {
+
+                        if(recolector.marca.equals(seleccion)){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese la marca del recolector: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Recolector recolector : recolectores) {
+                        
+                        if(recolector.marca.toLowerCase().equals(seleccion)){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+            }else if(seleccion.equals("2")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Recolector recolector : recolectores) {
+
+                        if(recolector.id==seleccion_int){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Recolector recolector : recolectores) {
+                        
+                        if(recolector.id>=seleccion_int){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese la identificacion del recolector: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Recolector recolector : recolectores) {
+                        
+                        if(recolector.id<=seleccion_int){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior de la identificacion: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior de la identificacion: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Recolector recolector: recolectores) {
+                        
+                        if(recolector.id>=seleccion_int && recolector.id<=seleccion_int2){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("3")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Recolector recolector : recolectores) {
+
+                        if(recolector.rutaid==seleccion_int){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Recolector recolector : recolectores) {
+                        
+                        if(recolector.rutaid>=seleccion_int){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Recolector recolector : recolectores) {
+                        
+                        if(recolector.rutaid<=seleccion_int){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior de la identificacion de la ruta: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior de la identificacion de la ruta: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Recolector recolector : recolectores) {
+                        
+                        if(recolector.rutaid>=seleccion_int && recolector.rutaid<=seleccion_int2){
+                            recolectoresEncontrados.add(recolector);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("4")){
+                mostrar_todos=true;
+                System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                System.out.println("1. Marca");
+                System.out.println("2. Identificacion");
+                System.out.println("3. Identificacion de la ruta");
+                seleccion= input.next();
+
+
+
+                if(seleccion.equals("1")){
+                    System.out.println("Desea organizar la marca de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(recolectores_copia, new ComparadorRecolector_marcaA());
+                    } else if (seleccion.equals("2")) {
+                        Collections.sort(recolectores_copia, new ComparadorRecolector_marcaD());
+                    }
+
+                    enumerador=1;
+                    for (Recolector recolector : recolectores_copia) {
+                        System.out.println(enumerador +". "+ recolector);
+                        enumerador+=1;
+                    }
+                }else if(seleccion.equals("2")){
+                    System.out.println("Desea organizar las identificaciones de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();     
+                    if(seleccion.equals("1")){
+
+                        Collections.sort(recolectores_copia, new ComparadorRecolector_idA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(recolectores_copia, new ComparadorRecolector_idD());
+                    }       
+
+                    enumerador=1;
+
+                    for (Recolector recolector : recolectores_copia) { 
+                        System.out.println(enumerador+". "+ recolector);
+                        enumerador+=1;
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.println("Desea organizar la identificacion de las rutas de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(recolectores_copia, new ComparadorRecolector_idRutaA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(recolectores_copia,new ComparadorRecolector_idRutaD());
+                    }
+
+                    enumerador=1;
+                    for (Recolector recolector : recolectores_copia) {
+                        System.out.println(enumerador +". "+ recolector);
+                        enumerador+=1;
+                    }
+                
+
+
+                }else{
+
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("No hay recolectores registrados en el sistema");
+            return;
+        }
+
+
+        if(recolectoresEncontrados.size()!=0 && !mostrar_todos) {
+            System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+            System.out.println("1. Marca");
+            System.out.println("2. Identificacion");
+            System.out.println("3. Identificacion de la ruta");
+            String seleccion= input.next();
+
+            if(seleccion.equals("1")){
+                System.out.println("Desea organizar la marca de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(recolectoresEncontrados, new ComparadorRecolector_marcaA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(recolectoresEncontrados, new ComparadorRecolector_marcaD());
+                }
+
+                enumerador=1;
+                for (Recolector recolector : recolectoresEncontrados) {
+                    System.out.println(enumerador +". "+ recolector);
+                    enumerador+=1;
+                }
+            }else if(seleccion.equals("2")){
+                System.out.println("Desea organizar las identificaciones de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(recolectoresEncontrados, new ComparadorRecolector_idA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(recolectoresEncontrados, new ComparadorRecolector_idD());
+                }             
+
+                enumerador=1;
+
+                for (Recolector recolector : recolectoresEncontrados) { 
+                    System.out.println(enumerador+". "+ recolector);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("3")){
+                System.out.println("Desea organizar las identificaciones de las rutas de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(recolectoresEncontrados, new ComparadorRecolector_idRutaA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(recolectoresEncontrados, new ComparadorRecolector_idRutaD());
+                }
+
+                enumerador=1;
+                for (Recolector recolector : recolectoresEncontrados) {
+                    System.out.println(enumerador +". "+ recolector);
+                    enumerador+=1;
+                }
+
+           
+            }else{
+
+                System.out.println("Opción inválida");
+                return;
+            }
+        }else{
+            System.out.println("No se encontraron recolectores");
+            return;
+        }
+
+        // Aquí se establece la búsqueda sobre las areas
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En los recolectores encontrados desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
+
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente al recolector: ");
+            int option= input.nextInt();
+            Recolector recolector;
+            if(!mostrar_todos){
+                if(recolectoresEncontrados.size()>=option && option>=1){
+                    recolector= recolectoresEncontrados.get(option-1);  // Aquí obtienes el recolector a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(recolectores_copia.size()>=option && option>=1){
+                    recolector= recolectores_copia.get(option-1);  // Aquí obtienes el recolector a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+            
+            BuscarEditarRecolector(recolector);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente al recolector: ");
+            int option= input.nextInt();
+            Recolector recolector;
+            if(!mostrar_todos){
+                if(recolectoresEncontrados.size()>=option && option>=1){
+                    recolector= recolectoresEncontrados.get(option-1);  // Aquí obtienes la persona a eliminar 
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(recolectores_copia.size()>=option && option>=1){
+                    recolector= recolectores_copia.get(option-1);  // Aquí obtienes la persona a eliminar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarRecolector(recolector);
+        }
+    }
+
+    public static void BuscarEliminarRecolector(Recolector place) {
+        System.out.println("¿Seguro que desea eliminar el recolector?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean recolectorEncontrado = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Recolector> iterator = recolectores.iterator();
+            while(iterator.hasNext()) {
+                Recolector recolector = iterator.next();
+                if (recolector.getId()==place.getId()) {
+                    recolectorEncontrado = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!recolectorEncontrado) {
+                System.out.println("No se encontró el recolector");
+                return;
+            }else{
+                System.out.println("El recolector se ha removido satisfactoriamente");
+            }
+        }
+    }
+
+
+    public static void BuscarEditarRecolector(Recolector place) {
+        for (Recolector recolector: recolectores) {
+            if(recolector.id==place.id){
+
+                String nuevo_marca ="";
+                String nuevo_id = "";
+                String nuevo_rutaid = "";
+
+                System.out.println("Marca del recolector: "+ recolector.getMarca());
+                System.out.println("Si desea cambiar la marca, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_marca = input.next();
+                System.out.println("Identificacion: "+ recolector.getId());
+                System.out.println("Si desea cambiar la identificacion, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_id = input.next();
+                System.out.println("Identificacion de la ruta: "+ recolector.getRutaid());
+                System.out.println("Si desea cambiar la identificacion de la ruta, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_rutaid = input.next();
+                
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_marca.equalsIgnoreCase("N")) {
+                        
+                    }else {
+                        
+                        recolector.setMarca(nuevo_marca);
+                    }
+
+                   
+                    if (nuevo_id.equalsIgnoreCase("N")) {
+
+                    } else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_id);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        recolector.setId(foo);
+                    }
+                    if (nuevo_rutaid.equalsIgnoreCase("N")) {
+
+                    } else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_rutaid);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        recolector.setRutaid(foo);
+                    }
+
+
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
     }
 
     public static void BuscarPersonal() {
