@@ -41,6 +41,12 @@ public class EmpresaDeBasura {
         return gerente;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "EmpresaDeBasura{" +
+                "nombre='" + nombre + '\'' +
+                ", ciudad='" + ciudad + '\'' +
+                ", gerente='" + gerente + '\'' +
+                '}';
+    }
 }

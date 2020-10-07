@@ -79,4 +79,15 @@ public class Taller {
     public Area getArea() {
         return area;
     }
+
+    @Override
+    public String toString() {
+        return "Taller{" +
+                "nombre='" + nombre + '\'' +
+                ", sistema_asociado='" + sistema_asociado + '\'' +
+                ", interno_sede='" + interno_sede + '\'' +
+                ", reparar_en_ruta=" + reparar_en_ruta +
+                ", dinero_fallas_menores=" + dinero_fallas_menores +
+                '}';
+    }
 }

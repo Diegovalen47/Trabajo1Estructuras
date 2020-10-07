@@ -81,4 +81,15 @@ public class Recolector {
     public Ruta getRuta() {
         return ruta;
     }
+
+    @Override
+    public String toString() {
+        return "Recolector{" +
+                "marca='" + marca + '\'' +
+                ", doble_troque=" + doble_troque +
+                ", id=" + id +
+                ", disponible=" + disponible +
+                ", rutaid=" + rutaid +
+                '}';
+    }
 }
