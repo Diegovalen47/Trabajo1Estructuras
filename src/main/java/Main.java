@@ -23,7 +23,7 @@ public class Main {
     public static void CargarUsuarios() {
         JsonParser parser = new JsonParser();
 
-        try (FileReader reader = new FileReader("usuarios.json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\usuarios.json")) {
             Object obj = parser.parse(reader);
             JsonArray userList = (JsonArray) obj;
 
@@ -37,7 +37,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        try (FileReader reader = new FileReader("empresasDeBasuras.json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\empresasDeBasuras.json")) {
             Object obj = parser.parse(reader);
             JsonArray empresasList = (JsonArray) obj;
 
@@ -51,7 +51,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        try (FileReader reader = new FileReader("sedes.json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\sedes.json")) {
             Object obj = parser.parse(reader);
             JsonArray sedesList = (JsonArray) obj;
 
@@ -66,7 +66,7 @@ public class Main {
         }
 
 
-        try(FileReader reader = new FileReader("areas.json")) {
+        try(FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\areas.json")) {
             Object obj = parser.parse(reader);
             JsonArray areasList = (JsonArray) obj;
 
@@ -81,7 +81,7 @@ public class Main {
         }
 
 
-        try(FileReader reader = new FileReader("talleres.json")) {
+        try(FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\talleres.json")) {
             Object obj = parser.parse(reader);
             JsonArray talleresList = (JsonArray) obj;
 
@@ -97,7 +97,7 @@ public class Main {
 
 
 
-        try(FileReader reader = new FileReader("rutas.json")) {
+        try(FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\rutas.json")) {
             Object obj = parser.parse(reader);
             JsonArray rutasList = (JsonArray) obj;
 
@@ -112,7 +112,7 @@ public class Main {
         }
 
 
-        try(FileReader reader = new FileReader("personas.json")) {
+        try(FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\personas.json")) {
             Object obj = parser.parse(reader);
             JsonArray personasList = (JsonArray) obj;
 
@@ -126,7 +126,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        try(FileReader reader = new FileReader("recolectores.json")) {
+        try(FileReader reader = new FileReader("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\recolectores.json")) {
             Object obj = parser.parse(reader);
             JsonArray recolectoresList = (JsonArray) obj;
 
@@ -307,7 +307,7 @@ public class Main {
     public static void GuardarUsuarios() {
         String jsonString = gson.toJson(usuarios);
 
-        try (FileWriter file = new FileWriter("usuarios.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\usuarios.json")) {
 
             file.write(jsonString);
             file.flush();
@@ -321,7 +321,7 @@ public class Main {
     public static void GuardarObjetos() {
         String jsonStringEmpresasDeBasura = gson.toJson(empresasDeBasuras);
 
-        try (FileWriter file = new FileWriter("empresasDeBasuras.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\empresasDeBasuras.json")) {
 
             file.write(jsonStringEmpresasDeBasura);
             file.flush();
@@ -333,7 +333,7 @@ public class Main {
 
         String jsonStringSedes = gson.toJson(sedes);
 
-        try (FileWriter file = new FileWriter("sedes.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\sedes.json")) {
 
             file.write(jsonStringSedes);
             file.flush();
@@ -345,7 +345,7 @@ public class Main {
 
         String jsonStringAreas = gson.toJson(areas);
 
-        try (FileWriter file = new FileWriter("areas.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\areas.json")) {
 
             file.write(jsonStringAreas);
             file.flush();
@@ -357,7 +357,7 @@ public class Main {
 
         String jsonStringTalleres = gson.toJson(talleres);
 
-        try (FileWriter file = new FileWriter("talleres.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\talleres.json")) {
 
             file.write(jsonStringTalleres);
             file.flush();
@@ -369,7 +369,7 @@ public class Main {
 
         String jsonStringRutas = gson.toJson(rutas);
 
-        try (FileWriter file = new FileWriter("rutas.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\rutas.json")) {
 
             file.write(jsonStringRutas);
             file.flush();
@@ -382,7 +382,7 @@ public class Main {
 
         String jsonStringPersonal= gson.toJson(personas);
 
-        try (FileWriter file = new FileWriter("personas.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\personas.json")) {
 
             file.write(jsonStringPersonal);
             file.flush();
@@ -395,7 +395,7 @@ public class Main {
 
         String jsonStringRecolectores= gson.toJson(recolectores);
 
-        try (FileWriter file = new FileWriter("recolectores.json")) {
+        try (FileWriter file = new FileWriter("C:\\Users\\user\\IdeaProjects\\Trabajo1\\Trabajo1Estructuras\\src\\main\\java\\META-INF\\database\\recolectores.json")) {
 
             file.write(jsonStringRecolectores);
             file.flush();
