@@ -495,10 +495,10 @@ public class Main {
             System.out.println("1. Empresas de Basura");
             System.out.println("2. Sedes");
             System.out.println("3. Áreas");
-            System.out.println("4. Rutas");
-            System.out.println("5. Talleres");
-            System.out.println("6. Personal");
-            System.out.println("7. Recolectores");
+            System.out.println("4. Talleres");
+            System.out.println("5. Personal");
+            System.out.println("6. Recolectores");
+            System.out.println("7. Rutas");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -508,13 +508,13 @@ public class Main {
             } else if (option.equals("3")) {
                 AdministrarAreas();
             } else if (option.equals("4")) {
-                AdministrarRutas();
-            } else if (option.equals("5")) {
                 AdministrarTalleres();
-            } else if (option.equals("6")) {
+            } else if (option.equals("5")) {
                 AdministrarPersonal();
-            } else if (option.equals("7")) {
+            } else if (option.equals("6")) {
                 AdministrarRecolectores();
+            } else if (option.equals("7")) {
+                AdministrarRutas();
             } else if (option.equals("0")) {
                 break;
             }
@@ -526,7 +526,7 @@ public class Main {
         String option = "";
         while(true) {
             System.out.println("Elija una opción");
-            System.out.println("1. Ver Empresas de basura");
+            System.out.println("1. Ver empresas de basura");
             System.out.println("2. Crear empresa de basura");
             System.out.println("3. Editar empresa de basura");
             System.out.println("4. Eliminar empresa de basura");
@@ -671,9 +671,9 @@ public class Main {
         while(true) {
             System.out.println("Elija una opción");
             System.out.println("1. Ver Sedes");
-            System.out.println("2. Crear Sedes");
-            System.out.println("3. Editar Sedes");
-            System.out.println("4. Eliminar Sedes");
+            System.out.println("2. Crear Sede");
+            System.out.println("3. Editar Sede");
+            System.out.println("4. Eliminar Sede");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -939,9 +939,9 @@ public class Main {
         while(true) {
             System.out.println("Elija una opción");
             System.out.println("1. Ver Areas");
-            System.out.println("2. Crear Areas");
-            System.out.println("3. Editar Areas");
-            System.out.println("4. Eliminar Areas");
+            System.out.println("2. Crear Area");
+            System.out.println("3. Editar Area");
+            System.out.println("4. Eliminar Area");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -1137,9 +1137,9 @@ public class Main {
         while(true) {
             System.out.println("Elija una opción");
             System.out.println("1. Ver Talleres");
-            System.out.println("2. Crear Talleres");
-            System.out.println("3. Editar Talleres");
-            System.out.println("4. Eliminar Talleres");
+            System.out.println("2. Crear Taller");
+            System.out.println("3. Editar Taller");
+            System.out.println("4. Eliminar Taller");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -1365,9 +1365,9 @@ public class Main {
         while(true) {
             System.out.println("Elija una opción");
             System.out.println("1. Ver Rutas");
-            System.out.println("2. Crear Rutas");
-            System.out.println("3. Editar Rutas");
-            System.out.println("4. Eliminar Rutas");
+            System.out.println("2. Crear Ruta");
+            System.out.println("3. Editar Ruta");
+            System.out.println("4. Eliminar Ruta");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -1834,7 +1834,7 @@ public class Main {
         String option = "";
         while(true) {
             System.out.println("Elija una opción");
-            System.out.println("1. Ver Recolector");
+            System.out.println("1. Ver Recolectores");
             System.out.println("2. Crear Recolector");
             System.out.println("3. Editar Recolector");
             System.out.println("4. Eliminar Recolector");
@@ -2076,10 +2076,10 @@ public class Main {
             System.out.println("1. Empresas de Basura");
             System.out.println("2. Sedes");
             System.out.println("3. Áreas");
-            System.out.println("4. Rutas");
-            System.out.println("5. Talleres");
-            System.out.println("6. Personal");
-            System.out.println("7. Recolectores");
+            System.out.println("4. Talleres");
+            System.out.println("5. Personal");
+            System.out.println("6. Recolectores");
+            System.out.println("7. Rutas");
             System.out.println("0. Salir");
             option = input.next();
             if (option.equals("1")) {
@@ -2089,13 +2089,13 @@ public class Main {
             } else if (option.equals("3")) {
                 BuscarAreas();
             } else if (option.equals("4")) {
-                BuscarRutas();
-            } else if (option.equals("5")) {
                 //BuscarTalleres();
-            } else if (option.equals("6")) {
+            } else if (option.equals("5")) {
                 //BuscarPersonal();
-            } else if (option.equals("7")) {
+            } else if (option.equals("6")) {
                 //BuscarRecolectores();
+            } else if (option.equals("7")) {
+                BuscarRutas();
             } else if (option.equals("0")) {
                 break;
             }
