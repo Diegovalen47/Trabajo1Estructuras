@@ -4443,7 +4443,7 @@ public class Main {
                 System.out.println("Si desea cambiar la direccion, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_direccion = input.next();
-                System.out.println("Persona a cargo: "+ sede.getDireccion());
+                System.out.println("Persona a cargo: "+ sede.getPersona_a_cargo());
                 System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_persona = input.next();
