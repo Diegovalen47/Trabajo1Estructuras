@@ -2089,7 +2089,7 @@ public class Main {
             } else if (option.equals("3")) {
                 BuscarAreas();
             } else if (option.equals("4")) {
-                //BuscarTalleres();
+                BuscarTalleres();
             } else if (option.equals("5")) {
                 //BuscarPersonal();
             } else if (option.equals("6")) {
@@ -2111,6 +2111,1218 @@ public class Main {
         String seleccion= input.next();
         return seleccion;
     }
+
+    public static void BuscarPersonal() {
+        LinkedList<Personal> personas_copia= new LinkedList<>();
+        personas_copia= (LinkedList<Personal>) personas.clone();
+        LinkedList<Personal> personasEncontradas= new LinkedList<>();
+        int enumerador=1;
+        boolean mostrar_todos=false;
+
+        if(personas.size()!=0){
+            System.out.println("Seleccione el atributo por el cual desea buscar al personal:");
+            System.out.println("1. Perfil");
+            System.out.println("2. Horario");
+            System.out.println("3. Nombre");
+            System.out.println("4. Cedula");
+            System.out.println("5. Sueldo");
+            System.out.println("6. Mostrar todos los talleres");
+            String seleccion= input.next();
+            int seleccion_int;
+            if(seleccion.equals("1")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el perfil del personal: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Personal persona : personas) {
+
+                        if(persona.perfil.equals(seleccion)){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese el perfil del personal: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Personal persona : personas) {
+                        
+                        if(persona.perfil.toLowerCase().equals(seleccion)){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+
+            }else if(seleccion.equals("2")){
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el horario del personal: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Personal persona : personas) {
+
+                        if(persona.horario.equals(seleccion)){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el horario del personal: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Personal persona : personas) {
+
+                        if(persona.horario.toLowerCase().equals(seleccion)){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+
+
+            }else if(seleccion.equals("3")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el nombre de la persona: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Personal persona : personas) {
+
+                        if(persona.nombre.equals(seleccion)){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                    
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el nombre de la persona: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Personal persona : personas) {
+
+                        if(persona.nombre.toLowerCase().equals(seleccion)){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese la cedula de la persona: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Personal persona : personas) {
+
+                        if(persona.cedula==seleccion_int){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese la cedula de la persona: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Personal persona : personas) {
+                        
+                        if(persona.cedula>=seleccion_int){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese la cedula de la persona: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Personal persona : personas) {
+                        
+                        if(persona.cedula<=seleccion_int){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior de la cedula: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior de la cedula: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Personal persona : personas) {
+                        
+                        if(persona.cedula>=seleccion_int && persona.cedula<=seleccion_int2){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("5")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el sueldo del personal: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Personal persona : personas) {
+
+                        if(persona.sueldo==seleccion_int){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese el sueldo del personal: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Personal persona : personas) {
+                        
+                        if(persona.sueldo>=seleccion_int){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese el sueldo del personal: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Personal persona : personas) {
+                        
+                        if(persona.sueldo<=seleccion_int){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior del sueldo del personal: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior del sueldo del personal: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Personal persona : personas) {
+                        
+                        if(persona.sueldo>=seleccion_int && persona.sueldo<=seleccion_int2){
+                            personasEncontradas.add(persona);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("6")){
+                mostrar_todos=true;
+                System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                System.out.println("1. Perfil");
+                System.out.println("2. Horario");
+                System.out.println("3. Nombre");
+                System.out.println("4. Cedula");
+                System.out.println("5. Sueldo");
+                seleccion= input.next();
+
+
+
+                if(seleccion.equals("1")){
+                    System.out.println("Desea organizar el perfil de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(personas_copia, new ComparadorPersona_perfilA());
+                    } else if (seleccion.equals("2")) {
+                        Collections.sort(personas_copia, new ComparadorPersona_perfilD());
+                    }
+
+                    enumerador=1;
+                    for (Personal persona : personas_copia) {
+                        System.out.println(enumerador +". "+ persona);
+                        enumerador+=1;
+                    }
+                }else if(seleccion.equals("2")){
+                    System.out.println("Desea organizar los horarios de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();     
+                    if(seleccion.equals("1")){
+
+                        Collections.sort(personas_copia, new ComparadorPersona_horarioA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(personas_copia, new ComparadorPersona_horarioD());
+                    }       
+
+                    enumerador=1;
+
+                    for (Personal persona : personas_copia) { 
+                        System.out.println(enumerador+". "+ persona);
+                        enumerador+=1;
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.println("Desea organizar los nombres del personal de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(personas_copia, new ComparadorPersona_nombreA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(personas_copia,new ComparadorPersona_nombreD());
+                    }
+
+                    enumerador=1;
+                    for (Personal persona : personas_copia) {
+                        System.out.println(enumerador +". "+ persona);
+                        enumerador+=1;
+                    }
+                
+                }else if(seleccion.equals("4")){
+
+                    System.out.println("Desea organizar las cedulas de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(personas_copia, new ComparadorPersona_cedulaA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(personas_copia, new ComparadorPersona_cedulaD());
+                    }
+
+                    enumerador=1;
+                    for (Personal persona : personas_copia) {
+                        System.out.println(enumerador +". "+ persona);
+                        enumerador+=1;
+                    }
+
+
+                }else if(seleccion.equals("5")){
+
+                    System.out.println("Desea organizar los sueldos de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(personas_copia, new ComparadorPersona_sueldoA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(personas_copia, new ComparadorPersona_sueldoD());
+                    }
+
+                    enumerador=1;
+                    for (Personal persona : personas_copia) {
+                        System.out.println(enumerador +". "+ persona);
+                        enumerador+=1;
+                    }
+
+                }else{
+
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("No hay talleres registrados en el sistema");
+            return;
+        }
+
+
+        if(personasEncontradas.size()!=0 && !mostrar_todos) {
+            System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+            System.out.println("1. Perfil");
+            System.out.println("2. Horario");
+            System.out.println("3. Nombre");
+            System.out.println("4. Cedula");
+            System.out.println("5. Sueldo");
+            String seleccion= input.next();
+
+            if(seleccion.equals("1")){
+                System.out.println("Desea organizar los perfiles de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_perfilA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_perfilD());
+                }
+
+                enumerador=1;
+                for (Personal persona : personasEncontradas) {
+                    System.out.println(enumerador +". "+ persona);
+                    enumerador+=1;
+                }
+            }else if(seleccion.equals("2")){
+                System.out.println("Desea organizar los horarios de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_horarioA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_horarioD());
+                }             
+
+                enumerador=1;
+
+                for (Personal persona : personasEncontradas) { 
+                    System.out.println(enumerador+". "+ persona);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("3")){
+                System.out.println("Desea organizar los nombres de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_nombreA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_nombreD());
+                }
+
+                enumerador=1;
+                for (Personal persona : personasEncontradas) {
+                    System.out.println(enumerador +". "+ persona);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                System.out.println("Desea organizar las cedulas de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_cedulaA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_cedulaD());
+                }
+
+                enumerador=1;
+                for (Personal persona: personasEncontradas) {
+                    System.out.println(enumerador +". "+ persona);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("5")){
+
+                System.out.println("Desea organizar los sueldos de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_sueldoA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(personasEncontradas, new ComparadorPersona_sueldoD());
+                }
+
+                enumerador=1;
+                for (Personal persona: personasEncontradas) {
+                    System.out.println(enumerador +". "+ persona);
+                    enumerador+=1;
+                }
+            
+            }else{
+
+                System.out.println("Opción inválida");
+                return;
+            }
+        }else{
+            System.out.println("No se encontraron rutas");
+            return;
+        }
+
+        // Aquí se establece la búsqueda sobre las areas
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En el personal encontrado desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
+
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente al personal: ");
+            int option= input.nextInt();
+            Personal persona;
+            if(!mostrar_todos){
+                if(personasEncontradas.size()>=option && option>=1){
+                    persona= personasEncontradas.get(option-1);  // Aquí obtienes el personal a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(personas_copia.size()>=option && option>=1){
+                    persona= personas_copia.get(option-1);  // Aquí obtienes el personal a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+            
+            BuscarEditarPersona(persona);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente al personal: ");
+            int option= input.nextInt();
+            Personal persona;
+            if(!mostrar_todos){
+                if(personasEncontradas.size()>=option && option>=1){
+                    persona= personasEncontradas.get(option-1);  // Aquí obtienes la persona a eliminar 
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(personas_copia.size()>=option && option>=1){
+                    persona= personas_copia.get(option-1);  // Aquí obtienes la persona a eliminar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarPersona(persona);
+        }
+    }
+
+    public static void BuscarEliminarPersona(Personal place) {
+        System.out.println("¿Seguro que desea eliminar la persona?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean personaEncontrado = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Personal> iterator = personas.iterator();
+            while(iterator.hasNext()) {
+                Personal persona = iterator.next();
+                if (persona.getCedula()==place.getCedula()) {
+                    personaEncontrado = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!personaEncontrado) {
+                System.out.println("No se encontró la persona");
+                return;
+            }else{
+                System.out.println("La persona se ha removido satisfactoriamente");
+            }
+        }
+    }
+
+
+    public static void BuscarEditarPersona(Personal place) {
+        for (Personal persona : personas) {
+            if(persona.cedula==place.cedula){
+
+                String nuevo_perfil ="";
+                String nuevo_horario = "";
+                String nuevo_nombre = "";
+                String nuevo_cedula="";
+                String nuevo_sueldo="";
+
+                System.out.println("Perfil de la persona: "+ persona.getPerfil());
+                System.out.println("Si desea cambiar el perfil, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_perfil = input.next();
+                System.out.println("Horario: "+ persona.getHorario());
+                System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_horario = input.next();
+                System.out.println("Nombre: "+ persona.getNombre());
+                System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_nombre = input.next();
+                System.out.println("Cedula: "+ persona.getCedula());
+                System.out.println("Si desea cambiar la cedula, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_cedula = input.next();
+                System.out.println("Sueldo: "+ persona.getSueldo());
+                System.out.println("Si desea cambiar el sueldo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_sueldo = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_perfil.equalsIgnoreCase("N")) {
+                        
+                    }else {
+                        
+                        persona.setPerfil(nuevo_perfil);
+                    }
+
+                    if (nuevo_horario.equalsIgnoreCase("N")) {
+
+                    } else {
+                        persona.setHorario(nuevo_horario);
+                    }
+                    if (nuevo_nombre.equalsIgnoreCase("N")) {
+
+                    } else {
+                        persona.setNombre(nuevo_nombre);
+                    }
+                    if (nuevo_cedula.equalsIgnoreCase("N")) {
+
+                    } else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_cedula);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        persona.setCedula(foo);
+                    }
+                    if (nuevo_sueldo.equalsIgnoreCase("N")) {
+
+                    } else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_sueldo);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        persona.setSueldo(foo);
+                    }
+
+
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
+    }
+
+
+
+    public static void BuscarTalleres() {
+        LinkedList<Taller> talleres_copia= new LinkedList<>();
+        talleres_copia= (LinkedList<Taller>) talleres.clone();
+        LinkedList<Taller> talleresEncontrados= new LinkedList<>();
+        int enumerador=1;
+        boolean mostrar_todos=false;
+
+        if(talleres.size()!=0){
+            System.out.println("Seleccione el atributo por el cual desea buscar el taller:");
+            System.out.println("1. Nombre");
+            System.out.println("2. Sistema mecanico asociado");
+            System.out.println("3. Tipo de taller");
+            System.out.println("4. Presupuesto fallas menores");
+            System.out.println("5. Mostrar todos los talleres");
+            String seleccion= input.next();
+            int seleccion_int;
+            if(seleccion.equals("1")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el nombre del taller: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Taller taller : talleres) {
+
+                        if(taller.nombre.equals(seleccion)){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese el nombre del taller: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Taller taller : talleres) {
+                        
+                        if(taller.nombre.toLowerCase().equals(seleccion)){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+
+            }else if(seleccion.equals("2")){
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el sistema asociado: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+
+                    for (Taller taller : talleres) {
+
+                        if(taller.sistema_asociado.equals(seleccion)){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el sistema asociado: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Taller taller : talleres) {
+
+                        if(taller.sistema_asociado.toLowerCase().equals(seleccion)){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+               
+
+
+            }else if(seleccion.equals("3")){
+
+                seleccion=atributo_string_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el tipo de taller: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Taller taller : talleres) {
+
+                        if(taller.tipo.equals(seleccion)){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                    
+                }else if(seleccion.equals("2")){
+                    System.out.print("Ingrese el tipo de taller: ");
+                    input.nextLine();
+                    seleccion= input.nextLine();
+                    
+
+                    for (Taller taller : talleres) {
+
+                        if(taller.tipo.toLowerCase().equals(seleccion)){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                seleccion=atributo_integer_buscar();
+
+                if(seleccion.equals("1")){
+                    System.out.print("Ingrese el dinero asociado a fallas menores: ");
+                    seleccion_int= input.nextInt();
+                    
+
+                    for (Taller taller : talleres) {
+
+                        if(taller.dinero_fallas_menores==seleccion_int){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                }else if(seleccion.equals("2")){
+
+                    System.out.print("Ingrese el dinero asociado a fallas menores: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Taller taller : talleres) {
+                        
+                        if(taller.dinero_fallas_menores>=seleccion_int){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.print("Ingrese el dinero asociado a fallas menores: ");
+                    seleccion_int= input.nextInt();
+
+                    for (Taller taller : talleres) {
+                        
+                        if(taller.dinero_fallas_menores<=seleccion_int){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+                }else if(seleccion.equals("4")){
+                    System.out.print("Ingrese el limite inferior del dinero asociado a fallas menores: ");
+                    seleccion_int= input.nextInt();
+                    System.out.print("Ingrese el limite superior del dinero asociado a fallas menores: ");
+                    int seleccion_int2= input.nextInt();
+
+                    int aux;
+
+                    if(seleccion_int>seleccion_int2){
+                        aux=seleccion_int;
+                        seleccion_int=seleccion_int2;
+                        seleccion_int2= aux;
+                    }
+                    
+                    for (Taller taller : talleres) {
+                        
+                        if(taller.dinero_fallas_menores>=seleccion_int && taller.dinero_fallas_menores<=seleccion_int2){
+                            talleresEncontrados.add(taller);
+                        }
+                    }
+
+                    
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+
+
+
+            }else if(seleccion.equals("5")){
+                mostrar_todos=true;
+                System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+                System.out.println("1. Nombre");
+                System.out.println("2. Sistema asociado");
+                System.out.println("3. Tipo de taller");
+                System.out.println("4. Dinero asociado a fallas menores");
+                seleccion= input.next();
+
+
+
+                if(seleccion.equals("1")){
+                    System.out.println("Desea organizar el nombre de los talleres de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(talleres_copia, new ComparadorTaller_nombreA());
+                    } else if (seleccion.equals("2")) {
+                        Collections.sort(talleres_copia, new ComparadorTaller_nombreD());
+                    }
+
+                    enumerador=1;
+                    for (Taller taller : talleres_copia) {
+                        System.out.println(enumerador +". "+ taller);
+                        enumerador+=1;
+                    }
+                }else if(seleccion.equals("2")){
+                    System.out.println("Desea organizar los sistemas asociados de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();     
+                    if(seleccion.equals("1")){
+
+                        Collections.sort(talleres_copia, new ComparadorTaller_sistemaA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(talleres_copia, new ComparadorTaller_sistemaD());
+                    }       
+
+                    enumerador=1;
+
+                    for (Taller taller : talleres_copia) { 
+                        System.out.println(enumerador+". "+ taller);
+                        enumerador+=1;
+                    }
+
+                }else if(seleccion.equals("3")){
+                    System.out.println("Desea organizar el tipo de taller : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(talleres_copia, new ComparadorTaller_tipoA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(talleres_copia,new ComparadorTaller_tipoD());
+                    }
+
+                    enumerador=1;
+                    for (Taller taller : talleres_copia) {
+                        System.out.println(enumerador +". "+ taller);
+                        enumerador+=1;
+                    }
+                
+                }else if(seleccion.equals("4")){
+
+                    System.out.println("Desea organizar el dinero asociado a fallas menores de forma : ");
+                    System.out.println("1. Ascendente");
+                    System.out.println("2. Descendente");
+                    seleccion= input.next();
+
+                    if(seleccion.equals("1")){
+                        Collections.sort(talleres_copia, new ComparadorTaller_dineroA());
+                    }else if(seleccion.equals("2")){
+                        Collections.sort(talleres_copia, new ComparadorTaller_dineroD());
+                    }
+
+                    enumerador=1;
+                    for (Taller taller : talleres_copia) {
+                        System.out.println(enumerador +". "+ taller);
+                        enumerador+=1;
+                    }
+
+                }else{
+
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+        }else{
+            System.out.println("No hay talleres registrados en el sistema");
+            return;
+        }
+
+
+        if(talleresEncontrados.size()!=0 && !mostrar_todos) {
+            System.out.println("Seleccione el atributo por al cual desea organizar los resultados: ");
+            System.out.println("1. Nombre");
+            System.out.println("2. Sistema asociado");
+            System.out.println("3. Tipo de taller");
+            System.out.println("4. Dinero asociado a fallas menores");
+            String seleccion= input.next();
+
+            if(seleccion.equals("1")){
+                System.out.println("Desea organizar el nombre del taller : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_nombreA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_nombreD());
+                }
+
+                enumerador=1;
+                for (Taller taller : talleresEncontrados) {
+                    System.out.println(enumerador +". "+ taller);
+                    enumerador+=1;
+                }
+            }else if(seleccion.equals("2")){
+                System.out.println("Desea organizar el sistema asociado de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_sistemaA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_sistemaD());
+                }             
+
+                enumerador=1;
+
+                for (Taller taller : talleresEncontrados) { 
+                    System.out.println(enumerador+". "+ taller);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("3")){
+                System.out.println("Desea organizar el tipo de taller de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_tipoA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_tipoD());
+                }
+
+                enumerador=1;
+                for (Taller taller : talleresEncontrados) {
+                    System.out.println(enumerador +". "+ taller);
+                    enumerador+=1;
+                }
+
+            }else if(seleccion.equals("4")){
+
+                System.out.println("Desea organizar el dinero asociado a fallas menores de forma : ");
+                System.out.println("1. Ascendente");
+                System.out.println("2. Descendente");
+                seleccion= input.next();
+
+                if(seleccion.equals("1")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_dineroA());
+                }else if(seleccion.equals("2")){
+                    Collections.sort(talleresEncontrados, new ComparadorTaller_dineroD());
+                }
+
+                enumerador=1;
+                for (Taller taller : talleresEncontrados) {
+                    System.out.println(enumerador +". "+ taller);
+                    enumerador+=1;
+                }
+
+            }else{
+
+                System.out.println("Opción inválida");
+                return;
+            }
+        }else{
+            System.out.println("No se encontraron rutas");
+            return;
+        }
+
+        // Aquí se establece la búsqueda sobre las areas
+        // Tener presente que se utilizará la función de Valentín de Editar y eliminar
+        System.out.println("**********************************************");
+        System.out.println("En los talleres encontradas desea:");
+        System.out.println("1. Editar");
+        System.out.println("2. Eliminar");
+        System.out.println("3. Salir");
+        String seleccion= input.next();
+
+        if(seleccion.equals("1")){
+            System.out.print("Ingrese el número de la lista correspondiente al taller: ");
+            int option= input.nextInt();
+            Taller taller;
+            if(!mostrar_todos){
+                if(talleresEncontrados.size()>=option && option>=1){
+                    taller= talleresEncontrados.get(option-1);  // Aquí obtienes el taller a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(talleres_copia.size()>=option && option>=1){
+                    taller= talleres_copia.get(option-1);  // Aquí obtienes el taller a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+
+            
+            BuscarEditarTaller(taller);    
+            
+
+        }else if(seleccion.equals("2")){
+            System.out.print("Ingrese el número de la lista correspondiente al taller: ");
+            int option= input.nextInt();
+            Taller taller;
+            if(!mostrar_todos){
+                if(talleresEncontrados.size()>=option && option>=1){
+                    taller= talleresEncontrados.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }else{
+
+                if(talleres_copia.size()>=option && option>=1){
+                    taller= talleres_copia.get(option-1);  // Aquí obtienes la sede a editar de la copia
+                }else{
+                    System.out.println("Opción inválida");
+                    return;
+                }
+            }
+            // Aquí vas a implementar eliminar********************
+            BuscarEliminarTaller(taller);
+        }
+    }
+
+    public static void BuscarEliminarTaller(Taller place) {
+        System.out.println("¿Seguro que desea eliminar el taller?");
+        System.out.println("Y");
+        System.out.println("N");
+        String option = input.next();
+        boolean tallerEncontrado = false;
+        if (option.equalsIgnoreCase("Y")) {
+            Iterator<Taller> iterator = talleres.iterator();
+            while(iterator.hasNext()) {
+                Taller taller = iterator.next();
+                if (taller.getNombre().equals(place.getNombre())) {
+                    tallerEncontrado = true;
+                    iterator.remove();
+                }
+            }
+
+            if (!tallerEncontrado) {
+                System.out.println("No se encontró el taller");
+                return;
+            }else{
+                System.out.println("El taller se ha removido satisfactoriamente");
+            }
+        }
+    }
+
+    public static void BuscarEditarTaller(Taller place) {
+        for (Taller taller : talleres) {
+            if(taller.nombre.equals(place.nombre)){
+
+                String nuevo_nombre ="";
+                String nuevo_sistema = "";
+                String nuevo_tipo = "";
+                String nuevo_dinero="";
+
+                System.out.println("Nombre taller: "+ taller.getNombre());
+                System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_nombre = input.next();
+                System.out.println("Sistema asociado: "+ taller.getSistema_asociado());
+                System.out.println("Si desea cambiar el sistema asociado, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_sistema = input.next();
+                System.out.println("Tipo de taller: "+ taller.getTipo());
+                System.out.println("Si desea cambiar el tipo, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_tipo = input.next();
+                System.out.println("Dinero asociado a fallas menores: "+ taller.getDinero_fallas_menores());
+                System.out.println("Si desea cambiar el dinero, ingrese su nuevo valor");
+                System.out.println("en otro caso, digite: N");
+                nuevo_dinero = input.next();
+                System.out.println("¿Desea guardar los cambios?");
+                System.out.println("Y");
+                System.out.println("N");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    if (nuevo_nombre.equalsIgnoreCase("N")) {
+                        
+                    }else {
+                        
+                        taller.setNombre(nuevo_nombre);
+                    }
+
+                    if (nuevo_sistema.equalsIgnoreCase("N")) {
+
+                    } else {
+                        taller.setSistema_asociado(nuevo_sistema);
+                    }
+                    if (nuevo_tipo.equalsIgnoreCase("N")) {
+
+                    } else {
+                        taller.setTipo(nuevo_tipo);
+                    }
+                    if (nuevo_dinero.equalsIgnoreCase("N")) {
+
+                    } else {
+                        int foo;
+                        try {
+                            foo = Integer.parseInt(nuevo_dinero);
+                         }
+                         catch (NumberFormatException e)
+                         {
+                            foo = 0;
+                         }
+                        taller.setDinero_fallas_menores(foo);
+                    }
+
+
+                }
+                System.out.println("Se han realizado los cambios satisfactoriamente");
+                break;
+        
+            }
+        }
+        
+    }
+
+    
+    
+    
+
 
     public static void BuscarRutas() {
         LinkedList<Ruta> rutas_copia= new LinkedList<>();
@@ -2406,13 +3618,13 @@ public class Main {
                     seleccion= input.next();
 
                     if(seleccion.equals("1")){
-                        Collections.sort(rutasEncontradas, new ComparadorRuta_idRecolectorA());
+                        Collections.sort(rutas_copia, new ComparadorRuta_idRecolectorA());
                     }else if(seleccion.equals("2")){
-                        Collections.sort(rutasEncontradas, new ComparadorRuta_idRecolectorD());
+                        Collections.sort(rutas_copia, new ComparadorRuta_idRecolectorD());
                     }
 
                     enumerador=1;
-                    for (Ruta ruta : rutasEncontradas) {
+                    for (Ruta ruta : rutas_copia) {
                         System.out.println(enumerador +". "+ ruta);
                         enumerador+=1;
                     }
@@ -2556,7 +3768,7 @@ public class Main {
             
 
         }else if(seleccion.equals("2")){
-            System.out.print("Ingrese el número de la lista correspondiente al area: ");
+            System.out.print("Ingrese el número de la lista correspondiente a la ruta: ");
             int option= input.nextInt();
             Ruta ruta;
             if(!mostrar_todos){
