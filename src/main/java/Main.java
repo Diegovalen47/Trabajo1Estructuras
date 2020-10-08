@@ -207,11 +207,12 @@ public class Main {
                 if (seleccion.equalsIgnoreCase("Y")) {
                     Registrarse();
                 } else if (seleccion.equalsIgnoreCase("N")) {
-                    IniciarSesion();
+
                 }
             }
         } else {       // Se busca por documento de identidad
-            int documento_identidad = Integer.parseInt(option);
+
+            int documento_identidad = Integer.parseInt(quitarPuntosDocumentos(option));
             boolean encontrado = false;
             for (Usuario usuario : usuarios) {
                 if (usuario.cedula == documento_identidad) {
@@ -273,19 +274,21 @@ public class Main {
         }
 
         System.out.print("Documento de identidad : ");
-        int documento_identidad = input.nextInt();
+        String documento_identidad = input.next();
+        int documento = Integer.parseInt(quitarPuntosDocumentos(documento_identidad));
 
         boolean documento_existente = true;
         while (documento_existente) {         // Verificacion que el documento de identidad no está registrado
             documento_existente = false;
             for (Usuario usuario : usuarios) {
 
-                if (usuario.cedula == documento_identidad) {
+                if (usuario.cedula == documento) {
                     documento_existente = true;
                     System.out.println("Ya existe un usuario registrado con ese documento");
                     System.out.println("Intente nuevamente");
                     System.out.print("Documento de identidad : ");
-                    documento_identidad = input.nextInt();
+                    documento_identidad = input.next();
+                    documento = Integer.parseInt(quitarPuntosDocumentos(documento_identidad));
                     break;
                 }
             }
@@ -295,7 +298,7 @@ public class Main {
         System.out.print("Contraseña : ");
         String clave = input.next();
 
-        Usuario usuario = new Usuario(documento_identidad, nombre, apellido, correo, clave);
+        Usuario usuario = new Usuario(documento, nombre, apellido, correo, clave);
         usuarios.add(usuario);
 
         System.out.println("¡Usted se ha registrado exitosamente!");
@@ -405,6 +408,30 @@ public class Main {
         }
 
         System.out.println("Se han guardado los datos de manera exitosa");
+    }
+
+
+    public static String quitarPuntosDocumentos(String documento) {
+        LinkedList<Character> caracteres = new LinkedList<>();
+        for (int i = 0; i < documento.length(); i++) {
+            char x = documento.charAt(i);
+            caracteres.add(x);
+        }
+
+        Iterator<Character> iterator = caracteres.iterator();
+        while (iterator.hasNext()) {
+            char car = iterator.next();
+            if (car == '.') {
+                iterator.remove();
+            }
+        }
+
+        String nuevo_documento = "";
+        for(char car : caracteres) {
+            nuevo_documento+= car;
+        }
+
+        return nuevo_documento;
     }
 
 
@@ -598,6 +625,12 @@ public class Main {
                 System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_nombre = input.next();
+                for (EmpresaDeBasura empresa1 : empresasDeBasuras) {
+                    if (empresa1.getNombre().equalsIgnoreCase(nuevo_nombre)) {
+                        System.out.println("Ya existe una empresa con ese nombre");
+                        return;
+                    }
+                }
                 System.out.println("Ciudad: "+ empresa.getCiudad());
                 System.out.println("Si desea cambiar la ciudad, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
@@ -775,6 +808,12 @@ public class Main {
                         System.out.println("Si desea cambiar la direccion, ingrese su nuevo valor");
                         System.out.println("en otro caso, digite: N");
                         nueva_direccion = input.next();
+                        for (Sede sede1 : sedes) {
+                            if (sede1.getDireccion().equalsIgnoreCase(nueva_direccion)) {
+                                System.out.println("Esa sede ya existe");
+                                return;
+                            }
+                        }
                         System.out.println("Persona a cargo: "+ sede.getPersona_a_cargo());
                         System.out.println("Si desea cambiar la persona a cargo, ingrese su nuevo valor");
                         System.out.println("en otro caso, digite: N");
@@ -783,6 +822,12 @@ public class Main {
                         System.out.println("Si desea cambiar el teléfono, ingrese su nuevo valor");
                         System.out.println("en otro caso, digite: N");
                         nuevo_telefono = input.next();
+                        for (Sede sede1 : sedes) {
+                            if (sede1.getTelefono().equalsIgnoreCase(nuevo_telefono)) {
+                                System.out.println("Esa sede ya existe");
+                                return;
+                            }
+                        }
                         System.out.println("¿Desea guardar los cambios?");
                         System.out.println("Y");
                         System.out.println("N");
@@ -1062,6 +1107,12 @@ public class Main {
                 System.out.println("Si desea cambiar el telefono de la persona a cargo, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_telefono_persona_a_cargo = input.next();
+                for (Area area1 : areas) {
+                    if (area1.getTelefono_persona_a_cargo().equalsIgnoreCase(nuevo_telefono_persona_a_cargo)) {
+                        System.out.println("El area ya existe, intente de nuevo");
+                        return;
+                    }
+                }
                 System.out.println("¿Desea guardar los cambios?");
                 System.out.println("Y");
                 System.out.println("N");
@@ -1273,6 +1324,12 @@ public class Main {
                 System.out.println("Si desea cambiar el nombre, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
                 nuevo_nombre = input.next();
+                for (Taller taller1 : talleres) {
+                    if (taller1.getNombre().equalsIgnoreCase(nuevo_nombre)) {
+                        System.out.println("El taller ya existe, intente de nuevo");
+                        return;
+                    }
+                }
                 System.out.println("Sistema asociado: "+ taller.getSistema_asociado());
                 System.out.println("Si desea cambiar el sistema asociado, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
@@ -1510,6 +1567,12 @@ public class Main {
                 System.out.println("Si desea cambiar el id, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: -1");
                 nuevo_id_ruta = input.nextInt();
+                for (Ruta ruta1 :rutas) {
+                    if (ruta1.getId() == nuevo_id_ruta) {
+                        System.out.println("Ya existe una ruta con ese id");
+                        return;
+                    }
+                }
                 System.out.println("Horario: "+ ruta.getHorario());
                 System.out.println("Si desea cambiar el horario, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
@@ -1633,7 +1696,8 @@ public class Main {
         }
         System.out.println("CREANDO PERSONA");
         System.out.println("Ingrese la cedula de persona");
-        int cedula = input.nextInt();
+        String cedula1 = input.next();
+        int cedula = Integer.parseInt(quitarPuntosDocumentos(cedula1));      // quitar puntos de cedula
         for (Personal persona : personas) {
             if (persona.getCedula() == cedula) {
                 System.out.println("Esta persona ya existe, intente nuevamente");
@@ -1730,7 +1794,8 @@ public class Main {
         }
         System.out.println("Se seleccionará por cédula");
         System.out.println("Ingrese la cédula de la persona");
-        int cedula = input.nextInt();
+        String cedula1 = input.next();
+        int cedula = Integer.parseInt(quitarPuntosDocumentos(cedula1));
         int nueva_cedula = 0;
         String nuevo_perfil = "";
         String nuevo_horario = "";
@@ -1748,6 +1813,12 @@ public class Main {
                 System.out.println("Si desea cambiar la cédula, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: 0");
                 nueva_cedula = input.nextInt();
+                for (Personal persona1 : personas) {
+                    if (persona1.getCedula() == nueva_cedula) {
+                        System.out.println("Esta persona ya existe, intente nuevamente");
+                        return;
+                    }
+                }
                 System.out.println("Perfil: "+ persona.getPerfil());
                 System.out.println("Si desea cambiar el perfil, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
@@ -1943,7 +2014,8 @@ public class Main {
             option = input.next();
             if (option.equalsIgnoreCase("Y")) {
                 System.out.println("Ingrese la cédula de la persona");
-                int cedula_persona = input.nextInt();
+                String cedula1 = input.next();
+                int cedula_persona = Integer.parseInt(quitarPuntosDocumentos(cedula1));
                 boolean PersonalEncontrado = false;
                 for (Personal persona : personas) {
                     if (persona.getCedula() == cedula_persona) {
@@ -1988,6 +2060,12 @@ public class Main {
                 System.out.println("Si desea cambiar el id, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: -1");
                 nuevo_id_recolector = input.nextInt();
+                for (Recolector recolector1 : recolectores) {
+                    if (recolector1.getId() == nuevo_id_recolector) {
+                        System.out.println("Este recolector ya existe, intente nuevamente");
+                        return;
+                    }
+                }
                 System.out.println("Marca: "+ recolector.getMarca());
                 System.out.println("Si desea cambiar la marca, ingrese su nuevo valor");
                 System.out.println("en otro caso, digite: N");
