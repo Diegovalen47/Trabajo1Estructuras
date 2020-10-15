@@ -2649,14 +2649,26 @@ public class Main {
                     if (nuevo_id.equalsIgnoreCase("N")) {
 
                     } else {
-                        int foo;
-                        try {
-                            foo = Integer.parseInt(nuevo_id);
-                         }
-                         catch (NumberFormatException e)
-                         {
-                            foo = 0;
-                         }
+                        int foo=0;
+                        boolean encontrado=true;
+                        while(encontrado){
+                            try {
+                                foo = Integer.parseInt(nuevo_id);
+                            }catch (NumberFormatException e){
+                                foo = 0;
+                            }
+
+                            for (Recolector recolector2 : recolectores) {
+                                if(recolector2.id==foo){
+                                    System.out.println("La identificacion ya existe");
+                                    System.out.print("Ingrese una nueva identificacion: ");
+                                    nuevo_id=input.next();
+                                    encontrado=true;
+                                }
+                            }
+
+                        }
+                      
                         recolector.setId(foo);
                     }
                     if (nuevo_rutaid.equalsIgnoreCase("N")) {
@@ -3309,20 +3321,37 @@ public class Main {
                     }
                     if (nuevo_nombre.equalsIgnoreCase("N")) {
 
+
                     } else {
                         persona.setNombre(nuevo_nombre);
                     }
                     if (nuevo_cedula.equalsIgnoreCase("N")) {
+                        
 
                     } else {
-                        int foo;
-                        try {
-                            foo = Integer.parseInt(nuevo_cedula);
-                         }
-                         catch (NumberFormatException e)
-                         {
-                            foo = 0;
-                         }
+                        boolean encontrado=true;
+                        int foo=0;
+                        while(encontrado){
+                            encontrado=false;
+                            try {
+                                foo = Integer.parseInt(nuevo_cedula);
+                             }catch (NumberFormatException e){
+                                foo = 0;
+                            }
+
+                            for (Personal persona2 : personas){
+                                if (foo==persona2.cedula) {
+                                    System.out.println("La cedula ya se encuentra registrada en el sistema");
+                                    System.out.print("Ingrese la nueva cedula: ");
+                                    nuevo_cedula=input.next();
+                                    encontrado=true;
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        
                         persona.setCedula(foo);
                     }
                     if (nuevo_sueldo.equalsIgnoreCase("N")) {
@@ -3853,6 +3882,19 @@ public class Main {
                     if (nuevo_nombre.equalsIgnoreCase("N")) {
                         
                     }else {
+                        
+                        boolean encontrado=true;
+                        while(encontrado){
+                            encontrado=false;
+                            for (Taller taller2 : talleres) {
+                                if (taller2.nombre.equals(nuevo_nombre)) {
+                                    System.out.println("El nombre ya existe");
+                                    System.out.print("Ingrese un nuevo nombre: ");
+                                    nuevo_nombre= input.next();
+                                    encontrado=true;
+                                }
+                            }
+                        }
                         
                         taller.setNombre(nuevo_nombre);
                     }
@@ -4422,14 +4464,27 @@ public class Main {
                     if (nuevo_id.equalsIgnoreCase("N")) {
                         
                     }else {
-                        int foo;
-                        try {
-                            foo = Integer.parseInt(nuevo_id);
+                        boolean encontrado=true;
+                        int foo=0;
+                        while(encontrado){
+                            encontrado=false;
+                            
+                            try {
+                                foo = Integer.parseInt(nuevo_id);
+                            }
+                            catch (NumberFormatException e){
+                                foo = 0;
+                            }
+                         for (Ruta ruta2 : rutas) {
+                             if(foo==ruta2.id){
+                                System.out.println("Ya hay una ruta con la identificación ingresada");
+                                System.out.print("Ingrese la nueva identificacion: ");
+                                nuevo_id= input.next();
+                                encontrado=true;
+                             }
                          }
-                         catch (NumberFormatException e)
-                         {
-                            foo = 0;
-                         }
+                        }
+                        
                         ruta.setId(foo);
                     }
 
@@ -5565,11 +5620,25 @@ public class Main {
                     if (nuevo_persona.equalsIgnoreCase("N")) {
 
                     } else {
+
                     area.setPersona_a_cargo(nuevo_persona);
                     }
                     if (nuevo_telefono.equalsIgnoreCase("N")) {
 
                     } else {
+                        boolean encontrado=true;
+                        while(encontrado){
+                            encontrado=false;
+                            for (Area area2 : areas) {
+                                if (area2.telefono_persona_a_cargo.equals(nuevo_telefono)) {
+                                    System.out.println("El teléfono ya existe");
+                                    System.out.print("Ingrese un nuevo telefono: ");
+                                    nuevo_telefono= input.next();
+                                    encontrado=true;
+                                }
+                            }
+                        }
+                        
                     area.setTelefono_persona_a_cargo(nuevo_telefono);
                     }
 
@@ -6308,11 +6377,36 @@ public class Main {
                     if (nuevo_telefono.equalsIgnoreCase("N")) {
 
                     }else {
+                        boolean encontrado=true;
+                        while(encontrado){
+                            encontrado=false;
+                            for (Sede sede2 : sedes) {
+                                if (sede2.telefono.equals(nuevo_telefono)) {
+                                    System.out.println("El telefono ya existe");
+                                    System.out.print("Ingrese un nuevo telefono: ");
+                                    nuevo_direccion= input.next();
+                                    encontrado=true;
+                                }
+                            }
+                        }
+
                         sede.setTelefono(nuevo_telefono);
                     }
                     if (nuevo_direccion.equalsIgnoreCase("N")) {
 
                     } else {
+                        boolean encontrado=true;
+                        while(encontrado){
+                            encontrado=false;
+                            for (Sede sede2 : sedes) {
+                                if (sede2.direccion.equals(nuevo_direccion)) {
+                                    System.out.println("La direccion ya existe");
+                                    System.out.print("Ingrese una nueva direccion: ");
+                                    nuevo_direccion= input.next();
+                                    encontrado=true;
+                                }
+                            }
+                        }
                         sede.setDireccion(nuevo_direccion);
                     }
                     if (nuevo_persona.equalsIgnoreCase("N")) {
@@ -7029,6 +7123,18 @@ public class Main {
                     if (nuevo_nombre.equalsIgnoreCase("N")) {
 
                     } else {
+                        boolean encontrado=true;
+                        while(encontrado){
+                            encontrado=false;
+                            for (EmpresaDeBasura empresa2 : empresasDeBasuras) {
+                                if (empresa2.nombre.equals(nuevo_nombre)) {
+                                    System.out.println("El nombre ya existe");
+                                    System.out.print("Ingrese un nuevo nombre: ");
+                                    nuevo_nombre=input.next();
+                                    encontrado=true;
+                                }
+                            }
+                        }
                         empresa.setNombre(nuevo_nombre);
                     }
                     if (nueva_ciudad.equalsIgnoreCase("N")) {
