@@ -1,6 +1,8 @@
-package App;
+package App.controladores;
 
 import java.io.IOException;
+
+import App.App;
 import javafx.fxml.FXML;
 
 public class SecondaryController {

@@ -13,7 +13,7 @@ public class Area {
 
     @Override
     public String toString() {
-        return  "\n\tAREA" + '\n' +
+        return  "\tAREA" + '\n' +
                 "\t-Id : " + id + '\n' +
                 "\t-Persona a cargo : " + persona_a_cargo + '\n' +
                 "\t-Telefono : " + telefono;
