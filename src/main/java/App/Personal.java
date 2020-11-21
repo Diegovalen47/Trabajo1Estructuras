@@ -1,14 +1,26 @@
 package App;
 
 public class Personal {
-    int cedula;
+    String cedula;
     int sueldo;
     String horario;
 
-    public Personal(int cedula, int sueldo, String horario) {
+    public Personal(String cedula, int sueldo, String horario) {
         this.cedula = cedula;
         this.sueldo = sueldo;
         this.horario = horario;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Personal)) {
+            return false;
+        }
+        Personal personal = (Personal) obj;
+        return personal.cedula.toLowerCase().equals(this.cedula.toLowerCase());
     }
 
     @Override

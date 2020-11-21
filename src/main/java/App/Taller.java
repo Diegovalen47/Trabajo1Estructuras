@@ -13,6 +13,18 @@ public class Taller {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Taller)) {
+            return false;
+        }
+        Taller taller = (Taller) obj;
+        return taller.nombre.toLowerCase().equals(this.nombre.toLowerCase());
+    }
+
+    @Override
     public String toString() {
         return  "\tTALLER" + '\n' +
                 "\t-Nombre : " + nombre + '\n' +
