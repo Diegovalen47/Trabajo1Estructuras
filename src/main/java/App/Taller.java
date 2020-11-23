@@ -31,5 +31,4 @@ public class Taller {
                 "\t-Sistema_asociado : " + sistema_asociado + '\n' +
                 "\t-Dinero fallas menores : " + dinero_fallas_menores;
     }
-
 }

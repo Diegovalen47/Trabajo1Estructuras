@@ -30,6 +30,4 @@ public class Area {
                 "\t-Persona a cargo : " + persona_a_cargo + '\n' +
                 "\t-Telefono : " + telefono;
     }
-
-
 }
