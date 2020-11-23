@@ -79,9 +79,7 @@ public class IniciarSesionController {
         Clave.setText("");
 
         //se valida y luego se va a la siguiente ventana
-
-
-
+        App.App.setRoot("menu_principal");
     }
 
 }
