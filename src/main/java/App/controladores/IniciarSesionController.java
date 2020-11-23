@@ -11,6 +11,7 @@ public class IniciarSesionController {
 
     public static String eMail = "dosoriom@unal.edu.co";
     public static String user = "dosoriom";
+    public static String documento = "1007290916";
     public static String password = "estructuras";
 
     @FXML
@@ -61,6 +62,14 @@ public class IniciarSesionController {
                 return;
             }
         } else if (usuario.equals(user)) {
+            if (clave.equals(password)) {
+
+            } else {
+                WarningMessage.setText("Contraseña incorrecta");
+                WarningMessage.setVisible(true);
+                return;
+            }
+        } else if (usuario.equals(documento)) {
             if (clave.equals(password)) {
 
             } else {

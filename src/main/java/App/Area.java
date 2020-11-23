@@ -1,12 +1,12 @@
 package App;
 
 public class Area {
-    String id;
+    int id = 0;
     String persona_a_cargo;
     String telefono;
 
-    public Area(String id, String persona_a_cargo, String telefono) {
-        this.id = id;
+    public Area(String persona_a_cargo, String telefono) {
+        id++;
         this.persona_a_cargo = persona_a_cargo;
         this.telefono = telefono;
     }
@@ -20,7 +20,7 @@ public class Area {
             return false;
         }
         Area area = (Area) obj;
-        return area.id.toLowerCase().equals(this.id.toLowerCase());
+        return area.id == this.id;
     }
 
     @Override
