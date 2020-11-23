@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MenuPrincipalController {
+public class IniciarSesionController {
 
     public static String eMail = "dosoriom@unal.edu.co";
     public static String user = "dosoriom";
@@ -79,7 +79,8 @@ public class MenuPrincipalController {
         Clave.setText("");
 
         //se valida y luego se va a la siguiente ventana
-        
+
+
 
     }
 

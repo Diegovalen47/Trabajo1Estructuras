@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="374.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.MenuPrincipalController">
+<AnchorPane prefHeight="374.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.IniciarSesionController">
    <children>
       <Label layoutX="58.0" layoutY="26.0" prefHeight="35.0" prefWidth="158.0" text="Iniciar Sesion">
          <font>
