@@ -5,9 +5,9 @@ public class Personal {
     int sueldo;
     String horario;
 
-    public Personal(String cedula, int sueldo, String horario) {
+    public Personal(String cedula, String sueldo, String horario) {
         this.cedula = cedula;
-        this.sueldo = sueldo;
+        this.sueldo = Integer.parseInt(sueldo);
         this.horario = horario;
     }
 
