@@ -14,8 +14,8 @@
          </font>
       </Label>
       <Label layoutX="150.0" layoutY="66.0" text="¿Qué desea hacer?" />
-      <Button layoutX="116.0" layoutY="131.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="166.0" text="Administrar" />
-      <Button layoutX="117.0" layoutY="200.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="166.0" text="Buscar" />
+      <Button layoutX="116.0" layoutY="131.0" mnemonicParsing="false" onAction="#Adminitracion" prefHeight="31.0" prefWidth="166.0" text="Administrar" />
+      <Button layoutX="117.0" layoutY="200.0" mnemonicParsing="false" onAction="#Busqueda" prefHeight="31.0" prefWidth="166.0" text="Buscar" />
       <Button layoutX="277.0" layoutY="412.0" mnemonicParsing="false" onAction="#CerrarSesion" prefHeight="39.0" prefWidth="92.0" text="Cerrar sesión" />
    </children>
 </AnchorPane>

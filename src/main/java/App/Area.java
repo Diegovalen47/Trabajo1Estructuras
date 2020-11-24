@@ -1,14 +1,19 @@
 package App;
 
+import java.util.Hashtable;
+
 public class Area {
     int id = 0;
     String persona_a_cargo;
     int telefono;
+    public static Hashtable<Integer, Area> AreaIds = new Hashtable<>();
 
     public Area(String persona_a_cargo, String telefono) {
         id++;
         this.persona_a_cargo = persona_a_cargo;
         this.telefono = Integer.parseInt(telefono);
+        AreaIds.put(id, this);
+        App.Grafo.addVertex(this);
     }
 
     @Override
