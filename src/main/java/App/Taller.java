@@ -1,12 +1,16 @@
 package App;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.TreeMap;
 
 public class Taller {
     String nombre;
     String sistema_asociado;
     int dinero_fallas_menores;
     public static Hashtable<String, Taller> TallerNombres = new Hashtable<>();
+    public static TreeMap<String, ArrayList<Taller>> TallerSistemas = new TreeMap<>();
+    public static TreeMap<Integer, ArrayList<Taller>> TallerDinero = new TreeMap<>();
 
 
     public Taller(String nombre, String sistema_asociado, String dinero_fallas_menores) {
@@ -15,6 +19,21 @@ public class Taller {
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
         TallerNombres.put(nombre, this);
         App.Grafo.addVertex(this);
+        if (TallerSistemas.containsKey(sistema_asociado)) {
+            TallerSistemas.get(sistema_asociado).add(this);
+        } else {
+            ArrayList<Taller> lista = new ArrayList<>();
+            lista.add(this);
+            TallerSistemas.put(sistema_asociado, lista);
+        }
+        if (TallerDinero.containsKey(Integer.parseInt(dinero_fallas_menores))) {
+            TallerDinero.get(Integer.parseInt(dinero_fallas_menores)).add(this);
+        } else {
+            ArrayList<Taller> lista = new ArrayList<>();
+            lista.add(this);
+            TallerDinero.put(Integer.parseInt(dinero_fallas_menores), lista);
+        }
+
     }
 
     public void conectar(Area area) {

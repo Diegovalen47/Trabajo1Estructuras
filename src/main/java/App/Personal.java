@@ -1,12 +1,16 @@
 package App;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.TreeMap;
 
 public class Personal {
     String cedula;
     int sueldo;
     String horario;
     public static Hashtable<String, Personal> PersonalCedulas = new Hashtable<>();
+    public static TreeMap<Integer, ArrayList<Personal>> PersonalSueldo = new TreeMap<>();
+    public static TreeMap<String, ArrayList<Personal>> PersonalHorario = new TreeMap<>();
 
     public Personal(String cedula, String sueldo, String horario) {
         this.cedula = cedula;
@@ -14,6 +18,20 @@ public class Personal {
         this.horario = horario;
         PersonalCedulas.put(cedula, this);
         App.Grafo.addVertex(this);
+        if (PersonalSueldo.containsKey(Integer.parseInt(sueldo))) {
+            PersonalSueldo.get(Integer.parseInt(sueldo)).add(this);
+        } else {
+            ArrayList<Personal> lista = new ArrayList<>();
+            lista.add(this);
+            PersonalSueldo.put(Integer.parseInt(sueldo), lista);
+        }
+        if (PersonalHorario.containsKey(horario)) {
+            PersonalHorario.get(horario).add(this);
+        } else {
+            ArrayList<Personal> lista = new ArrayList<>();
+            lista.add(this);
+            PersonalHorario.put(horario, lista);
+        }
     }
 
     public void conectar(Object obj) {
