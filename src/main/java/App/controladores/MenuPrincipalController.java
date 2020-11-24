@@ -10,6 +10,12 @@ public class MenuPrincipalController {
         App.App.setRoot("iniciar_sesion");
     }
 
+    public void Adminitracion(ActionEvent event) throws IOException {
+        App.App.setRoot("administracion");
+    }
 
-    
+    public void Busqueda(ActionEvent event) throws IOException {
+        App.App.setRoot("busqueda");
+    }
+
 }
