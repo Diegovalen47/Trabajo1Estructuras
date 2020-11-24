@@ -59,18 +59,14 @@ public class App extends Application {
         persona3.conectar(taller2);
 
         ArrayList<Object> vertices = new ArrayList<>(Grafo.vertexSet());
-        for(Object obj : vertices) {
-            if (obj instanceof Area) {
+
+        for (Object obj : vertices) {
+            if (obj instanceof Taller) {
                 System.out.println(obj);
             }
         }
-        Area.AreaIds.get(1).telefono = 6100315;
-        for(Object obj : vertices) {
-            if (obj instanceof Area) {
-                System.out.println(obj);
-            }
-        }
-        System.out.println(Area.AreaTelefonos.get(5482449));
+
+
         launch();
     }
 

@@ -33,6 +33,9 @@ public class AdministracionController implements Initializable {
         choiceBoxAccion.setItems(FXCollections.observableArrayList("Ver", "Crear", "Editar", "Eliminar"));
     }
 
+
+
+
     @FXML
     public void Volver(ActionEvent event) throws IOException {
         App.App.setRoot("menu_principal");
