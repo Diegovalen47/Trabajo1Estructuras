@@ -8,28 +8,28 @@ public class Area {
     int id;
     String persona_a_cargo;
     int telefono;
-    public static Hashtable<Integer, Area> AreaIds = new Hashtable<>();
-    public static TreeMap<String, ArrayList<Area>> AreaPersonasACargo = new TreeMap<>();
-    public static TreeMap<Integer, ArrayList<Area>> AreaTelefonos = new TreeMap<>();
+    public static Hashtable<Integer, String> AreaIds = new Hashtable<>();
+    public static TreeMap<String, ArrayList<Integer>> AreaPersonasACargo = new TreeMap<>();
+    public static TreeMap<Integer, ArrayList<Integer>> AreaTelefonos = new TreeMap<>();
 
     public Area(int id, String persona_a_cargo, String telefono) {
         this.persona_a_cargo = persona_a_cargo.toLowerCase();
         this.telefono = Integer.parseInt(telefono);
         this.id = id;
-        AreaIds.put(id, this);
         App.Grafo.addVertex(this);
+        AreaIds.put(id, "");
         if (AreaPersonasACargo.containsKey(persona_a_cargo.toLowerCase())) {
-            AreaPersonasACargo.get(persona_a_cargo.toLowerCase()).add(this);
+            AreaPersonasACargo.get(persona_a_cargo.toLowerCase()).add(id);
         } else {
-            ArrayList<Area> lista = new ArrayList<>();
-            lista.add(this);
+            ArrayList<Integer> lista = new ArrayList<>();
+            lista.add(id);
             AreaPersonasACargo.put(persona_a_cargo.toLowerCase(), lista);
         }
         if (AreaTelefonos.containsKey(Integer.parseInt(telefono))) {
-            AreaTelefonos.get(Integer.parseInt(telefono)).add(this);
+            AreaTelefonos.get(Integer.parseInt(telefono)).add(id);
         } else {
-            ArrayList<Area> lista = new ArrayList<>();
-            lista.add(this);
+            ArrayList<Integer> lista = new ArrayList<>();
+            lista.add(id);
             AreaTelefonos.put(Integer.parseInt(telefono), lista);
         }
     }
