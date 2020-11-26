@@ -56,7 +56,7 @@ public class Taller {
     public String toString() {
         return  "\tTALLER" + '\n' +
                 "\t-Nombre : " + nombre + '\n' +
-                "\t-Sistema_asociado : " + sistema_asociado + '\n' +
+                "\t-Sistema asociado : " + sistema_asociado + '\n' +
                 "\t-Dinero fallas menores : " + dinero_fallas_menores;
     }
 }

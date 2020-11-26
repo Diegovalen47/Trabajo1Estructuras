@@ -58,13 +58,8 @@ public class App extends Application {
         Personal persona3 = new Personal("43469098", "254800", "Nocturno");
         persona3.conectar(taller2);
 
-        ArrayList<Object> vertices = new ArrayList<>(Grafo.vertexSet());
 
-        for (Object obj : vertices) {
-            if (obj instanceof Taller) {
-                System.out.println(obj);
-            }
-        }
+
 
 
         launch();
