@@ -57,7 +57,7 @@ public class App extends Application {
         persona2.conectar(area2);
         Personal persona3 = new Personal("43469098", "254800", "Nocturno");
         persona3.conectar(taller2);
-        
+
 
 
         launch();
