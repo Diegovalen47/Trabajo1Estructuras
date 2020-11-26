@@ -34,6 +34,13 @@ public class Area {
         }
     }
 
+    public void editar(Area area) {
+        this.telefono = area.telefono;
+        this.persona_a_cargo = area.persona_a_cargo.toLowerCase();
+        this.id = area.id;
+
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

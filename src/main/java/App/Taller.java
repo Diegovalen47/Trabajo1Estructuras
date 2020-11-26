@@ -17,7 +17,7 @@ public class Taller {
         this.nombre = nombre.toLowerCase();
         this.sistema_asociado = sistema_asociado;
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
-        TallerNombres.put(nombre.toLowerCase(), this);
+        TallerNombres.put(this.nombre.toLowerCase(), this);
         App.Grafo.addVertex(this);
         if (TallerSistemas.containsKey(sistema_asociado.toLowerCase())) {
             TallerSistemas.get(sistema_asociado.toLowerCase()).add(this);

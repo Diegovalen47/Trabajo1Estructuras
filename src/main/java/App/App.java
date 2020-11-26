@@ -58,7 +58,16 @@ public class App extends Application {
         Personal persona3 = new Personal("43469098", "254800", "Nocturno");
         persona3.conectar(taller2);
 
+        Taller nuevo = Taller.TallerNombres.get("los mecanicos");
+        System.out.println(nuevo);
+        nuevo.nombre = "hola";
 
+        for (Taller taller : Taller.TallerSistemas.get("hidraulico")) {
+            System.out.println(taller);
+        }
+
+        Taller nuevo1 = Taller.TallerNombres.get("hola");
+        System.out.println(nuevo1);
 
 
 
