@@ -1,8 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="482.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.BusquedaController">
-
+   <children>
+      <Label layoutX="26.0" layoutY="65.0" prefHeight="26.0" prefWidth="167.0" text="Seleccione la entidad a buscar" />
+      <Label layoutX="22.0" layoutY="112.0" prefHeight="26.0" prefWidth="174.0" text="Seleccione el atributo a buscar" />
+      <Label layoutX="22.0" layoutY="172.0" prefHeight="26.0" prefWidth="101.0" text="Ingrese el valor" />
+      <Button layoutX="284.0" layoutY="241.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Buscar" />
+      <MenuButton layoutX="279.0" layoutY="65.0" mnemonicParsing="false" text="MenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="279.0" layoutY="112.0" mnemonicParsing="false" text="MenuButton">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <TextField layoutX="200.0" layoutY="172.0" prefHeight="26.0" prefWidth="174.0" />
+      <Label layoutX="29.0" layoutY="275.0" prefHeight="26.0" prefWidth="101.0" text="Resultados:" />
+      <TextArea layoutX="146.0" layoutY="310.0" prefHeight="146.0" prefWidth="230.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="14.0" prefHeight="26.0" prefWidth="167.0" text="BUSCAR" underline="true">
+         <effect>
+            <Blend />
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
