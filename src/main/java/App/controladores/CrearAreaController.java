@@ -44,7 +44,7 @@ public class CrearAreaController {
         try {
             int tel = Integer.parseInt(telefono);
         } catch (NumberFormatException e) {
-            WarningMessages.setText("El telefono deben ser numeros");
+            WarningMessages.setText("El telefono deben ser un valor numerico");
             WarningMessages.setVisible(true);
             return;
         }

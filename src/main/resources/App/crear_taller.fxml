@@ -11,7 +11,7 @@
    <children>
       <Button layoutX="29.0" layoutY="428.0" mnemonicParsing="false" onAction="#Volver" prefHeight="36.0" prefWidth="63.0" text="Volver" />
       <Button layoutX="313.0" layoutY="428.0" mnemonicParsing="false" onAction="#Enviar" prefHeight="36.0" prefWidth="63.0" text="Enviar" />
-      <Label layoutX="142.0" layoutY="27.0" text="Crear Taller">
+      <Label layoutX="142.0" layoutY="24.0" text="Crear Taller">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
