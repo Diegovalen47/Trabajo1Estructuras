@@ -8,29 +8,29 @@ public class Taller {
     String nombre;
     String sistema_asociado;
     int dinero_fallas_menores;
-    public static Hashtable<String, Taller> TallerNombres = new Hashtable<>();
-    public static TreeMap<String, ArrayList<Taller>> TallerSistemas = new TreeMap<>();
-    public static TreeMap<Integer, ArrayList<Taller>> TallerDinero = new TreeMap<>();
+    public static Hashtable<String, String> TallerNombres = new Hashtable<>();
+    public static TreeMap<String, ArrayList<String>> TallerSistemas = new TreeMap<>();
+    public static TreeMap<Integer, ArrayList<String>> TallerDinero = new TreeMap<>();
 
 
     public Taller(String nombre, String sistema_asociado, String dinero_fallas_menores) {
         this.nombre = nombre.toLowerCase();
         this.sistema_asociado = sistema_asociado;
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
-        TallerNombres.put(this.nombre.toLowerCase(), this);
         App.Grafo.addVertex(this);
+        TallerNombres.put(this.nombre, "");
         if (TallerSistemas.containsKey(sistema_asociado.toLowerCase())) {
-            TallerSistemas.get(sistema_asociado.toLowerCase()).add(this);
+            TallerSistemas.get(sistema_asociado.toLowerCase()).add(this.nombre);
         } else {
-            ArrayList<Taller> lista = new ArrayList<>();
-            lista.add(this);
+            ArrayList<String> lista = new ArrayList<>();
+            lista.add(this.nombre);
             TallerSistemas.put(sistema_asociado.toLowerCase(), lista);
         }
         if (TallerDinero.containsKey(Integer.parseInt(dinero_fallas_menores))) {
-            TallerDinero.get(Integer.parseInt(dinero_fallas_menores)).add(this);
+            TallerDinero.get(Integer.parseInt(dinero_fallas_menores)).add(this.nombre);
         } else {
-            ArrayList<Taller> lista = new ArrayList<>();
-            lista.add(this);
+            ArrayList<String> lista = new ArrayList<>();
+            lista.add(this.nombre);
             TallerDinero.put(Integer.parseInt(dinero_fallas_menores), lista);
         }
 

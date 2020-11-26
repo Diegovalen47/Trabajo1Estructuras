@@ -33,7 +33,7 @@ public class Area {
             AreaTelefonos.put(Integer.parseInt(telefono), lista);
         }
     }
-    
+
 
     @Override
     public boolean equals(Object obj) {

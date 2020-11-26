@@ -8,28 +8,28 @@ public class Personal {
     String cedula;
     int sueldo;
     String horario;
-    public static Hashtable<String, Personal> PersonalCedulas = new Hashtable<>();
-    public static TreeMap<Integer, ArrayList<Personal>> PersonalSueldo = new TreeMap<>();
-    public static TreeMap<String, ArrayList<Personal>> PersonalHorario = new TreeMap<>();
+    public static Hashtable<String, String> PersonalCedulas = new Hashtable<>();
+    public static TreeMap<Integer, ArrayList<String>> PersonalSueldo = new TreeMap<>();
+    public static TreeMap<String, ArrayList<String>> PersonalHorario = new TreeMap<>();
 
     public Personal(String cedula, String sueldo, String horario) {
         this.cedula = cedula;
         this.sueldo = Integer.parseInt(sueldo);
         this.horario = horario.toLowerCase();
-        PersonalCedulas.put(cedula, this);
         App.Grafo.addVertex(this);
+        PersonalCedulas.put(cedula, "");
         if (PersonalSueldo.containsKey(Integer.parseInt(sueldo))) {
-            PersonalSueldo.get(Integer.parseInt(sueldo)).add(this);
+            PersonalSueldo.get(Integer.parseInt(sueldo)).add(cedula);
         } else {
-            ArrayList<Personal> lista = new ArrayList<>();
-            lista.add(this);
+            ArrayList<String> lista = new ArrayList<>();
+            lista.add(cedula);
             PersonalSueldo.put(Integer.parseInt(sueldo), lista);
         }
         if (PersonalHorario.containsKey(horario.toLowerCase())) {
-            PersonalHorario.get(horario.toLowerCase()).add(this);
+            PersonalHorario.get(horario.toLowerCase()).add(cedula);
         } else {
-            ArrayList<Personal> lista = new ArrayList<>();
-            lista.add(this);
+            ArrayList<String> lista = new ArrayList<>();
+            lista.add(cedula);
             PersonalHorario.put(horario.toLowerCase(), lista);
         }
     }
