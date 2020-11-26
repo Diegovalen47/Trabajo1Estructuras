@@ -38,7 +38,7 @@ public class App extends Application {
     }
 
     public static Graph<Object, DefaultEdge> Grafo = new SimpleGraph<>(DefaultEdge.class);
-    public static int idArea = 0;
+
 
 
     public static void main(String[] args) {

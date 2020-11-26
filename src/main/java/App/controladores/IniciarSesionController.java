@@ -54,6 +54,7 @@ public class IniciarSesionController {
                 } else {
                     WarningMessage.setText("Contraseña incorrecta");
                     WarningMessage.setVisible(true);
+                    Clave.clear();
                     return;
                 }
             } else {
@@ -67,6 +68,7 @@ public class IniciarSesionController {
             } else {
                 WarningMessage.setText("Contraseña incorrecta");
                 WarningMessage.setVisible(true);
+                Clave.clear();
                 return;
             }
         } else if (usuario.equals(documento)) {
@@ -75,6 +77,7 @@ public class IniciarSesionController {
             } else {
                 WarningMessage.setText("Contraseña incorrecta");
                 WarningMessage.setVisible(true);
+                Clave.clear();
                 return;
             }
         } else {

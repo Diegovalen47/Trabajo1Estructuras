@@ -14,17 +14,17 @@ public class Taller {
 
 
     public Taller(String nombre, String sistema_asociado, String dinero_fallas_menores) {
-        this.nombre = nombre;
+        this.nombre = nombre.toLowerCase();
         this.sistema_asociado = sistema_asociado;
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
-        TallerNombres.put(nombre, this);
+        TallerNombres.put(nombre.toLowerCase(), this);
         App.Grafo.addVertex(this);
-        if (TallerSistemas.containsKey(sistema_asociado)) {
-            TallerSistemas.get(sistema_asociado).add(this);
+        if (TallerSistemas.containsKey(sistema_asociado.toLowerCase())) {
+            TallerSistemas.get(sistema_asociado.toLowerCase()).add(this);
         } else {
             ArrayList<Taller> lista = new ArrayList<>();
             lista.add(this);
-            TallerSistemas.put(sistema_asociado, lista);
+            TallerSistemas.put(sistema_asociado.toLowerCase(), lista);
         }
         if (TallerDinero.containsKey(Integer.parseInt(dinero_fallas_menores))) {
             TallerDinero.get(Integer.parseInt(dinero_fallas_menores)).add(this);

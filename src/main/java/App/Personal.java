@@ -15,7 +15,7 @@ public class Personal {
     public Personal(String cedula, String sueldo, String horario) {
         this.cedula = cedula;
         this.sueldo = Integer.parseInt(sueldo);
-        this.horario = horario;
+        this.horario = horario.toLowerCase();
         PersonalCedulas.put(cedula, this);
         App.Grafo.addVertex(this);
         if (PersonalSueldo.containsKey(Integer.parseInt(sueldo))) {
@@ -25,12 +25,12 @@ public class Personal {
             lista.add(this);
             PersonalSueldo.put(Integer.parseInt(sueldo), lista);
         }
-        if (PersonalHorario.containsKey(horario)) {
-            PersonalHorario.get(horario).add(this);
+        if (PersonalHorario.containsKey(horario.toLowerCase())) {
+            PersonalHorario.get(horario.toLowerCase()).add(this);
         } else {
             ArrayList<Personal> lista = new ArrayList<>();
             lista.add(this);
-            PersonalHorario.put(horario, lista);
+            PersonalHorario.put(horario.toLowerCase(), lista);
         }
     }
 

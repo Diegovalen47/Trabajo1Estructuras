@@ -1,13 +1,19 @@
 package App.controladores;
 
+import App.Area;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
+
 
 public class CrearAreaController {
+
+    public static int idArea = 3;
 
     @FXML
     public TextField TextTelefono;
@@ -34,8 +40,27 @@ public class CrearAreaController {
             return;
         }
 
-        if () {
-
+        //Al crear no hay necesidad de verificar existencia ya que es con id autogenerado incremental
+        try {
+            int tel = Integer.parseInt(telefono);
+        } catch (NumberFormatException e) {
+            WarningMessages.setText("El telefono deben ser numeros");
+            WarningMessages.setVisible(true);
+            return;
         }
+
+        Area area = new Area(idArea, persona_a_cargo, telefono);
+        idArea++;
+
+        TextTelefono.setText("");
+        TextPersonaACargo.setText("");
+        WarningMessages.setVisible(false);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Area creada satisfactoriamente");
+        alert.setHeaderText("Area ha sido creada satisfactoriamente");
+        alert.setContentText(area.toString());
+
+
+        alert.showAndWait();
     }
 }
