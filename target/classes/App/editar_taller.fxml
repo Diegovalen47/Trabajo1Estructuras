@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="482" prefWidth="401" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.EditarTallerController">
    <children>
       <Label layoutX="144.0" layoutY="30.0" text="Editar Taller">
@@ -19,7 +18,7 @@
       <ChoiceBox fx:id="choiceBoxTalleres" layoutX="214.0" layoutY="89.0" prefWidth="150.0" />
       <Button layoutX="176.0" layoutY="142.0" mnemonicParsing="false" onAction="#Continuar" text="Continuar" />
       <Button layoutX="26.0" layoutY="423.0" mnemonicParsing="false" onAction="#Volver" prefHeight="36.0" prefWidth="63.0" text="Volver" />
-      <Button layoutX="323.0" layoutY="423.0" mnemonicParsing="false" onAction="#Enviar" prefHeight="36.0" prefWidth="63.0" text="Enviar" />
+      <Button fx:id="send" layoutX="323.0" layoutY="423.0" mnemonicParsing="false" onAction="#Enviar" prefHeight="36.0" prefWidth="63.0" text="Enviar" visible="false" />
       <Label fx:id="labelNombre" layoutX="54.0" layoutY="224.0" text="Nombre:" visible="false" />
       <Label fx:id="labelSistema" layoutX="54.0" layoutY="264.0" text="Sistema asociado:" visible="false" />
       <TextField fx:id="TextNombre" layoutX="211.0" layoutY="220.0" visible="false" />

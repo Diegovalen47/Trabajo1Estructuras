@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +31,9 @@ public class EditarAreaController implements Initializable {
 
     @FXML
     public TextField TextPersonaACargo;
+
+    @FXML
+    public Button send;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +61,7 @@ public class EditarAreaController implements Initializable {
         TextTelefono.setVisible(true);
         TextPersonaACargo.setVisible(true);
         WarningMessages.setVisible(false);
+        send.setVisible(true);
     }
 
 
@@ -90,6 +91,7 @@ public class EditarAreaController implements Initializable {
         WarningMessages.setVisible(false);
         TextTelefono.setVisible(false);
         TextPersonaACargo.setVisible(false);
+        send.setVisible(false);
 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

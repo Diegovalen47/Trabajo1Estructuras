@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,6 +38,9 @@ public class EditarTallerController implements Initializable {
     @FXML
     public TextField TextDinero;
 
+    @FXML
+    public Button send;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBoxTalleres.setItems(FXCollections.observableArrayList(Taller.TallerNombres.keySet()));
@@ -70,6 +70,7 @@ public class EditarTallerController implements Initializable {
         TextSistema.setVisible(true);
         TextDinero.setVisible(true);
         WarningMessages.setVisible(false);
+        send.setVisible(true);
     }
 
 
@@ -103,11 +104,12 @@ public class EditarTallerController implements Initializable {
         TextSistema.setVisible(false);
         TextDinero.setVisible(false);
         WarningMessages.setVisible(false);
+        send.setVisible(false);
 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Area editada satisfactoriamente");
-        alert.setHeaderText("Area ha sido editada satisfactoriamente");
+        alert.setTitle("Taller editado satisfactoriamente");
+        alert.setHeaderText("Taller ha sido editado satisfactoriamente");
         alert.setContentText(Taller.TallerNombres.get(nombreTaller).toString());
 
 
