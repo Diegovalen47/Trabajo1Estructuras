@@ -8,7 +8,7 @@ public class Area {
     int id;
     String persona_a_cargo;
     int telefono;
-    public static Hashtable<Integer, String> AreaIds = new Hashtable<>();
+    public static Hashtable<Integer, Area> AreaIds = new Hashtable<>();
     public static TreeMap<String, ArrayList<Integer>> AreaPersonasACargo = new TreeMap<>();
     public static TreeMap<Integer, ArrayList<Integer>> AreaTelefonos = new TreeMap<>();
 
@@ -16,8 +16,8 @@ public class Area {
         this.persona_a_cargo = persona_a_cargo.toLowerCase();
         this.telefono = Integer.parseInt(telefono);
         this.id = id;
+        AreaIds.put(id, this);
         App.Grafo.addVertex(this);
-        AreaIds.put(id, "");
         if (AreaPersonasACargo.containsKey(persona_a_cargo.toLowerCase())) {
             AreaPersonasACargo.get(persona_a_cargo.toLowerCase()).add(id);
         } else {

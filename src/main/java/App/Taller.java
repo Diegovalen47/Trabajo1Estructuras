@@ -8,7 +8,7 @@ public class Taller {
     String nombre;
     String sistema_asociado;
     int dinero_fallas_menores;
-    public static Hashtable<String, String> TallerNombres = new Hashtable<>();
+    public static Hashtable<String, Taller> TallerNombres = new Hashtable<>();
     public static TreeMap<String, ArrayList<String>> TallerSistemas = new TreeMap<>();
     public static TreeMap<Integer, ArrayList<String>> TallerDinero = new TreeMap<>();
 
@@ -18,7 +18,7 @@ public class Taller {
         this.sistema_asociado = sistema_asociado;
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
         App.Grafo.addVertex(this);
-        TallerNombres.put(this.nombre, "");
+        TallerNombres.put(this.nombre, this);
         if (TallerSistemas.containsKey(sistema_asociado.toLowerCase())) {
             TallerSistemas.get(sistema_asociado.toLowerCase()).add(this.nombre);
         } else {
