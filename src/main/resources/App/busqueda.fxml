@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="482.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.BusquedaController">
-
+<AnchorPane prefHeight="490.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.BusquedaController">
+    <children>
+        <Label layoutX="29.0" layoutY="71.0" prefHeight="30.0" prefWidth="182.0" text="Seleccione la entidad a buscar: " />
+        <Label layoutX="29.0" layoutY="135.0" prefHeight="30.0" prefWidth="182.0" text="Seleccione el atributo a buscar: " />
+        <Label layoutX="29.0" layoutY="188.0" prefHeight="30.0" prefWidth="108.0" text="Ingrese el valor:" />
+        <TextField layoutX="194.0" layoutY="191.0" prefHeight="26.0" prefWidth="182.0" />
+        <TextArea layoutX="176.0" layoutY="282.0" prefHeight="156.0" prefWidth="200.0" />
+        <Label layoutX="29.0" layoutY="267.0" prefHeight="30.0" prefWidth="77.0" text="Resultado:" />
+        <Button layoutX="258.0" layoutY="241.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Buscar" />
+        <Label alignment="CENTER" layoutX="120.0" layoutY="14.0" prefHeight="30.0" prefWidth="182.0" text="Buscar">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+        <Button layoutX="258.0" layoutY="449.0" mnemonicParsing="false" onAction="#Volver" prefHeight="26.0" prefWidth="122.0" text="Volver" />
+        <ChoiceBox fx:id="MenuEntidad" layoutX="230.0" layoutY="73.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="MenuAtributo" layoutX="230.0" layoutY="137.0" prefWidth="150.0" />
+    </children>
 </AnchorPane>
