@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import org.jgrapht.Graph;
 import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.DefaultUndirectedWeightedGraph;
+import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleGraph;
 
 import java.io.IOException;
@@ -37,8 +39,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static Graph<Object, DefaultEdge> Grafo = new SimpleGraph<>(DefaultEdge.class);
-
+    public static Graph<Object, DefaultWeightedEdge> Grafo = new DefaultUndirectedWeightedGraph<>(DefaultWeightedEdge.class);
 
 
     public static void main(String[] args) {

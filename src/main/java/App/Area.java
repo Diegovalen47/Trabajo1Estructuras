@@ -6,9 +6,10 @@ import java.util.TreeMap;
 
 public class Area {
     public int id;
+    public int idEdge=1;
     public String persona_a_cargo;
     public int telefono;
-    public static Hashtable<Integer, Area> AreaIds = new Hashtable<>();
+    public static Hashtable<Integer, Integer> AreaIds = new Hashtable<>();
     public static TreeMap<String, ArrayList<Integer>> AreaPersonasACargo = new TreeMap<>();
     public static TreeMap<Integer, ArrayList<Integer>> AreaTelefonos = new TreeMap<>();
 
@@ -16,8 +17,11 @@ public class Area {
         this.persona_a_cargo = persona_a_cargo.toLowerCase();
         this.telefono = Integer.parseInt(telefono);
         this.id = id;
-        AreaIds.put(id, this);
+        AreaIds.put(id, idEdge);
         App.Grafo.addVertex(this);
+        App.Grafo.addEdge(this, this);
+        App.Grafo.setEdgeWeight(this,this, idEdge);
+        
         if (AreaPersonasACargo.containsKey(persona_a_cargo.toLowerCase())) {
             AreaPersonasACargo.get(persona_a_cargo.toLowerCase()).add(id);
         } else {

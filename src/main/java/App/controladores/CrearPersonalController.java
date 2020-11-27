@@ -79,7 +79,7 @@ public class CrearPersonalController implements Initializable {
         try {
             int dinero = Integer.parseInt(sueldo);
         } catch (NumberFormatException e) {
-            WarningMessages.setText("El seuldo debe ser un valor numerico");
+            WarningMessages.setText("El suledo debe ser un valor numerico");
             WarningMessages.setVisible(true);
             return;
         }
