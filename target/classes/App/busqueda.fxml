@@ -17,12 +17,12 @@
       <TextArea layoutX="176.0" layoutY="282.0" prefHeight="156.0" prefWidth="200.0" />
       <Label layoutX="29.0" layoutY="267.0" prefHeight="30.0" prefWidth="77.0" text="Resultado:" />
       <Button layoutX="258.0" layoutY="241.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Buscar" />
-      <Label alignment="CENTER" blendMode="HARD_LIGHT" layoutX="120.0" layoutY="14.0" prefHeight="30.0" prefWidth="182.0" text="Buscar">
+      <Label alignment="CENTER" layoutX="120.0" layoutY="14.0" prefHeight="30.0" prefWidth="182.0" text="Buscar">
          <font>
-            <Font size="19.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="258.0" layoutY="449.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Volver" />
+      <Button layoutX="258.0" layoutY="449.0" mnemonicParsing="false" onAction="#Volver" prefHeight="26.0" prefWidth="122.0" text="Volver" />
       <ChoiceBox fx:id="MenuEntidad" layoutX="230.0" layoutY="73.0" prefWidth="150.0" />
       <ChoiceBox fx:id="MenuAtributo" layoutX="230.0" layoutY="137.0" prefWidth="150.0" />
    </children>

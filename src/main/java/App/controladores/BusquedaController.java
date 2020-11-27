@@ -65,14 +65,7 @@ public class BusquedaController implements Initializable {
     
 
     @FXML
-    public void menu_2(String choise) {
-        if (choise.equals("Area")) {
-            MenuAtributo.setItems(FXCollections.observableArrayList("Identificacion", "Persona a cargo", "Teléfono"));
-        }else if(choise.equals("Taller")){
-            MenuAtributo.setItems(FXCollections.observableArrayList("Nombre", "Sistema asociado", "Dinero fallas menores"));
-        }else if(choise.equals("Personal")){
-            MenuAtributo.setItems(FXCollections.observableArrayList("Cedula", "Sueldo", "Horario"));
-        }
-        
+    public void Volver(ActionEvent event) throws IOException {
+        App.App.setRoot("menu_principal");
     }
 }
