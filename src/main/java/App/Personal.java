@@ -5,9 +5,9 @@ import java.util.Hashtable;
 import java.util.TreeMap;
 
 public class Personal {
-    String cedula;
-    int sueldo;
-    String horario;
+    public String cedula;
+    public int sueldo;
+    public String horario;
     public static Hashtable<String, Personal> PersonalCedulas = new Hashtable<>();
     public static TreeMap<Integer, ArrayList<String>> PersonalSueldo = new TreeMap<>();
     public static TreeMap<String, ArrayList<String>> PersonalHorario = new TreeMap<>();

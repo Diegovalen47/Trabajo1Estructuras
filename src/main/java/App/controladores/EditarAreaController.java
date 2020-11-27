@@ -47,15 +47,25 @@ public class EditarAreaController implements Initializable {
 
     @FXML
     public void Continuar(ActionEvent event) throws IOException {
+        String idArea = String.valueOf(choiceBoxAreas.getValue());
+        if (idArea == null || idArea.equals("null")) {
+            WarningMessages.setVisible(true);
+            WarningMessages.setText("Seleccione una opcion");
+            return;
+        }
         labelTelefono.setVisible(true);
         labelPersona.setVisible(true);
-
+        TextTelefono.setText(String.valueOf(Area.AreaIds.get(Integer.parseInt(idArea)).telefono));
+        TextPersonaACargo.setText(Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo);
+        TextTelefono.setVisible(true);
+        TextPersonaACargo.setVisible(true);
     }
 
 
     @FXML
     public void Enviar(ActionEvent event) throws IOException {
         String idArea = String.valueOf(choiceBoxAreas.getValue());
+
 
 
     }

@@ -5,9 +5,9 @@ import java.util.Hashtable;
 import java.util.TreeMap;
 
 public class Area {
-    int id;
-    String persona_a_cargo;
-    int telefono;
+    public int id;
+    public String persona_a_cargo;
+    public int telefono;
     public static Hashtable<Integer, Area> AreaIds = new Hashtable<>();
     public static TreeMap<String, ArrayList<Integer>> AreaPersonasACargo = new TreeMap<>();
     public static TreeMap<Integer, ArrayList<Integer>> AreaTelefonos = new TreeMap<>();
