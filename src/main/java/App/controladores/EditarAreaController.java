@@ -1,5 +1,5 @@
 package App.controladores;
-
+//import App.App;
 import App.Area;
 import App.Taller;
 import javafx.collections.FXCollections;
@@ -56,8 +56,8 @@ public class EditarAreaController implements Initializable {
         }
         labelTelefono.setVisible(true);
         labelPersona.setVisible(true);
-        TextTelefono.setText(String.valueOf(Area.AreaIds.get(Integer.parseInt(idArea)).telefono));
-        TextPersonaACargo.setText(Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo);
+        TextTelefono.setText(String.valueOf(App.App.Grafo.getEdgeTarget(Area.AreaIds.get(Integer.parseInt(idArea))).telefono )); // telefono
+        TextPersonaACargo.setText(String.valueOf(App.App.Grafo.getEdgeTarget(Area.AreaIds.get(Integer.parseInt(idArea))).persona_a_cargo) );// persona_a_cargo
         TextTelefono.setVisible(true);
         TextPersonaACargo.setVisible(true);
         WarningMessages.setVisible(false);

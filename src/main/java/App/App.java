@@ -10,6 +10,7 @@ import org.jgrapht.Graphs;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultUndirectedWeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.Pseudograph;
 import org.jgrapht.graph.SimpleGraph;
 
 import java.io.IOException;
@@ -39,10 +40,10 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static Graph<Object, DefaultWeightedEdge> Grafo = new DefaultUndirectedWeightedGraph<>(DefaultWeightedEdge.class);
-
-
+    public static Graph<Object, DefaultEdge> Grafo = new Pseudograph<>(DefaultEdge.class);
     public static void main(String[] args) {
+
+
         Area area1 = new Area(0, "Juan Antonio Mesa", "5482449");
         Area area2 = new Area(1, "Valentin Osorio", "5482449");
         Area area3 = new Area(2, "Juan Antonio Mesa", "5482449");

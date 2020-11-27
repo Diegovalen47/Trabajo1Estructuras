@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.TreeMap;
 
+import org.jgrapht.graph.DefaultEdge;
+
 public class Personal {
     public String cedula;
     public int sueldo;
     public String horario;
-    public static Hashtable<String, Personal> PersonalCedulas = new Hashtable<>();
+    public static Hashtable<String, DefaultEdge> PersonalCedulas = new Hashtable<>();
     public static TreeMap<Integer, ArrayList<String>> PersonalSueldo = new TreeMap<>();
     public static TreeMap<String, ArrayList<String>> PersonalHorario = new TreeMap<>();
 
@@ -17,7 +19,8 @@ public class Personal {
         this.sueldo = Integer.parseInt(sueldo);
         this.horario = horario.toLowerCase();
         App.Grafo.addVertex(this);
-        PersonalCedulas.put(cedula, this);
+        PersonalCedulas.put(cedula,App.Grafo.addEdge(this, this));
+        
         if (PersonalSueldo.containsKey(Integer.parseInt(sueldo))) {
             PersonalSueldo.get(Integer.parseInt(sueldo)).add(cedula);
         } else {

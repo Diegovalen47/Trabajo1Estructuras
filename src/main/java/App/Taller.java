@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.TreeMap;
 
+import org.jgrapht.graph.DefaultEdge;
+
 public class Taller {
     public String nombre;
     public String sistema_asociado;
     public int dinero_fallas_menores;
-    public static Hashtable<String, Taller> TallerNombres = new Hashtable<>();
+    public static Hashtable<String, DefaultEdge> TallerNombres = new Hashtable<>();
     public static TreeMap<String, ArrayList<String>> TallerSistemas = new TreeMap<>();
     public static TreeMap<Integer, ArrayList<String>> TallerDinero = new TreeMap<>();
 
@@ -18,7 +20,8 @@ public class Taller {
         this.sistema_asociado = sistema_asociado.toLowerCase();
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
         App.Grafo.addVertex(this);
-        TallerNombres.put(this.nombre, this);
+        TallerNombres.put(this.nombre,App.Grafo.addEdge(this, this));
+        
         if (TallerSistemas.containsKey(sistema_asociado.toLowerCase())) {
             TallerSistemas.get(sistema_asociado.toLowerCase()).add(this.nombre);
         } else {
