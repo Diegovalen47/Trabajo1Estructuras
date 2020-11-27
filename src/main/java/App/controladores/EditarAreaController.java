@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -59,14 +60,45 @@ public class EditarAreaController implements Initializable {
         TextPersonaACargo.setText(Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo);
         TextTelefono.setVisible(true);
         TextPersonaACargo.setVisible(true);
+        WarningMessages.setVisible(false);
     }
 
 
     @FXML
     public void Enviar(ActionEvent event) throws IOException {
         String idArea = String.valueOf(choiceBoxAreas.getValue());
+        String nuevo_telefono = TextTelefono.getText();
+        String nueva_persona = TextPersonaACargo.getText();
+
+        if (nueva_persona.equals("") || nuevo_telefono.equals("")) {
+            WarningMessages.setText("Los campos no pueden estar vacios");
+            WarningMessages.setVisible(true);
+            return;
+        }
+
+        if (nuevo_telefono.equals(String.valueOf(Area.AreaIds.get(Integer.parseInt(idArea)).telefono)) && nueva_persona.equals(Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo)) {
+            WarningMessages.setText("No se hicieron cambios");
+            WarningMessages.setVisible(true);
+            return;
+        }
+
+        Area.AreaIds.get(Integer.parseInt(idArea)).telefono = Integer.parseInt(nuevo_telefono);
+        Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo= nueva_persona;
+        choiceBoxAreas.setItems(FXCollections.observableArrayList(Area.AreaIds.keySet()));
+        labelTelefono.setVisible(false);
+        labelPersona.setVisible(false);
+        WarningMessages.setVisible(false);
+        TextTelefono.setVisible(false);
+        TextPersonaACargo.setVisible(false);
 
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Area editada satisfactoriamente");
+        alert.setHeaderText("Area ha sido editada satisfactoriamente");
+        alert.setContentText(Area.AreaIds.get(Integer.parseInt(idArea)).toString());
+
+
+        alert.showAndWait();
 
     }
 
