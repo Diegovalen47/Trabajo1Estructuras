@@ -15,7 +15,7 @@ public class Taller {
 
     public Taller(String nombre, String sistema_asociado, String dinero_fallas_menores) {
         this.nombre = nombre.toLowerCase();
-        this.sistema_asociado = sistema_asociado;
+        this.sistema_asociado = sistema_asociado.toLowerCase();
         this.dinero_fallas_menores = Integer.parseInt(dinero_fallas_menores);
         App.Grafo.addVertex(this);
         TallerNombres.put(this.nombre, this);

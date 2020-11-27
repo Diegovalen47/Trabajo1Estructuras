@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="App.controladores.EditarTallerController"
-            prefHeight="482" prefWidth="401">
 
+<AnchorPane prefHeight="482" prefWidth="401" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.controladores.EditarTallerController">
+   <children>
+      <Label layoutX="144.0" layoutY="30.0" text="Editar Taller">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="93.0" text="Nombre taller a editar:" />
+      <ChoiceBox fx:id="choiceBoxTalleres" layoutX="214.0" layoutY="89.0" prefWidth="150.0" />
+      <Button layoutX="176.0" layoutY="142.0" mnemonicParsing="false" onAction="#Continuar" text="Continuar" />
+      <Button layoutX="26.0" layoutY="423.0" mnemonicParsing="false" onAction="#Volver" prefHeight="36.0" prefWidth="63.0" text="Volver" />
+      <Button layoutX="323.0" layoutY="423.0" mnemonicParsing="false" onAction="#Enviar" prefHeight="36.0" prefWidth="63.0" text="Enviar" />
+      <Label fx:id="labelNombre" layoutX="54.0" layoutY="224.0" text="Nombre:" visible="false" />
+      <Label fx:id="labelSistema" layoutX="54.0" layoutY="264.0" text="Sistema asociado:" visible="false" />
+      <TextField fx:id="TextNombre" layoutX="211.0" layoutY="220.0" visible="false" />
+      <TextField fx:id="TextSistema" layoutX="211.0" layoutY="260.0" visible="false" />
+      <Label fx:id="WarningMessages" alignment="CENTER" layoutX="8.0" layoutY="348.0" prefHeight="61.0" prefWidth="382.0" text="Label" textAlignment="CENTER" textFill="RED" visible="false" />
+      <Label fx:id="labelDinero" layoutX="54.0" layoutY="301.0" text="Dinero fallas menores:" visible="false" />
+      <TextField fx:id="TextDinero" layoutX="211.0" layoutY="297.0" visible="false" />
+   </children>
 </AnchorPane>
