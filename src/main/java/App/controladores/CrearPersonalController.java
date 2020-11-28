@@ -90,7 +90,7 @@ public class CrearPersonalController implements Initializable {
 
 
         if (area_asociada == null) {
-            DefaultEdge arista = Area.AreaIds.get(Long.parseLong(taller_asociado));
+            DefaultEdge arista = Taller.TallerNombres.get(taller_asociado);
             Object obj = App.Grafo.getEdgeSource(arista);
             Taller taller = (Taller) obj;
             persona.conectar(taller);
@@ -100,7 +100,7 @@ public class CrearPersonalController implements Initializable {
             Area area = (Area) obj;
             persona.conectar(area);
         } else {
-            DefaultEdge arista = Area.AreaIds.get(Long.parseLong(taller_asociado));
+            DefaultEdge arista = Taller.TallerNombres.get(taller_asociado);
             Object obj = App.Grafo.getEdgeSource(arista);
             Taller taller = (Taller) obj;
             persona.conectar(taller);
