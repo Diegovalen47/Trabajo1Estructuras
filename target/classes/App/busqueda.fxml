@@ -14,7 +14,7 @@
         <Label layoutX="29.0" layoutY="135.0" prefHeight="30.0" prefWidth="182.0" text="Seleccione el atributo a buscar: " />
         <Label layoutX="29.0" layoutY="188.0" prefHeight="30.0" prefWidth="108.0" text="Ingrese el valor:" />
         <TextField fx:id="elementoBuscar" layoutX="194.0" layoutY="191.0" prefHeight="26.0" prefWidth="182.0" />
-        <TextArea fx:id="encontrados" layoutX="100.0" layoutY="282.0" prefHeight="156.0" prefWidth="276.0" />
+        <TextArea fx:id="encontrados" layoutX="121.0" layoutY="282.0" prefHeight="156.0" prefWidth="255.0" />
         <Label layoutX="29.0" layoutY="267.0" prefHeight="30.0" prefWidth="77.0" text="Resultado:" />
         <Button layoutX="258.0" layoutY="241.0" mnemonicParsing="false" onAction="#Buscar" prefHeight="26.0" prefWidth="122.0" text="Buscar" />
         <Label alignment="CENTER" layoutX="120.0" layoutY="14.0" prefHeight="30.0" prefWidth="182.0" text="Buscar">
