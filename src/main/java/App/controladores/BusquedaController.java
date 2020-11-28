@@ -39,7 +39,7 @@ public class BusquedaController implements Initializable {
     public Label WarningMessage;
 
     @FXML
-    TextArea encontrados;
+    public TextArea encontrados;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,6 +76,7 @@ public class BusquedaController implements Initializable {
 
         if ("Area".equals((String) MenuEntidad.getValue())){
             if ("Identificacion".equals((String) MenuAtributo.getValue())) {
+
 
                 if (elementoBuscar.getText().trim().equals("")) {
 
@@ -197,7 +198,17 @@ public class BusquedaController implements Initializable {
                     
                 }
 
+            }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error");
+                alert.setHeaderText("Seleccione un atributo");
+                alert.setContentText("");
+    
+                alert.showAndWait();
+                return;
             }
+
+
         }else if("Taller".equals((String) MenuEntidad.getValue())){
 
             if ("Nombre".equals((String) MenuAtributo.getValue())) {
@@ -327,6 +338,14 @@ public class BusquedaController implements Initializable {
                     
                 }
     
+            }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error");
+                alert.setHeaderText("Seleccione un atributo");
+                alert.setContentText("");
+    
+                alert.showAndWait();
+                return;
             }
 
         
@@ -458,9 +477,26 @@ public class BusquedaController implements Initializable {
                     
                 }
     
+            }else{
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error");
+                alert.setHeaderText("Seleccione un atributo");
+                alert.setContentText("");
+    
+                alert.showAndWait();
+                return;
             }
 
 
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("Seleccione una entidad");
+            alert.setContentText("");
+    
+            alert.showAndWait();
+            return;
         }
     }
 
@@ -470,4 +506,6 @@ public class BusquedaController implements Initializable {
     public void Volver(ActionEvent event) throws IOException {
         App.App.setRoot("menu_principal");
     }
+
+
 }
