@@ -1,5 +1,6 @@
 package App.controladores;
 //import App.App;
+import App.App;
 import App.Area;
 import App.Taller;
 import javafx.collections.FXCollections;
@@ -7,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +45,7 @@ public class EditarAreaController implements Initializable {
 
     @FXML
     public void Volver(ActionEvent event) throws IOException {
-        App.App.setRoot("administracion");
+        App.setRoot("administracion");
     }
 
     @FXML
@@ -54,10 +56,14 @@ public class EditarAreaController implements Initializable {
             WarningMessages.setText("Seleccione una opcion");
             return;
         }
+        DefaultEdge arista = Area.AreaIds.get(Long.parseLong(idArea));
+        Object obj = App.Grafo.getEdgeSource(arista);
+        Area area = (Area) obj;
+
         labelTelefono.setVisible(true);
         labelPersona.setVisible(true);
-        TextTelefono.setText(String.valueOf(App.App.Grafo.getEdgeTarget(Area.AreaIds.get(Integer.parseInt(idArea))).telefono )); // telefono
-        TextPersonaACargo.setText(String.valueOf(App.App.Grafo.getEdgeTarget(Area.AreaIds.get(Integer.parseInt(idArea))).persona_a_cargo) );// persona_a_cargo
+        TextTelefono.setText(String.valueOf(area.telefono)); // telefono
+        TextPersonaACargo.setText(area.persona_a_cargo);// persona_a_cargo
         TextTelefono.setVisible(true);
         TextPersonaACargo.setVisible(true);
         WarningMessages.setVisible(false);
@@ -71,20 +77,29 @@ public class EditarAreaController implements Initializable {
         String nuevo_telefono = TextTelefono.getText();
         String nueva_persona = TextPersonaACargo.getText();
 
+        DefaultEdge arista = Area.AreaIds.get(Long.parseLong(idArea));
+        Object obj = App.Grafo.getEdgeSource(arista);
+        Area area = (Area) obj;
+
         if (nueva_persona.equals("") || nuevo_telefono.equals("")) {
             WarningMessages.setText("Los campos no pueden estar vacios");
             WarningMessages.setVisible(true);
             return;
         }
 
-        if (nuevo_telefono.equals(String.valueOf(Area.AreaIds.get(Integer.parseInt(idArea)).telefono)) && nueva_persona.equals(Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo)) {
+        if (nuevo_telefono.equals(String.valueOf(area.telefono)) && nueva_persona.equals(area.persona_a_cargo)) {
             WarningMessages.setText("No se hicieron cambios");
             WarningMessages.setVisible(true);
             return;
         }
 
-        Area.AreaIds.get(Integer.parseInt(idArea)).telefono = Integer.parseInt(nuevo_telefono);
-        Area.AreaIds.get(Integer.parseInt(idArea)).persona_a_cargo= nueva_persona;
+
+
+        App.Grafo.removeVertex(area);
+        App.Grafo.removeEdge(arista);
+
+        Area nueva_area = new Area(Long.parseLong(idArea), nueva_persona, nuevo_telefono);
+
         choiceBoxAreas.setItems(FXCollections.observableArrayList(Area.AreaIds.keySet()));
         labelTelefono.setVisible(false);
         labelPersona.setVisible(false);
@@ -97,7 +112,7 @@ public class EditarAreaController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Area editada satisfactoriamente");
         alert.setHeaderText("Area ha sido editada satisfactoriamente");
-        alert.setContentText(Area.AreaIds.get(Integer.parseInt(idArea)).toString());
+        alert.setContentText(nueva_area.toString());
 
 
         alert.showAndWait();

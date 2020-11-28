@@ -8,25 +8,25 @@ import org.jgrapht.graph.DefaultEdge;
 
 public class Personal {
     public String cedula;
-    public int sueldo;
+    public long sueldo;
     public String horario;
     public static Hashtable<String, DefaultEdge> PersonalCedulas = new Hashtable<>();
-    public static TreeMap<Integer, ArrayList<String>> PersonalSueldo = new TreeMap<>();
+    public static TreeMap<Long, ArrayList<String>> PersonalSueldo = new TreeMap<>();
     public static TreeMap<String, ArrayList<String>> PersonalHorario = new TreeMap<>();
 
     public Personal(String cedula, String sueldo, String horario) {
         this.cedula = cedula;
-        this.sueldo = Integer.parseInt(sueldo);
+        this.sueldo = Long.parseLong(sueldo);
         this.horario = horario.toLowerCase();
         App.Grafo.addVertex(this);
         PersonalCedulas.put(cedula,App.Grafo.addEdge(this, this));
         
-        if (PersonalSueldo.containsKey(Integer.parseInt(sueldo))) {
-            PersonalSueldo.get(Integer.parseInt(sueldo)).add(cedula);
+        if (PersonalSueldo.containsKey(Long.parseLong(sueldo))) {
+            PersonalSueldo.get(Long.parseLong(sueldo)).add(cedula);
         } else {
             ArrayList<String> lista = new ArrayList<>();
             lista.add(cedula);
-            PersonalSueldo.put(Integer.parseInt(sueldo), lista);
+            PersonalSueldo.put(Long.parseLong(sueldo), lista);
         }
         if (PersonalHorario.containsKey(horario.toLowerCase())) {
             PersonalHorario.get(horario.toLowerCase()).add(cedula);

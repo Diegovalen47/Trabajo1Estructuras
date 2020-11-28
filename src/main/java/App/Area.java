@@ -7,17 +7,17 @@ import java.util.TreeMap;
 import org.jgrapht.graph.DefaultEdge;
 
 public class Area {
-    public int id;
+    public long id;
     public int idEdge=1;
     public String persona_a_cargo;
-    public int telefono;
-    public static Hashtable<Integer, DefaultEdge> AreaIds = new Hashtable<>();
-    public static TreeMap<String, ArrayList<Integer>> AreaPersonasACargo = new TreeMap<>();
-    public static TreeMap<Integer, ArrayList<Integer>> AreaTelefonos = new TreeMap<>();
+    public long telefono;
+    public static Hashtable<Long, DefaultEdge> AreaIds = new Hashtable<>();
+    public static TreeMap<String, ArrayList<Long>> AreaPersonasACargo = new TreeMap<>();
+    public static TreeMap<Long, ArrayList<Long>> AreaTelefonos = new TreeMap<>();
 
-    public Area(int id, String persona_a_cargo, String telefono) {
+    public Area(long id, String persona_a_cargo, String telefono) {
         this.persona_a_cargo = persona_a_cargo.toLowerCase();
-        this.telefono = Integer.parseInt(telefono);
+        this.telefono = Long.parseLong(telefono);
         this.id = id;
         App.Grafo.addVertex(this);
         AreaIds.put(id,App.Grafo.addEdge(this, this));
@@ -25,16 +25,16 @@ public class Area {
         if (AreaPersonasACargo.containsKey(persona_a_cargo.toLowerCase())) {
             AreaPersonasACargo.get(persona_a_cargo.toLowerCase()).add(id);
         } else {
-            ArrayList<Integer> lista = new ArrayList<>();
+            ArrayList<Long> lista = new ArrayList<>();
             lista.add(id);
             AreaPersonasACargo.put(persona_a_cargo.toLowerCase(), lista);
         }
-        if (AreaTelefonos.containsKey(Integer.parseInt(telefono))) {
-            AreaTelefonos.get(Integer.parseInt(telefono)).add(id);
+        if (AreaTelefonos.containsKey(Long.parseLong(telefono))) {
+            AreaTelefonos.get(Long.parseLong(telefono)).add(id);
         } else {
-            ArrayList<Integer> lista = new ArrayList<>();
+            ArrayList<Long> lista = new ArrayList<>();
             lista.add(id);
-            AreaTelefonos.put(Integer.parseInt(telefono), lista);
+            AreaTelefonos.put(Long.parseLong(telefono), lista);
         }
     }
 

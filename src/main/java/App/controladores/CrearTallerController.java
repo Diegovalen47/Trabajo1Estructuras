@@ -1,5 +1,6 @@
 package App.controladores;
 
+import App.App;
 import App.Area;
 import App.Taller;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,7 +41,7 @@ public class CrearTallerController implements Initializable {
 
     @FXML
     public void Volver(ActionEvent event) throws IOException {
-        App.App.setRoot("administracion");
+        App.setRoot("administracion");
     }
 
     @FXML
@@ -66,15 +68,19 @@ public class CrearTallerController implements Initializable {
         }
 
         try {
-            int dinero = Integer.parseInt(dinero_fallas_menores);
+            long dinero = Long.parseLong(dinero_fallas_menores);
         } catch (NumberFormatException e) {
             WarningMessages.setText("El dinero debe ser un valor numerico");
             WarningMessages.setVisible(true);
             return;
         }
 
+        DefaultEdge arista = Area.AreaIds.get(Long.parseLong(area_asociada));
+        Object obj = App.Grafo.getEdgeSource(arista);
+        Area area = (Area) obj;
+
         Taller taller = new Taller(nombre, sistema_asociado, dinero_fallas_menores);
-        taller.conectar(Area.AreaIds.get(Integer.parseInt(area_asociada.toLowerCase())));
+        taller.conectar(area);
 
 
         TextNombre.setText("");

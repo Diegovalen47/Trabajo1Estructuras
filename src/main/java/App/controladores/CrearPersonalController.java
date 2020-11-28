@@ -1,5 +1,6 @@
 package App.controladores;
 
+import App.App;
 import App.Area;
 import App.Personal;
 import App.Taller;
@@ -11,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +46,7 @@ public class CrearPersonalController implements Initializable {
 
     @FXML
     public void Volver(ActionEvent event) throws IOException {
-        App.App.setRoot("administracion");
+        App.setRoot("administracion");
     }
 
     @FXML
@@ -77,7 +79,7 @@ public class CrearPersonalController implements Initializable {
         }
 
         try {
-            int dinero = Integer.parseInt(sueldo);
+            long dinero = Long.parseLong(sueldo);
         } catch (NumberFormatException e) {
             WarningMessages.setText("El suledo debe ser un valor numerico");
             WarningMessages.setVisible(true);
@@ -86,13 +88,26 @@ public class CrearPersonalController implements Initializable {
 
         Personal persona = new Personal(cedula, sueldo, horario);
 
+
         if (area_asociada == null) {
-            persona.conectar(Taller.TallerNombres.get(taller_asociado.toLowerCase()));
+            DefaultEdge arista = Area.AreaIds.get(Long.parseLong(taller_asociado));
+            Object obj = App.Grafo.getEdgeSource(arista);
+            Taller taller = (Taller) obj;
+            persona.conectar(taller);
         } else if (taller_asociado == null) {
-            persona.conectar(Area.AreaIds.get(Integer.parseInt(area_asociada.toLowerCase())));
+            DefaultEdge arista = Area.AreaIds.get(Long.parseLong(area_asociada));
+            Object obj = App.Grafo.getEdgeSource(arista);
+            Area area = (Area) obj;
+            persona.conectar(area);
         } else {
-            persona.conectar(Taller.TallerNombres.get(taller_asociado));
-            persona.conectar(Area.AreaIds.get(Integer.parseInt(area_asociada.toLowerCase())));
+            DefaultEdge arista = Area.AreaIds.get(Long.parseLong(taller_asociado));
+            Object obj = App.Grafo.getEdgeSource(arista);
+            Taller taller = (Taller) obj;
+            persona.conectar(taller);
+            DefaultEdge arista1 = Area.AreaIds.get(Long.parseLong(area_asociada));
+            Object obj1 = App.Grafo.getEdgeSource(arista1);
+            Area area = (Area) obj1;
+            persona.conectar(area);
         }
 
         TextCedula.setText("");

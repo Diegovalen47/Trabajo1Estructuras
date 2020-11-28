@@ -1,12 +1,15 @@
 package App.controladores;
 
+import App.App;
 import App.Area;
+import App.Personal;
 import App.Taller;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +52,7 @@ public class EditarTallerController implements Initializable {
 
     @FXML
     public void Volver(ActionEvent event) throws IOException {
-        App.App.setRoot("administracion");
+        App.setRoot("administracion");
     }
 
     @FXML
@@ -60,12 +63,17 @@ public class EditarTallerController implements Initializable {
             WarningMessages.setText("Seleccione una opcion");
             return;
         }
+
+        DefaultEdge arista = Taller.TallerNombres.get(nombreTaller);
+        Object obj = App.Grafo.getEdgeSource(arista);
+        Taller taller = (Taller) obj;
+
         labelNombre.setVisible(true);
         labelSistema.setVisible(true);
         labelDinero.setVisible(true);
-        TextNombre.setText(Taller.TallerNombres.get(nombreTaller).nombre);
-        TextSistema.setText(Taller.TallerNombres.get(nombreTaller).sistema_asociado);
-        TextDinero.setText(String.valueOf(Taller.TallerNombres.get(nombreTaller).dinero_fallas_menores));
+        TextNombre.setText(taller.nombre);
+        TextSistema.setText(taller.sistema_asociado);
+        TextDinero.setText(String.valueOf(taller.dinero_fallas_menores));
         TextNombre.setVisible(true);
         TextSistema.setVisible(true);
         TextDinero.setVisible(true);
@@ -81,21 +89,28 @@ public class EditarTallerController implements Initializable {
         String nuevo_sistema = TextSistema.getText();
         String nuevo_dinero = TextDinero.getText();
 
+        DefaultEdge arista = Taller.TallerNombres.get(nombreTaller);
+        Object obj = App.Grafo.getEdgeSource(arista);
+        Taller taller = (Taller) obj;
+
         if (nuevo_nombre.equals("") || nuevo_sistema.equals("") || nuevo_dinero.equals("")) {
             WarningMessages.setText("Los campos no pueden estar vacios");
             WarningMessages.setVisible(true);
             return;
         }
 
-        if (nuevo_nombre.equals(Taller.TallerNombres.get(nombreTaller).nombre) && nuevo_sistema.equals(Taller.TallerNombres.get(nombreTaller).sistema_asociado)   && nuevo_dinero.equals(String.valueOf(Taller.TallerNombres.get(nombreTaller).dinero_fallas_menores))) {
+        if (nuevo_nombre.equals(taller.nombre) && nuevo_sistema.equals(taller.sistema_asociado)   && nuevo_dinero.equals(String.valueOf(taller.dinero_fallas_menores))) {
             WarningMessages.setText("No se hicieron cambios");
             WarningMessages.setVisible(true);
             return;
         }
 
-        Taller.TallerNombres.get(nombreTaller).nombre = nuevo_nombre;
-        Taller.TallerNombres.get(nombreTaller).sistema_asociado = nuevo_sistema;
-        Taller.TallerNombres.get(nombreTaller).dinero_fallas_menores = Integer.parseInt(nuevo_dinero);
+        App.Grafo.removeVertex(taller);
+        App.Grafo.removeEdge(arista);
+
+        Taller nuevo_taller = new Taller(nuevo_nombre, nuevo_sistema, nuevo_dinero);
+
+
         choiceBoxTalleres.setItems(FXCollections.observableArrayList(Taller.TallerNombres.keySet()));
         labelNombre.setVisible(false);
         labelSistema.setVisible(false);
@@ -110,7 +125,7 @@ public class EditarTallerController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Taller editado satisfactoriamente");
         alert.setHeaderText("Taller ha sido editado satisfactoriamente");
-        alert.setContentText(Taller.TallerNombres.get(nombreTaller).toString());
+        alert.setContentText(taller.toString());
 
 
         alert.showAndWait();

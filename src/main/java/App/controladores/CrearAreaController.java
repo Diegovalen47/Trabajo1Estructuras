@@ -13,7 +13,7 @@ import java.util.InputMismatchException;
 
 public class CrearAreaController {
 
-    public static int idArea = 3;
+    public static long idArea = 3;
 
     @FXML
     public TextField TextTelefono;
@@ -42,7 +42,7 @@ public class CrearAreaController {
 
         //Al crear no hay necesidad de verificar existencia ya que es con id autogenerado incremental
         try {
-            int tel = Integer.parseInt(telefono);
+            long tel = Long.parseLong(telefono);
         } catch (NumberFormatException e) {
             WarningMessages.setText("El telefono deben ser un valor numerico");
             WarningMessages.setVisible(true);
