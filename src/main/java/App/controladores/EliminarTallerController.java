@@ -60,6 +60,10 @@ public class EliminarTallerController implements Initializable {
             return;
         }
 
+
+        Taller.TallerNombres.remove(nombreTaller);
+        Taller.TallerSistemas.get(taller.sistema_asociado).remove(nombreTaller);
+        Taller.TallerDinero.get(taller.dinero_fallas_menores).remove(nombreTaller);
         App.Grafo.removeVertex(taller);
         App.Grafo.removeEdge(arista);
 

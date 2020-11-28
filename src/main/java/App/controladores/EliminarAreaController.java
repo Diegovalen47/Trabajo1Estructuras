@@ -61,6 +61,10 @@ public class EliminarAreaController implements Initializable {
             return;
         }
 
+
+        Area.AreaIds.remove(Long.parseLong(idArea));
+        Area.AreaPersonasACargo.get(area.persona_a_cargo).remove(Long.parseLong(idArea));
+        Area.AreaTelefonos.get(area.telefono).remove(Long.parseLong(idArea));
         App.Grafo.removeVertex(area);
         App.Grafo.removeEdge(arista);
 

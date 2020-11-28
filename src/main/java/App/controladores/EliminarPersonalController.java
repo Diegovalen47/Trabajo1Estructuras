@@ -60,6 +60,10 @@ public class EliminarPersonalController implements Initializable {
             return;
         }
 
+
+        Personal.PersonalCedulas.remove(cedula);
+        Personal.PersonalSueldo.get(personal.sueldo).remove(cedula);
+        Personal.PersonalHorario.get(personal.horario).remove(cedula);
         App.Grafo.removeVertex(personal);
         App.Grafo.removeEdge(arista);
 
