@@ -191,7 +191,7 @@ public class AdministracionController implements Initializable {
 
                     alert.showAndWait();
                 } else {
-                    App.App.setRoot("eliminiar_personal");
+                    App.App.setRoot("eliminar_personal");
                 }
             }
         }

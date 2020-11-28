@@ -13,6 +13,7 @@ import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EditarPersonalController implements Initializable {
@@ -107,6 +108,19 @@ public class EditarPersonalController implements Initializable {
             return;
         }
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Atencion");
+        alert.setHeaderText("¿Desea guardar los cambios?");
+        alert.setContentText("");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+
+        } else {
+            return;
+        }
+
+
         App.Grafo.removeVertex(personal);
         App.Grafo.removeEdge(arista);
 
@@ -124,7 +138,7 @@ public class EditarPersonalController implements Initializable {
         send.setVisible(false);
 
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Persona editada satisfactoriamente");
         alert.setHeaderText("Persona ha sido editada satisfactoriamente");
         alert.setContentText(nueva_persona.toString());

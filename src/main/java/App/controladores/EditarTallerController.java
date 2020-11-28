@@ -13,6 +13,7 @@ import org.jgrapht.graph.DefaultEdge;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EditarTallerController implements Initializable {
@@ -105,6 +106,20 @@ public class EditarTallerController implements Initializable {
             return;
         }
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Atencion");
+        alert.setHeaderText("¿Desea guardar los cambios?");
+        alert.setContentText("");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+
+        } else {
+            return;
+        }
+
+
+
         App.Grafo.removeVertex(taller);
         App.Grafo.removeEdge(arista);
 
@@ -122,7 +137,7 @@ public class EditarTallerController implements Initializable {
         send.setVisible(false);
 
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Taller editado satisfactoriamente");
         alert.setHeaderText("Taller ha sido editado satisfactoriamente");
         alert.setContentText(taller.toString());
