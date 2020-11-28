@@ -75,6 +75,6 @@ public class EliminarPersonalController implements Initializable {
 
         alert.showAndWait();
 
-
+        choiceBoxPersonal.setItems(FXCollections.observableArrayList(Personal.PersonalCedulas.keySet()));
     }
 }

@@ -51,7 +51,7 @@ public class CrearTallerController implements Initializable {
         String sistema_asociado = TextSistemaAsociado.getText();
         String area_asociada =  String.valueOf(choiceBoxAreasDisponibles.getValue());
 
-        if(nombre.equals("") || dinero_fallas_menores.equals("") || sistema_asociado.equals("") || area_asociada == null) {
+        if(nombre.equals("") || dinero_fallas_menores.equals("") || sistema_asociado.equals("") || (area_asociada == null ||area_asociada.equals("null"))) {
             WarningMessages.setText("Los campos no pueden estar vacios");
             WarningMessages.setVisible(true);
             return;
@@ -90,7 +90,7 @@ public class CrearTallerController implements Initializable {
         WarningMessages.setVisible(false);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Taller creado satisfactoriamente");
-        alert.setHeaderText("El taller ha sido creada satisfactoriamente");
+        alert.setHeaderText("El taller ha sido creado satisfactoriamente");
         alert.setContentText(taller.toString());
 
 

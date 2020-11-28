@@ -75,7 +75,7 @@ public class EliminarTallerController implements Initializable {
 
         alert.showAndWait();
 
-
+        choiceBoxTalleres.setItems(FXCollections.observableArrayList(Taller.TallerNombres.keySet()));
     }
 
 }

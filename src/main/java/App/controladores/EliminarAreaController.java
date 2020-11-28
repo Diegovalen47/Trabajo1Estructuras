@@ -76,6 +76,6 @@ public class EliminarAreaController implements Initializable {
 
         alert.showAndWait();
 
-
+        choiceBoxAreas.setItems(FXCollections.observableArrayList(Area.AreaIds.keySet()));
     }
 }
