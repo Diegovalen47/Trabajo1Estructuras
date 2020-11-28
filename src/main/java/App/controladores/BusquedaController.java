@@ -74,7 +74,7 @@ public class BusquedaController implements Initializable {
     public void Buscar(ActionEvent event) throws IOException {
         encontrados.clear();
 
-       if ("Area".equals((String) MenuEntidad.getValue())){
+        if ("Area".equals((String) MenuEntidad.getValue())){
             if ("Identificacion".equals((String) MenuAtributo.getValue())) {
 
                 if (elementoBuscar.getText().trim().equals("")) {
@@ -198,7 +198,270 @@ public class BusquedaController implements Initializable {
                 }
 
             }
-       }
+        }else if("Taller".equals((String) MenuEntidad.getValue())){
+
+            if ("Nombre".equals((String) MenuAtributo.getValue())) {
+
+                if (elementoBuscar.getText().trim().equals("")) {
+    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                String nombre;
+    
+                try {
+                    nombre=elementoBuscar.getText().trim();
+                    nombre=nombre.toLowerCase();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un nombre");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                
+                if (App.Taller.TallerNombres.get(nombre)==null) {
+    
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+    
+                
+    
+                Object vertice= App.App.Grafo.getEdgeSource(App.Taller.TallerNombres.get(nombre));
+                encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                
+    
+            }else if("Sistema asociado".equals((String) MenuAtributo.getValue())){
+    
+                if (elementoBuscar.getText().trim().equals("")) {
+    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                String sistema;
+    
+                try {
+                    sistema=elementoBuscar.getText().trim();
+                    sistema=sistema.toLowerCase();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un sistema");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                
+                if (App.Taller.TallerSistemas.get(sistema)==null) {
+    
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+    
+                for (String id : App.Taller.TallerSistemas.get(sistema)) {
+    
+                    Object vertice= App.App.Grafo.getEdgeSource(App.Taller.TallerNombres.get(id));
+                    encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                }
+    
+            }else if("Dinero fallas menores".equals((String) MenuAtributo.getValue())){
+    
+                if (elementoBuscar.getText().trim().equals("")) {
+    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                Long dinero;
+    
+                try {
+                    dinero=Long.parseLong(elementoBuscar.getText().trim(),10);
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un valor numérico");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                
+                if (App.Taller.TallerDinero.get(dinero)==null) {
+    
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+    
+                
+    
+                for (String id : App.Taller.TallerDinero.get(dinero)) {
+    
+                    Object vertice= App.App.Grafo.getEdgeSource(App.Taller.TallerNombres.get(id));
+                    encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                }
+    
+            }
+
+        
+        }else if("Personal".equals((String) MenuEntidad.getValue())){
+
+            if ("Cedula".equals((String) MenuAtributo.getValue())) {
+
+                if (elementoBuscar.getText().trim().equals("")) {
+    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                String cedula;
+    
+                try {
+                    cedula=elementoBuscar.getText().trim();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un nombre");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                
+                if (App.Personal.PersonalCedulas.get(cedula)==null) {
+    
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+    
+                
+    
+                Object vertice= App.App.Grafo.getEdgeSource(App.Personal.PersonalCedulas.get(cedula));
+                encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                
+    
+            }else if("Horario".equals((String) MenuAtributo.getValue())){
+    
+                if (elementoBuscar.getText().trim().equals("")) {
+    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                String horario;
+    
+                try {
+                    horario=elementoBuscar.getText().trim();
+                    horario=horario.toLowerCase();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un horario");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                
+                if (App.Personal.PersonalHorario.get(horario)==null) {
+    
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+    
+                for (String id : App.Personal.PersonalHorario.get(horario)) {
+    
+                    Object vertice= App.App.Grafo.getEdgeSource(App.Personal.PersonalCedulas.get(id));
+                    encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                }
+    
+            }else if("Sueldo".equals((String) MenuAtributo.getValue())){
+    
+                if (elementoBuscar.getText().trim().equals("")) {
+    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                Long sueldo;
+    
+                try {
+                    sueldo=Long.parseLong(elementoBuscar.getText().trim(),10);
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un valor numérico");
+                    alert.setContentText("");
+    
+                    alert.showAndWait();
+                    return;
+                }
+    
+                
+                if (App.Personal.PersonalSueldo.get(sueldo)==null) {
+    
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+    
+                
+    
+                for (String id : App.Personal.PersonalSueldo.get(sueldo)) {
+    
+                    Object vertice= App.App.Grafo.getEdgeSource(App.Personal.PersonalCedulas.get(id));
+                    encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                }
+    
+            }
+
+
+        }
     }
 
     
