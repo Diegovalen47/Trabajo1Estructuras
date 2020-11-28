@@ -14,6 +14,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +33,13 @@ public class BusquedaController implements Initializable {
     public ChoiceBox MenuAtributo;
 
     @FXML
+    public TextField elementoBuscar;
+
+    @FXML
     public Label WarningMessage;
+
+    @FXML
+    TextArea encontrados;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,6 +68,137 @@ public class BusquedaController implements Initializable {
 
 			 
         });
+    }
+
+    @FXML
+    public void Buscar(ActionEvent event) throws IOException {
+        encontrados.clear();
+
+       if ("Area".equals((String) MenuEntidad.getValue())){
+            if ("Identificacion".equals((String) MenuAtributo.getValue())) {
+
+                if (elementoBuscar.getText().trim().equals("")) {
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                    return;
+                }
+
+                long id;
+
+                try {
+                    id=Integer.parseInt(elementoBuscar.getText().trim());
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un valor numérico");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                    return;
+                }
+                
+
+                if (App.Area.AreaIds.get(id)==null) {
+
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+
+                Object vertice= App.App.Grafo.getEdgeSource(App.Area.AreaIds.get(id));
+                encontrados.appendText(String.valueOf(vertice));
+
+            }else if("Persona a cargo".equals((String) MenuAtributo.getValue())){
+
+                if (elementoBuscar.getText().trim().equals("")) {
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                    return;
+                }
+
+                String persona;
+
+                try {
+                    persona=elementoBuscar.getText().trim();
+                    persona=persona.toLowerCase();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un nombre");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                    return;
+                }
+
+                
+                if (App.Area.AreaPersonasACargo.get(persona)==null) {
+
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+
+                for (Long id : App.Area.AreaPersonasACargo.get(persona)) {
+
+                    Object vertice= App.App.Grafo.getEdgeSource(App.Area.AreaIds.get(id));
+                    encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                }
+
+            }else if("Teléfono".equals((String) MenuAtributo.getValue())){
+
+                if (elementoBuscar.getText().trim().equals("")) {
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Atencion");
+                    alert.setHeaderText("Ingrese el valor a buscar");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                    return;
+                }
+
+                Long telefono;
+
+                try {
+                    telefono=Long.parseLong(elementoBuscar.getText().trim(),10);
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ingrese un valor numérico");
+                    alert.setContentText("");
+
+                    alert.showAndWait();
+                    return;
+                }
+
+                
+                if (App.Area.AreaTelefonos.get(telefono)==null) {
+
+                    encontrados.appendText('\n'+"          No se han encontrado valores");
+                    return;
+                }
+
+                
+
+                for (Long id : App.Area.AreaTelefonos.get(telefono)) {
+
+                    Object vertice= App.App.Grafo.getEdgeSource(App.Area.AreaIds.get(id));
+                    encontrados.appendText(String.valueOf(vertice) +'\n');
+                    
+                }
+
+            }
+       }
     }
 
     
