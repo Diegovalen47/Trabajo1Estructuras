@@ -108,6 +108,12 @@ public class EditarPersonalController implements Initializable {
             return;
         }
 
+        if (Personal.PersonalCedulas.containsKey(nueva_cedula)) {
+            WarningMessages.setText("Esa persona ya existe");
+            WarningMessages.setVisible(true);
+            return;
+        }
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Atencion");
         alert.setHeaderText("¿Desea guardar los cambios?");
