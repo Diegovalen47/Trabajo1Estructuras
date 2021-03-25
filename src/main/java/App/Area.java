@@ -42,7 +42,7 @@ public class Area {
 
 
 
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
